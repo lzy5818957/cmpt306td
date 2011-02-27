@@ -27,7 +27,7 @@ namespace PhysicsDefense
 		{
 			Content.RootDirectory = "Content";
 			graphics = new Graphics.GraphicsEngine(this);
-			gameWorld = new GameWorld();
+			gameWorld = new GameWorld(graphics);
 		}
 
 		/// <summary>
@@ -47,8 +47,6 @@ namespace PhysicsDefense
 		/// </summary>
 		protected override void LoadContent()
 		{
-			// Create a new SpriteBatch, which can be used to draw textures.
-
 			// TODO: use this.Content to load your game content here
 			graphics.LoadContent();
 		}
