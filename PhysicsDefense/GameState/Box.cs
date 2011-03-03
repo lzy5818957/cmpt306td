@@ -10,14 +10,15 @@ namespace PhysicsDefense.GameState
 {
 	class Box : GameObject
 	{
-		private static float width = 1f;
-		private static float height = 1f;
+		private static float width = 50f;
+		private static float height = 50f;
 		private static float density = 6f;
 
 		public Box(World world, Vector2 position)
 		{
 			spriteName = "box";
 			physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, density, position);
+			physicsProperties.fixture.Restitution = 0.2f;
 			physicsProperties.fixture.Body.BodyType = BodyType.Static;
 		}
 	}

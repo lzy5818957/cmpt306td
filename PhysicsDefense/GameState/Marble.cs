@@ -15,6 +15,7 @@ namespace PhysicsDefense.GameState
 		{
 			spriteName = "puck";
 			physicsProperties.fixture = FixtureFactory.CreateCircle(world, 25.0f, 3.0f, position);
+			physicsProperties.fixture.Restitution = 0.2f;
 			physicsProperties.fixture.Body.BodyType = BodyType.Dynamic;
 		}
 	}
