@@ -21,6 +21,8 @@ namespace PhysicsDefense.Graphics
 		{
 			this.game = game;
 			device = new GraphicsDeviceManager(game);
+			device.PreferredBackBufferWidth = 640;
+			device.PreferredBackBufferHeight = 480;
 			drawableObjects = new List<GameObject>();
 			textures = new Dictionary<String, Texture2D>();
 		}
@@ -48,6 +50,9 @@ namespace PhysicsDefense.Graphics
 				}
 
 				spriteBatch.Draw(textures[obj.spriteName], obj.getBoundingBox(), Color.White);
+
+				Vector2 origin = new Vector2(obj.getBoundingBox().Width / 2, obj.getBoundingBox().Height / 2);
+				spriteBatch.Draw(textures[obj.spriteName], obj.getBoundingBox(), null, Color.White, obj.rotation, origin, SpriteEffects.None, 0);
 				//spriteBatch.Draw(textures[obj.spriteName], obj.position, Color.White);
 				//device.GraphicsDevice.DrawUserPrimitives(PrimitiveType.PointList, new float[2] { obj.position.X, obj.position.Y }, 0, 1);
 			}

@@ -24,8 +24,10 @@ namespace PhysicsDefense.GameState
 			// Add a temporary test enemy
 			Marble testMarble = EnemyFactory.createMarble(new Vector2(100f, 30f), physics);
 			addObject(testMarble);
-			Box testBox = EnemyFactory.createBox(new Vector2(90f, 200f), physics);
+			Box testBox = EnemyFactory.createBox(new Vector2(100f, 240f), physics);
 			addObject(testBox);
+			Box testBox2 = EnemyFactory.createBox(new Vector2(200f, 300f), physics);
+			testBox.physicsProperties.fixture.Body.Rotation = 1f;
 		}
 
 		public void Update(GameTime gameTime)
