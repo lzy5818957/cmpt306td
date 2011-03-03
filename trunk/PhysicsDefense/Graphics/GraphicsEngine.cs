@@ -49,6 +49,7 @@ namespace PhysicsDefense.Graphics
 
 				spriteBatch.Draw(textures[obj.spriteName], obj.getBoundingBox(), Color.White);
 				//spriteBatch.Draw(textures[obj.spriteName], obj.position, Color.White);
+				device.GraphicsDevice.DrawUserPrimitives(PrimitiveType.PointList, new float[2] { obj.position.X, obj.position.Y }, 0, 1);
 			}
 			spriteBatch.End();
 		}

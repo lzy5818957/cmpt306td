@@ -27,18 +27,18 @@ namespace PhysicsDefense.GameState
 		{
 			AABB aabb;
 			physicsProperties.fixture.GetAABB(out aabb, 0);
-			//Rectangle rect = new Rectangle(
-			//	(int)(position.X + aabb.LowerBound.X),
-			//	(int)(position.Y + aabb.LowerBound.Y),
-			//	(int)(aabb.UpperBound.X - aabb.LowerBound.X),
-			//	(int)(aabb.UpperBound.Y - aabb.LowerBound.Y)
-			//);
 			Rectangle rect = new Rectangle(
-				(int)aabb.LowerBound.X,
-				(int)aabb.LowerBound.Y,
-				(int)aabb.Extents.X * 2,
-				(int)aabb.Extents.Y * 2
+				(int)(position.X + aabb.LowerBound.X),
+				(int)(position.Y + aabb.LowerBound.Y),
+				(int)(aabb.Extents.X * 2),
+				(int)(aabb.Extents.Y * 2)
 			);
+			//Rectangle rect = new Rectangle(
+			//    (int)aabb.LowerBound.X,
+			//    (int)aabb.LowerBound.Y,
+			//    (int)aabb.Extents.X * 2,
+			//    (int)aabb.Extents.Y * 2
+			//);
 			return rect;
 		}
 	}
