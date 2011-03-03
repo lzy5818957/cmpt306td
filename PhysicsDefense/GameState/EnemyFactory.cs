@@ -17,17 +17,13 @@ namespace PhysicsDefense.GameState
 	{
 		public static Marble createMarble(Vector2 position, PhysicsSystem physics)
 		{
-			Marble m = new Marble();
-			m.physicsProperties.fixture = FixtureFactory.CreateCircle(physics.world, 25.0f, 3.0f, position);
-			m.physicsProperties.fixture.Body.BodyType = BodyType.Dynamic;
+			Marble m = new Marble(physics.world, position);
 			return m;
 		}
 
 		public static Box createBox(Vector2 position, PhysicsSystem physics)
 		{
-			Box b = new Box();
-			b.physicsProperties.fixture = FixtureFactory.CreateRectangle(physics.world, 50f, 50f, 6f, position);
-			b.physicsProperties.fixture.Body.BodyType = BodyType.Static;
+			Box b = new Box(physics.world, position);
 			return b;
 		}
 	}
