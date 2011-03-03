@@ -30,8 +30,9 @@ namespace PhysicsDefense.Graphics
 			spriteBatch = new SpriteBatch(game.GraphicsDevice);
 
 			// Load textures
-			Texture2D texture = game.Content.Load<Texture2D>("puck");
-			textures.Add("puck", texture);
+			//Texture2D texture = game.Content.Load<Texture2D>("puck");
+			textures.Add("puck", game.Content.Load<Texture2D>("puck"));
+			textures.Add("box", game.Content.Load<Texture2D>("box"));
 		}
 
 		public void Draw(GameTime gameTime)
@@ -47,6 +48,7 @@ namespace PhysicsDefense.Graphics
 				}
 
 				spriteBatch.Draw(textures[obj.spriteName], obj.getBoundingBox(), Color.White);
+				//spriteBatch.Draw(textures[obj.spriteName], obj.position, Color.White);
 			}
 			spriteBatch.End();
 		}

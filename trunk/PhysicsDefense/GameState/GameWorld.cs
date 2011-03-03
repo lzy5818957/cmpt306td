@@ -22,8 +22,10 @@ namespace PhysicsDefense.GameState
 			entities = new List<GameObject>();
 
 			// Add a temporary test enemy
-			Marble test = EnemyFactory.createMarble(new Vector2(100f, 50f), physics);
-			addObject(test);
+			Marble testMarble = EnemyFactory.createMarble(new Vector2(100f, 0f), physics);
+			addObject(testMarble);
+			Box testBox = EnemyFactory.createBox(new Vector2(50f, 300f), physics);
+			addObject(testBox);
 		}
 
 		public void Update(GameTime gameTime)

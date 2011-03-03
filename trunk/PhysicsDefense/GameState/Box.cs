@@ -7,5 +7,9 @@ namespace PhysicsDefense.GameState
 {
 	class Box : GameObject
 	{
+		public Box()
+		{
+			spriteName = "box";
+		}
 	}
 }

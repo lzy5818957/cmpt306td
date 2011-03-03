@@ -24,7 +24,8 @@ namespace PhysicsDefense.Physics
 		public void Update(GameTime gameTime)
 		{
 			// Perform physics step
-			world.Step(1f / 60f);
+			//world.Step(1f / 60f);
+			world.Step(gameTime.ElapsedRealTime.Milliseconds * 0.001f);
 		}
 
 		public void addPhysical(GameObject obj)

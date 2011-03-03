@@ -10,7 +10,7 @@ namespace PhysicsDefense.GameState
 {
 	abstract class GameObject
 	{
-		//public Vector2 position { get; protected set; }
+		public Vector2 position { get { return physicsProperties.fixture.Body.Position; } protected set { } }
 		public String spriteName { get; protected set; }
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
 
@@ -21,23 +21,23 @@ namespace PhysicsDefense.GameState
 
 		public void update()
 		{
-			//position = physicsProperties.fixture.Body.Position;
-		}
-
-		public Vector2 getPosition()
-		{
-			return physicsProperties.fixture.Body.Position;
 		}
 
 		public Rectangle getBoundingBox()
 		{
 			AABB aabb;
 			physicsProperties.fixture.GetAABB(out aabb, 0);
+			//Rectangle rect = new Rectangle(
+			//	(int)(position.X + aabb.LowerBound.X),
+			//	(int)(position.Y + aabb.LowerBound.Y),
+			//	(int)(aabb.UpperBound.X - aabb.LowerBound.X),
+			//	(int)(aabb.UpperBound.Y - aabb.LowerBound.Y)
+			//);
 			Rectangle rect = new Rectangle(
-				(int)(getPosition().X + aabb.LowerBound.X),
-				(int)(getPosition().Y + aabb.LowerBound.Y),
-				(int)(aabb.UpperBound.X - aabb.LowerBound.X),
-				(int)(aabb.UpperBound.Y - aabb.LowerBound.Y)
+				(int)aabb.LowerBound.X,
+				(int)aabb.LowerBound.Y,
+				(int)aabb.Extents.X * 2,
+				(int)aabb.Extents.Y * 2
 			);
 			return rect;
 		}
