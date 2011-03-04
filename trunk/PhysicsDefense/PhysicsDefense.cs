@@ -55,6 +55,9 @@ namespace PhysicsDefense
 			// TODO: use this.Content to load your game content here
 			graphics.LoadContent();
 			audio.LoadContent();
+
+			// Play music
+			audio.PlayMusic();
 		}
 
 		/// <summary>
