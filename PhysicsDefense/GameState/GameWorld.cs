@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using PhysicsDefense.Physics;
 using PhysicsDefense.Graphics;
 
@@ -21,7 +22,7 @@ namespace PhysicsDefense.GameState
 			physics = new PhysicsSystem();
 			entities = new List<GameObject>();
 
-			// Add a temporary test enemy
+			// Add a temporary test enemies
 			Marble testMarble = EnemyFactory.createMarble(new Vector2(10f, 3f), physics);
 			addObject(testMarble);
 			Box testBox = EnemyFactory.createBox(new Vector2(10f, 24f), physics);
@@ -35,6 +36,12 @@ namespace PhysicsDefense.GameState
 
 		public void Update(GameTime gameTime)
 		{
+			// Temporary for fun
+			if(Mouse.GetState().LeftButton == ButtonState.Pressed) {
+				Marble m = EnemyFactory.createMarble(new Vector2(Mouse.GetState().X / 10f, Mouse.GetState().Y / 10f), physics);
+				addObject(m);
+			}
+
 			// Update physics
 			physics.Update(gameTime);
 
