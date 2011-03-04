@@ -32,6 +32,7 @@ namespace PhysicsDefense.Audio
 
 		public void PlayMusic()
 		{
+			MediaPlayer.IsRepeating = true;
 			MediaPlayer.Play(music);
 		}
 	}
