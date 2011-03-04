@@ -12,9 +12,18 @@ namespace PhysicsDefense.GameState
 	{
 		public Vector2 position { get { return physicsProperties.fixture.Body.Position; } protected set { } }
 		public float rotation { get { return physicsProperties.fixture.Body.Rotation; } protected set { } }
-		//public Vector2 size { get { return physicsProperties.fixture.Body.
 		public String spriteName { get; protected set; }
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
+
+		public Vector2 size {
+			get {
+				AABB aabb;
+				physicsProperties.fixture.GetAABB(out aabb, 0);
+				return new Vector2(aabb.Extents.X * 2, aabb.Extents.Y * 2);
+			}
+			set {
+			}
+		}
 
 		public GameObject()
 		{
