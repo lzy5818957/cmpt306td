@@ -10,8 +10,8 @@ namespace PhysicsDefense.GameState
 {
 	class Box : GameObject
 	{
-		private static float width = 50f;
-		private static float height = 50f;
+		private static float width = 6f;
+		private static float height = 6f;
 		private static float density = 6f;
 
 		public Box(World world, Vector2 position)
