@@ -20,6 +20,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, density, position);
 			physicsProperties.fixture.Restitution = 0.2f;
 			physicsProperties.fixture.Body.BodyType = BodyType.Static;
+			physicsProperties.fixture.Friction = 0.8f;
 		}
 
         public override void update()
