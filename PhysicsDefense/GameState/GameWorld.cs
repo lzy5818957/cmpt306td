@@ -10,22 +10,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PhysicsDefense.GameState
 {
-	class GameWorld
+	public class GameWorld
 	{
+		PhysicsDefense game;
 		PhysicsSystem physics;
-	    GraphicsEngine graphics;
 
         Boolean Lpressed, Lclicked, Rpressed, Rclicked;
         int currScrollWheelValue;
         //Box rotationIndicator;
 
 		List<GameObject> entities;
-        public List<GameObject> removeList;
+        List<GameObject> removeList;
         List<Explode> explodeList;
 
-		public GameWorld(GraphicsEngine graphics)
+		public GameWorld(PhysicsDefense game)
 		{
-			this.graphics = graphics;
+			this.game = game;
 			physics = new PhysicsSystem();
 			entities = new List<GameObject>();
             removeList = new List<GameObject>();
@@ -110,7 +110,7 @@ namespace PhysicsDefense.GameState
             {
                 obj.physicsProperties.fixture.Dispose();
                 entities.Remove(obj);
-                graphics.removeObject(obj);
+                game.graphics.removeObject(obj);
             }
             removeList.Clear();
 
@@ -122,7 +122,7 @@ namespace PhysicsDefense.GameState
                     removeList.Add(obj);
                     Explode explode=new Explode(physics.world,obj.position);
                     explodeList.Add(explode);
-                    graphics.explodeSound.Play();
+                    game.audio.PlaySound("explode");
                 }
 
                 if (obj is Explode)
@@ -132,8 +132,8 @@ namespace PhysicsDefense.GameState
 				obj.update();
                 if (obj.position.X + obj.size.X < 0
                     || obj.position.Y + obj.size.Y < 0
-                    || obj.position.X - obj.size.X > graphics.device.PreferredBackBufferWidth/10
-                    || obj.position.Y - obj.size.Y > graphics.device.PreferredBackBufferHeight/10)
+                    || obj.position.X - obj.size.X > game.graphics.device.PreferredBackBufferWidth/10
+                    || obj.position.Y - obj.size.Y > game.graphics.device.PreferredBackBufferHeight/10)
                 {
                     removeList.Add(obj);
                 }
@@ -144,7 +144,7 @@ namespace PhysicsDefense.GameState
 		private void addObject(GameObject obj)
 		{
 			entities.Add(obj);
-			graphics.addObject(obj);
+			game.graphics.addObject(obj);
 			physics.addPhysical(obj);
 		}
 	}
