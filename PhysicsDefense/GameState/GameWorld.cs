@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using PhysicsDefense.Physics;
 using PhysicsDefense.Graphics;
 using Microsoft.Xna.Framework.Graphics;
+using FarseerPhysics.Dynamics;
 
 namespace PhysicsDefense.GameState
 {
@@ -17,7 +18,7 @@ namespace PhysicsDefense.GameState
 
         Boolean Lpressed, Lclicked, Rpressed, Rclicked;
         int currScrollWheelValue;
-        //Box rotationIndicator;
+        Box rotationIndicator;
 
 		List<GameObject> entities;
         List<GameObject> removeList;
@@ -45,8 +46,8 @@ namespace PhysicsDefense.GameState
 			//Marble testMarble2 = EnemyFactory.createMarble(new Vector2(27.8f, 35f), physics);
 			//addObject(testMarble2);
 
-            //rotationIndicator = EnemyFactory.createBox(new Vector2(75f, 5f), physics);
-            //addObject(rotationIndicator);
+            rotationIndicator = EnemyFactory.createBox(new Vector2(75f, 5f), physics);
+            addObject(rotationIndicator);
 		}
 
 		public void Update(GameTime gameTime)
@@ -101,8 +102,8 @@ namespace PhysicsDefense.GameState
 
             //Direction indicator
 
-            //rotationIndicator.physicsProperties.fixture.Body.Rotation = (float)((currScrollWheelValue / 120) * Math.PI / 12.0f);
-
+            rotationIndicator.physicsProperties.fixture.Body.Rotation = (float)((currScrollWheelValue / 120) * Math.PI / 12.0f);
+            rotationIndicator.physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
 			// Update physics
 			physics.Update(gameTime);
 
