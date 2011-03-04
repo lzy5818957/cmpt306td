@@ -53,6 +53,13 @@ namespace PhysicsDefense.GameState
 		{
             MouseState mouse = Mouse.GetState();
 
+			// Temporary for fun: adding torque to marbles
+			if (Keyboard.GetState().IsKeyDown(Keys.T)) {
+				foreach (GameObject obj in entities) {
+					obj.physicsProperties.fixture.Body.ApplyTorque(10000);
+				}
+			}
+
             //ScrollWheelValue
             currScrollWheelValue = mouse.ScrollWheelValue;
 
