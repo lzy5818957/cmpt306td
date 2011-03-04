@@ -6,7 +6,7 @@ using FarseerPhysics.Dynamics;
 
 namespace PhysicsDefense.Physics
 {
-	class ObjectPhysicsProperties
+	public class ObjectPhysicsProperties
 	{
 		public Fixture fixture;
 	}

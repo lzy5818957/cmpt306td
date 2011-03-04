@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using FarseerPhysics.Dynamics;
 using PhysicsDefense.GameState;
+using PhysicsDefense.Graphics;
+using PhysicsDefense.Audio;
 
 namespace PhysicsDefense
 {
@@ -20,14 +22,16 @@ namespace PhysicsDefense
 	/// </summary>
 	public class PhysicsDefense : Microsoft.Xna.Framework.Game
 	{
-		Graphics.GraphicsEngine graphics;
-		GameWorld gameWorld;
+		public GraphicsEngine graphics;
+		public GameAudio audio;
+		public GameWorld gameWorld;
 
 		public PhysicsDefense()
 		{
 			Content.RootDirectory = "Content";
-			graphics = new Graphics.GraphicsEngine(this);
-			gameWorld = new GameWorld(graphics);
+			graphics = new GraphicsEngine(this);
+			audio = new GameAudio(this);
+			gameWorld = new GameWorld(this);
 		}
 
 		/// <summary>
@@ -50,6 +54,7 @@ namespace PhysicsDefense
 		{
 			// TODO: use this.Content to load your game content here
 			graphics.LoadContent();
+			audio.LoadContent();
 		}
 
 		/// <summary>

@@ -5,16 +5,15 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PhysicsDefense.GameState;
-using Microsoft.Xna.Framework.Audio;
+//using Microsoft.Xna.Framework.Audio;
 
 namespace PhysicsDefense.Graphics
 {
-	class GraphicsEngine
+	public class GraphicsEngine
 	{
 		public GraphicsDeviceManager device;
 		SpriteBatch spriteBatch;
 		Game game;
-        public SoundEffect explodeSound;
 		
 		List<GameObject> drawableObjects;
 		Dictionary<String, Texture2D> textures;
@@ -41,8 +40,6 @@ namespace PhysicsDefense.Graphics
             {
                 textures.Add("explode"+i.ToString(), game.Content.Load<Texture2D>("explode"+i.ToString()));
             }
-            explodeSound = game.Content.Load<SoundEffect>("explode");
-
 		}
 
 		public void Draw(GameTime gameTime)
@@ -56,8 +53,6 @@ namespace PhysicsDefense.Graphics
 				if (!textures.ContainsKey(obj.spriteName)) {
 					throw new System.ArgumentNullException("Attempted to draw sprite with an invalid texture.");
 				}
-
-				//Rectangle dest = new Rectangle((int)obj.position.X, (int)obj.position.Y, (int)obj.size.X, (int)obj.size.Y);
 				
 			    Rectangle dest = new Rectangle((int)(obj.position.X * 10f), (int)(obj.position.Y * 10f), (int)(obj.size.X * 10f), (int)(obj.size.Y * 10f));
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
