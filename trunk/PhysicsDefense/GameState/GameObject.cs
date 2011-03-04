@@ -30,9 +30,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties = new ObjectPhysicsProperties();
 		}
 
-		public void update()
-		{
-		}
+        public abstract void update();
 
 		public Rectangle getBoundingBox()
 		{

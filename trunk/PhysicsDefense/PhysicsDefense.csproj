@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="GameState\Box.cs" />
     <Compile Include="GameState\EnemyFactory.cs" />
+    <Compile Include="GameState\Explode.cs" />
     <Compile Include="GameState\Marble.cs" />
     <Compile Include="Graphics\GraphicsEngine.cs" />
     <Compile Include="Physics\ObjectPhysicsProperties.cs" />

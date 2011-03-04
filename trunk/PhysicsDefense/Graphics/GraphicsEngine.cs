@@ -5,17 +5,20 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PhysicsDefense.GameState;
+using Microsoft.Xna.Framework.Audio;
 
 namespace PhysicsDefense.Graphics
 {
 	class GraphicsEngine
 	{
-		GraphicsDeviceManager device;
+		public GraphicsDeviceManager device;
 		SpriteBatch spriteBatch;
 		Game game;
+        public SoundEffect explodeSound;
 		
 		List<GameObject> drawableObjects;
 		Dictionary<String, Texture2D> textures;
+
 
 		public GraphicsEngine(Microsoft.Xna.Framework.Game game)
 		{
@@ -32,9 +35,14 @@ namespace PhysicsDefense.Graphics
 			spriteBatch = new SpriteBatch(game.GraphicsDevice);
 
 			// Load textures
-			//Texture2D texture = game.Content.Load<Texture2D>("puck");
 			textures.Add("puck", game.Content.Load<Texture2D>("puck"));
 			textures.Add("box", game.Content.Load<Texture2D>("box"));
+            for (int i = 1; i < 18; i++)
+            {
+                textures.Add("explode"+i.ToString(), game.Content.Load<Texture2D>("explode"+i.ToString()));
+            }
+            explodeSound = game.Content.Load<SoundEffect>("explode");
+
 		}
 
 		public void Draw(GameTime gameTime)
@@ -50,8 +58,8 @@ namespace PhysicsDefense.Graphics
 				}
 
 				//Rectangle dest = new Rectangle((int)obj.position.X, (int)obj.position.Y, (int)obj.size.X, (int)obj.size.Y);
-				//Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
-				Rectangle dest = new Rectangle((int)(obj.position.X * 10f), (int)(obj.position.Y * 10f), (int)(obj.size.X * 10f), (int)(obj.size.Y * 10f));
+				
+			    Rectangle dest = new Rectangle((int)(obj.position.X * 10f), (int)(obj.position.Y * 10f), (int)(obj.size.X * 10f), (int)(obj.size.Y * 10f));
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, Color.White, obj.rotation, origin, SpriteEffects.None, 0);
 			}
@@ -62,5 +70,10 @@ namespace PhysicsDefense.Graphics
 		{
 			drawableObjects.Add(obj);
 		}
+
+        public void removeObject(GameObject obj)
+        {
+            drawableObjects.Remove(obj);
+        }
 	}
 }

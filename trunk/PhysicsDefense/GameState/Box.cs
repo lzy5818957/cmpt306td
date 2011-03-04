@@ -21,5 +21,10 @@ namespace PhysicsDefense.GameState
 			physicsProperties.fixture.Restitution = 0.2f;
 			physicsProperties.fixture.Body.BodyType = BodyType.Static;
 		}
+
+        public override void update()
+        {
+
+        }
 	}
 }
