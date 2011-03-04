@@ -21,8 +21,8 @@ namespace PhysicsDefense.Graphics
 		{
 			this.game = game;
 			device = new GraphicsDeviceManager(game);
-			device.PreferredBackBufferWidth = 640;
-			device.PreferredBackBufferHeight = 480;
+			device.PreferredBackBufferWidth = 800;
+			device.PreferredBackBufferHeight = 600;
 			drawableObjects = new List<GameObject>();
 			textures = new Dictionary<String, Texture2D>();
 		}
@@ -49,14 +49,11 @@ namespace PhysicsDefense.Graphics
 					throw new System.ArgumentNullException("Attempted to draw sprite with an invalid texture.");
 				}
 
-				spriteBatch.Draw(textures[obj.spriteName], obj.getBoundingBox(), Color.Red);
-
-				Rectangle dest = new Rectangle((int)obj.position.X, (int)obj.position.Y, (int)obj.size.X, (int)obj.size.Y);
-				Vector2 origin = new Vector2(obj.getBoundingBox().Width / 2, obj.getBoundingBox().Height / 2);
+				//Rectangle dest = new Rectangle((int)obj.position.X, (int)obj.position.Y, (int)obj.size.X, (int)obj.size.Y);
+				//Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
+				Rectangle dest = new Rectangle((int)(obj.position.X * 10f), (int)(obj.position.Y * 10f), (int)(obj.size.X * 10f), (int)(obj.size.Y * 10f));
+				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, Color.White, obj.rotation, origin, SpriteEffects.None, 0);
-				//spriteBatch.Draw(textures[obj.spriteName], obj.getBoundingBox(), null, Color.White, obj.rotation, Vector2.Zero, SpriteEffects.None, 0);
-				//spriteBatch.Draw(textures[obj.spriteName], obj.position, Color.White);
-				//device.GraphicsDevice.DrawUserPrimitives(PrimitiveType.PointList, new float[2] { obj.position.X, obj.position.Y }, 0, 1);
 			}
 			spriteBatch.End();
 		}

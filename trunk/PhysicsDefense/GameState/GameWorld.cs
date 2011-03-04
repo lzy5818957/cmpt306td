@@ -22,12 +22,15 @@ namespace PhysicsDefense.GameState
 			entities = new List<GameObject>();
 
 			// Add a temporary test enemy
-			Marble testMarble = EnemyFactory.createMarble(new Vector2(100f, 30f), physics);
+			Marble testMarble = EnemyFactory.createMarble(new Vector2(10f, 3f), physics);
 			addObject(testMarble);
-			Box testBox = EnemyFactory.createBox(new Vector2(100f, 240f), physics);
+			Box testBox = EnemyFactory.createBox(new Vector2(10f, 24f), physics);
 			addObject(testBox);
-			Box testBox2 = EnemyFactory.createBox(new Vector2(200f, 300f), physics);
-			testBox.physicsProperties.fixture.Body.Rotation = 1f;
+			Box testBox2 = EnemyFactory.createBox(new Vector2(28.2f, 45f), physics);
+			addObject(testBox2);
+			testBox.physicsProperties.fixture.Body.Rotation = (float)Math.PI / 12.0f;
+			Marble testMarble2 = EnemyFactory.createMarble(new Vector2(27.8f, 35f), physics);
+			addObject(testMarble2);
 		}
 
 		public void Update(GameTime gameTime)
