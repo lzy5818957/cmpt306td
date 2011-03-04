@@ -39,6 +39,7 @@ namespace PhysicsDefense
 		protected override void Initialize()
 		{
 			base.Initialize();
+			this.IsMouseVisible = true;
 		}
 
 		/// <summary>
