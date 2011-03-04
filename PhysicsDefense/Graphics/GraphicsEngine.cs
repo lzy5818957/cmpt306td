@@ -5,7 +5,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PhysicsDefense.GameState;
-//using Microsoft.Xna.Framework.Audio;
 
 namespace PhysicsDefense.Graphics
 {
@@ -25,6 +24,8 @@ namespace PhysicsDefense.Graphics
 			device = new GraphicsDeviceManager(game);
 			device.PreferredBackBufferWidth = 800;
 			device.PreferredBackBufferHeight = 600;
+			device.PreferMultiSampling = true;
+			device.ApplyChanges();
 			drawableObjects = new List<GameObject>();
 			textures = new Dictionary<String, Texture2D>();
 		}
