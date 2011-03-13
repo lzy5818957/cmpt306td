@@ -15,6 +15,9 @@ namespace PhysicsDefense.GameState
 		public String spriteName { get; protected set; }
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
 
+		public bool isDead = false;
+		public bool isEnabled = true;
+
 		public Vector2 size {
 			get {
 				AABB aabb;
@@ -28,6 +31,11 @@ namespace PhysicsDefense.GameState
 		public GameObject()
 		{
 			physicsProperties = new ObjectPhysicsProperties();
+		}
+
+		public void activate()
+		{
+			physicsProperties.fixture.IsSensor = false;
 		}
 
         public abstract void update();

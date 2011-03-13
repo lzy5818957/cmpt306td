@@ -22,6 +22,8 @@ namespace PhysicsDefense
 	/// </summary>
 	public class PhysicsDefense : Microsoft.Xna.Framework.Game
 	{
+		public static float worldScale = 100f;
+
 		public GraphicsEngine graphics;
 		public GameAudio audio;
 		public GameWorld gameWorld;

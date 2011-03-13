@@ -13,46 +13,36 @@ namespace PhysicsDefense.GameState
 {
 	public class GameWorld
 	{
+		public static float worldWidth;
+		public static float worldHeight;
+
 		PhysicsDefense game;
 		PhysicsSystem physics;
 
-        Boolean Lpressed, Lclicked, Rpressed, Rclicked;
-        int currScrollWheelValue;
-        Box rotationIndicator;
+		MouseState prevMouseState;
 
 		List<GameObject> entities;
+		List<GameObject> newEntities;
         List<GameObject> removeList;
-        List<Explode> explodeList;
 
 		public GameWorld(PhysicsDefense game)
 		{
 			this.game = game;
+			worldWidth = GraphicsEngine.screenWidth / PhysicsDefense.worldScale;
+			worldHeight = GraphicsEngine.screenHeight / PhysicsDefense.worldScale;
+
 			physics = new PhysicsSystem();
 			entities = new List<GameObject>();
+			newEntities = new List<GameObject>();
             removeList = new List<GameObject>();
-            explodeList = new List<Explode>();
-
-			// Add a temporary test enemies
-			//Marble testMarble = EnemyFactory.createMarble(new Vector2(10f, 3f), physics);
-			//addObject(testMarble);
-
-			//Box testBox = EnemyFactory.createBox(new Vector2(10f, 24f), physics);
-			//addObject(testBox);
-            //testBox.physicsProperties.fixture.Body.Rotation = (float)Math.PI / 12.0f;
-
-			//Box testBox2 = EnemyFactory.createBox(new Vector2(28.2f, 45f), physics);
-			//addObject(testBox2);
-			
-			//Marble testMarble2 = EnemyFactory.createMarble(new Vector2(27.8f, 35f), physics);
-			//addObject(testMarble2);
-
-            rotationIndicator = EnemyFactory.createBox(new Vector2(75f, 5f), physics);
-            addObject(rotationIndicator);
 		}
 
 		public void Update(GameTime gameTime)
 		{
-            MouseState mouse = Mouse.GetState();
+			MouseState curMouseState = Mouse.GetState();
+			bool mouseLeftPress = (curMouseState.LeftButton == ButtonState.Pressed) && (prevMouseState.LeftButton == ButtonState.Released);
+			bool mouseRightPress = (curMouseState.RightButton == ButtonState.Pressed) && (prevMouseState.RightButton == ButtonState.Released);
+			bool mouseMidPress = (curMouseState.MiddleButton == ButtonState.Pressed) && (prevMouseState.MiddleButton == ButtonState.Released);
 
 			// Temporary for fun: adding torque to marbles
 			if (Keyboard.GetState().IsKeyDown(Keys.T)) {
@@ -61,59 +51,28 @@ namespace PhysicsDefense.GameState
 				}
 			}
 
-            //ScrollWheelValue
-            currScrollWheelValue = mouse.ScrollWheelValue;
-
-			// Add Marble by mouse
-            if (mouse.RightButton == ButtonState.Pressed)
-                Lpressed = true;
-
-            if (mouse.RightButton == ButtonState.Released && Lpressed)
-            {
-                Lclicked = true;
-                Lpressed = false;
+			// Temporary for testing
+			if (mouseMidPress) {
+				Marble m = EnemyFactory.createMarble(new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale), physics);
+				addObject(m);
+			}
+            if (mouseLeftPress) {
+				//Box b = EnemyFactory.createBox(new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale), physics);                
+				Tower t = new Tower(physics.world, new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale));
+                addObject(t);
+                t.physicsProperties.fixture.Body.Rotation = (float)((curMouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
             }
-
-            if (Lclicked)
-            {
-                Marble m = EnemyFactory.createMarble(new Vector2(Mouse.GetState().X / 10f, Mouse.GetState().Y / 10f), physics);
-                addObject(m);
-                Lclicked = false; 
-            }
-
-            // Add Box by mouse
-            if (mouse.LeftButton == ButtonState.Pressed)
-                Rpressed = true;
-
-            if (mouse.LeftButton == ButtonState.Released && Rpressed)
-            {
-                Rclicked = true;
-                Rpressed = false;
-            }
-
-            if (Rclicked)
-            {
-                Box b = EnemyFactory.createBox(new Vector2(Mouse.GetState().X / 10f, Mouse.GetState().Y / 10f), physics);                
-                addObject(b);
-                b.physicsProperties.fixture.Body.Rotation = (float)((currScrollWheelValue / 120) * Math.PI / 12.0f);
-
-                Rclicked = false;
-            }
+			if (mouseRightPress) {
+			}
 
             //Direction indicator
+            //rotationIndicator.physicsProperties.fixture.Body.Rotation = (float)((currScrollWheelValue / 120) * Math.PI / 12.0f);
+            //rotationIndicator.physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
 
-            rotationIndicator.physicsProperties.fixture.Body.Rotation = (float)((currScrollWheelValue / 120) * Math.PI / 12.0f);
-            rotationIndicator.physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
 			// Update physics
 			physics.Update(gameTime);
 
-            foreach (Explode exp in explodeList)
-            {
-                addObject(exp);
-            }
-            explodeList.Clear();
-
-            //Delete the removed object in the removeList
+            // Delete the removed object in the removeList
             foreach (GameObject obj in removeList)
             {
                 obj.physicsProperties.fixture.Dispose();
@@ -124,36 +83,41 @@ namespace PhysicsDefense.GameState
 
 			// Update game objects
 			foreach (GameObject obj in entities) {
+				// Check for marbles that have reached bottom
+				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
+					removeObject(obj);
 
-                if (obj.position.Y > 50&& (obj is Marble) )
-                {
-                    removeList.Add(obj);
                     Explode explode=new Explode(physics.world,obj.position);
-                    explodeList.Add(explode);
+					addObject(explode);
                     game.audio.PlaySound("explode");
                 }
 
-                if (obj is Explode)
-                    if (((Explode)obj).frameCount >= 17)
-                        removeList.Add(obj);
-
+				// Update object
 				obj.update();
-                if (obj.position.X + obj.size.X < 0
-                    || obj.position.Y + obj.size.Y < 0
-                    || obj.position.X - obj.size.X > game.graphics.device.PreferredBackBufferWidth/10
-                    || obj.position.Y - obj.size.Y > game.graphics.device.PreferredBackBufferHeight/10)
-                {
-                    removeList.Add(obj);
-                }
-
 			}
+
+			// Remove all dead objects
+			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
+
+			// Move any new objects to the main list
+			entities.AddRange(newEntities);
+			newEntities.Clear();
+
+			prevMouseState = Mouse.GetState();
 		}
 
 		private void addObject(GameObject obj)
 		{
-			entities.Add(obj);
+			newEntities.Add(obj);
 			game.graphics.addObject(obj);
 			physics.addPhysical(obj);
+		}
+
+		private void removeObject(GameObject obj)
+		{
+			obj.isDead = true;
+			game.graphics.removeObject(obj);
+			physics.removePhysical(obj);
 		}
 	}
 }

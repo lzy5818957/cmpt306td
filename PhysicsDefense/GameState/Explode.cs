@@ -16,7 +16,8 @@ namespace PhysicsDefense.GameState
         {
             frameCount = 1;
             spriteName = "explode1";
-            physicsProperties.fixture = FixtureFactory.CreateCircle(world, 14.4f, 14.4f, position);
+            physicsProperties.fixture = FixtureFactory.CreateCircle(world, 1.44f, 1f, position);
+
             //No collision
             physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
             physicsProperties.fixture.Body.BodyType = BodyType.Static;
@@ -25,11 +26,12 @@ namespace PhysicsDefense.GameState
 
         public override void update()
         {
-            if (frameCount < 17)
-            {
-                frameCount++;
-                spriteName = "explode" + frameCount.ToString();
-            }
+			if (frameCount < 17) {
+				frameCount++;
+				spriteName = "explode" + frameCount.ToString();
+			} else {
+				isDead = true;
+			}
         }
     }
 }
