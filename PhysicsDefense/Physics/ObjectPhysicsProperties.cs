@@ -8,7 +8,18 @@ namespace PhysicsDefense.Physics
 {
 	public class ObjectPhysicsProperties
 	{
-		public Fixture fixture;
+		public ObjectPhysicsProperties()
+		{
+			fixtureList = new List<Fixture>();
+		}
+
+		public Fixture fixture
+		{
+			get { return fixtureList[0]; }
+			set { fixtureList.Insert(0, value); }
+		}
+
+		//public List<Fixture> fixture;
 		public List<Fixture> fixtureList;
 	}
 }
