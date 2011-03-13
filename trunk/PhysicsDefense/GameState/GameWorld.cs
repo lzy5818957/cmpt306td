@@ -13,6 +13,7 @@ namespace PhysicsDefense.GameState
 {
 	public class GameWorld
 	{
+		public static float worldScale = 100f;
 		public static float worldWidth;
 		public static float worldHeight;
 
@@ -25,16 +26,21 @@ namespace PhysicsDefense.GameState
 		List<GameObject> newEntities;
         List<GameObject> removeList;
 
+		Tower previewTower;
+
 		public GameWorld(PhysicsDefense game)
 		{
 			this.game = game;
-			worldWidth = GraphicsEngine.screenWidth / PhysicsDefense.worldScale;
-			worldHeight = GraphicsEngine.screenHeight / PhysicsDefense.worldScale;
+			worldWidth = GraphicsEngine.screenWidth / worldScale;
+			worldHeight = GraphicsEngine.screenHeight / worldScale;
 
 			physics = new PhysicsSystem();
 			entities = new List<GameObject>();
 			newEntities = new List<GameObject>();
             removeList = new List<GameObject>();
+
+			// Temporary: activate preview tower immediately
+			previewTower = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
 		}
 
 		public void Update(GameTime gameTime)
@@ -51,14 +57,19 @@ namespace PhysicsDefense.GameState
 				}
 			}
 
+			// Show tower preview if in tower placement mode
+			if (previewTower != null) {  // TODO: make this check if in tower placement
+
+			}
+
 			// Temporary for testing
 			if (mouseMidPress) {
-				Marble m = EnemyFactory.createMarble(new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale), physics);
+				Marble m = EnemyFactory.createMarble(new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale), physics);
 				addObject(m);
 			}
             if (mouseLeftPress) {
 				//Box b = EnemyFactory.createBox(new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale), physics);                
-				Tower t = new Tower(physics.world, new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale));
+				Tower t = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
                 addObject(t);
                 t.physicsProperties.fixture.Body.Rotation = (float)((curMouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
             }
