@@ -17,14 +17,22 @@ namespace PhysicsDefense.GameState
 		public static float worldWidth;
 		public static float worldHeight;
 
+		private float connectDistance = 1.0f;
+
 		PhysicsDefense game;
 		PhysicsSystem physics;
 
+		MouseState mouseState;
 		MouseState prevMouseState;
+		KeyboardState keyboardState;
+		KeyboardState prevKeyboardState;
+
+		bool mouseLeftPress;
+		bool mouseMidPress;
+		bool mouseRightPress;
 
 		List<GameObject> entities;
 		List<GameObject> newEntities;
-        List<GameObject> removeList;
 
 		Tower previewTower;
 
@@ -37,63 +45,84 @@ namespace PhysicsDefense.GameState
 			physics = new PhysicsSystem();
 			entities = new List<GameObject>();
 			newEntities = new List<GameObject>();
-            removeList = new List<GameObject>();
+		}
 
-			// Temporary: activate preview tower immediately
-			previewTower = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
+		private void getInputState()
+		{
+			mouseState = Mouse.GetState();
+			keyboardState = Keyboard.GetState();
+			mouseLeftPress = (mouseState.LeftButton == ButtonState.Pressed) && (prevMouseState.LeftButton == ButtonState.Released);
+			mouseRightPress = (mouseState.RightButton == ButtonState.Pressed) && (prevMouseState.RightButton == ButtonState.Released);
+			mouseMidPress = (mouseState.MiddleButton == ButtonState.Pressed) && (prevMouseState.MiddleButton == ButtonState.Released);
+		}
+
+		private void towerSelection()
+		{
+			if (keyboardState.IsKeyDown(Keys.T) && previewTower == null) {
+				previewTower = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
+				previewTower.physicsProperties.fixture.Body.Rotation = (float)((mouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
+				addObject(previewTower);
+			}
+		}
+
+		private void placeTower()
+		{
+			if (previewTower == null)
+				return;
+
+			previewTower.activate();
+			addObject(previewTower);
+
+			// Find nearby towers to connect to
+			foreach (GameObject tower in entities) {
+				if ((tower.position - previewTower.position).Length() > connectDistance)
+					continue;
+				
+				// Connect the towers
+
+			}
+
+			previewTower = null;
 		}
 
 		public void Update(GameTime gameTime)
 		{
-			MouseState curMouseState = Mouse.GetState();
-			bool mouseLeftPress = (curMouseState.LeftButton == ButtonState.Pressed) && (prevMouseState.LeftButton == ButtonState.Released);
-			bool mouseRightPress = (curMouseState.RightButton == ButtonState.Pressed) && (prevMouseState.RightButton == ButtonState.Released);
-			bool mouseMidPress = (curMouseState.MiddleButton == ButtonState.Pressed) && (prevMouseState.MiddleButton == ButtonState.Released);
+			// Get input state
+			getInputState();
+
+			// Check for tower placement activation
+			towerSelection();
 
 			// Temporary for fun: adding torque to marbles
-			if (Keyboard.GetState().IsKeyDown(Keys.T)) {
+			if (Keyboard.GetState().IsKeyDown(Keys.S)) {
 				foreach (GameObject obj in entities) {
-					obj.physicsProperties.fixture.Body.ApplyTorque(10000);
+					obj.physicsProperties.fixture.Body.ApplyTorque(1000);
 				}
 			}
 
 			// Show tower preview if in tower placement mode
 			if (previewTower != null) {  // TODO: make this check if in tower placement
-
+				previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
+				previewTower.rotation = (float)((mouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
 			}
 
 			// Temporary for testing
 			if (mouseMidPress) {
-				Marble m = EnemyFactory.createMarble(new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale), physics);
+				Marble m = EnemyFactory.createMarble(new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), physics);
 				addObject(m);
 			}
-            if (mouseLeftPress) {
-				//Box b = EnemyFactory.createBox(new Vector2(Mouse.GetState().X / PhysicsDefense.worldScale, Mouse.GetState().Y / PhysicsDefense.worldScale), physics);                
-				Tower t = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-                addObject(t);
-                t.physicsProperties.fixture.Body.Rotation = (float)((curMouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
+            if (mouseLeftPress && previewTower != null) {
+				placeTower();
             }
-			if (mouseRightPress) {
-			}
-
-            //Direction indicator
-            //rotationIndicator.physicsProperties.fixture.Body.Rotation = (float)((currScrollWheelValue / 120) * Math.PI / 12.0f);
-            //rotationIndicator.physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
 
 			// Update physics
 			physics.Update(gameTime);
 
-            // Delete the removed object in the removeList
-            foreach (GameObject obj in removeList)
-            {
-                obj.physicsProperties.fixture.Dispose();
-                entities.Remove(obj);
-                game.graphics.removeObject(obj);
-            }
-            removeList.Clear();
-
 			// Update game objects
 			foreach (GameObject obj in entities) {
+				// Update object
+				obj.update();
+
 				// Check for marbles that have reached bottom
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
 					removeObject(obj);
@@ -103,8 +132,6 @@ namespace PhysicsDefense.GameState
                     game.audio.PlaySound("explode");
                 }
 
-				// Update object
-				obj.update();
 			}
 
 			// Remove all dead objects
