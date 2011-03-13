@@ -10,6 +10,9 @@ namespace PhysicsDefense.Graphics
 {
 	public class GraphicsEngine
 	{
+		public static int screenWidth = 800;
+		public static int screenHeight = 600;
+
 		public GraphicsDeviceManager device;
 		SpriteBatch spriteBatch;
 		Game game;
@@ -22,10 +25,11 @@ namespace PhysicsDefense.Graphics
 		{
 			this.game = game;
 			device = new GraphicsDeviceManager(game);
-			device.PreferredBackBufferWidth = 800;
-			device.PreferredBackBufferHeight = 600;
+			device.PreferredBackBufferWidth = screenWidth;
+			device.PreferredBackBufferHeight = screenHeight;
 			device.PreferMultiSampling = true;
 			device.ApplyChanges();
+
 			drawableObjects = new List<GameObject>();
 			textures = new Dictionary<String, Texture2D>();
 		}
@@ -37,8 +41,9 @@ namespace PhysicsDefense.Graphics
 			// Load textures
 			textures.Add("puck", game.Content.Load<Texture2D>("puck"));
 			textures.Add("box", game.Content.Load<Texture2D>("box"));
-            for (int i = 1; i < 18; i++)
-            {
+			//textures.Add("basicTower", game.Content.Load<Texture2D>("basicTower"));
+
+            for (int i = 1; i < 18; i++) {
                 textures.Add("explode"+i.ToString(), game.Content.Load<Texture2D>("explode"+i.ToString()));
             }
 		}
@@ -54,9 +59,15 @@ namespace PhysicsDefense.Graphics
 				if (!textures.ContainsKey(obj.spriteName)) {
 					throw new System.ArgumentNullException("Attempted to draw sprite with an invalid texture.");
 				}
-				
-			    Rectangle dest = new Rectangle((int)(obj.position.X * 10f), (int)(obj.position.Y * 10f), (int)(obj.size.X * 10f), (int)(obj.size.Y * 10f));
+
+				Rectangle dest = new Rectangle(
+					(int)(obj.position.X * PhysicsDefense.worldScale),
+					(int)(obj.position.Y * PhysicsDefense.worldScale),
+					(int)(obj.size.X * PhysicsDefense.worldScale),
+					(int)(obj.size.Y * PhysicsDefense.worldScale)
+				);
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
+
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, Color.White, obj.rotation, origin, SpriteEffects.None, 0);
 			}
 			spriteBatch.End();

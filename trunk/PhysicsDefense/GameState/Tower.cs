@@ -8,24 +8,24 @@ using FarseerPhysics.Factories;
 
 namespace PhysicsDefense.GameState
 {
-	class Box : GameObject
+	class Tower : GameObject
 	{
 		private static float width = 0.6f;
 		private static float height = 0.6f;
 		private static float density = 0.6f;
 
-		public Box(World world, Vector2 position)
+		public Tower(World world, Vector2 position)
 		{
 			spriteName = "box";
 			physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, density, position);
 			physicsProperties.fixture.Restitution = 0.2f;
 			physicsProperties.fixture.Body.BodyType = BodyType.Static;
 			physicsProperties.fixture.Friction = 0.8f;
+			physicsProperties.fixture.IsSensor = true;
 		}
 
-        public override void update()
-        {
-
-        }
+		public override void update()
+		{
+		}
 	}
 }

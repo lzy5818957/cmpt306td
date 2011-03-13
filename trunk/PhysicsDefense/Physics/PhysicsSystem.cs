@@ -33,5 +33,10 @@ namespace PhysicsDefense.Physics
 		{
 			physicalObjects.Add(obj);
 		}
+
+		public void removePhysical(GameObject obj)
+		{
+			physicalObjects.Remove(obj);
+		}
 	}
 }
