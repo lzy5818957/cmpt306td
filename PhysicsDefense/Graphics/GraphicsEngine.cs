@@ -61,10 +61,10 @@ namespace PhysicsDefense.Graphics
 				}
 
 				Rectangle dest = new Rectangle(
-					(int)(obj.position.X * PhysicsDefense.worldScale),
-					(int)(obj.position.Y * PhysicsDefense.worldScale),
-					(int)(obj.size.X * PhysicsDefense.worldScale),
-					(int)(obj.size.Y * PhysicsDefense.worldScale)
+					(int)(obj.position.X * GameWorld.worldScale),
+					(int)(obj.position.Y * GameWorld.worldScale),
+					(int)(obj.size.X * GameWorld.worldScale),
+					(int)(obj.size.Y * GameWorld.worldScale)
 				);
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
 
