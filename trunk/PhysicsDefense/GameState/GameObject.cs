@@ -5,14 +5,32 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using PhysicsDefense.Physics;
 using FarseerPhysics.Collision;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace PhysicsDefense.GameState
 {
 	public abstract class GameObject
 	{
-		public Vector2 position { get { return physicsProperties.fixture.Body.Position; } protected set { } }
-		public float rotation { get { return physicsProperties.fixture.Body.Rotation; } protected set { } }
+		public Vector2 position {
+			get {
+				return physicsProperties.fixture.Body.Position;
+			}
+			set {
+				physicsProperties.fixture.Body.SetTransformIgnoreContacts(ref value, physicsProperties.fixture.Body.Rotation);
+			}
+		}
+
+		public float rotation {
+			get {
+				return physicsProperties.fixture.Body.Rotation;
+			}
+			set {
+				//physicsProperties.fixture.Body.SetTransform(position, value);
+				physicsProperties.fixture.Body.Rotation = value;
+			}
+		}
 		public String spriteName { get; protected set; }
+		public Color color;
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
 
 		public bool isDead = false;
@@ -31,11 +49,13 @@ namespace PhysicsDefense.GameState
 		public GameObject()
 		{
 			physicsProperties = new ObjectPhysicsProperties();
+			color = Color.White;
 		}
 
 		public void activate()
 		{
 			physicsProperties.fixture.IsSensor = false;
+			color.A = 255;
 		}
 
         public abstract void update();

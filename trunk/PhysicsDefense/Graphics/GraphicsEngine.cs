@@ -68,7 +68,7 @@ namespace PhysicsDefense.Graphics
 				);
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
 
-				spriteBatch.Draw(textures[obj.spriteName], dest, null, Color.White, obj.rotation, origin, SpriteEffects.None, 0);
+				spriteBatch.Draw(textures[obj.spriteName], dest, null, obj.color, obj.rotation, origin, SpriteEffects.None, 0);
 			}
 			spriteBatch.End();
 		}

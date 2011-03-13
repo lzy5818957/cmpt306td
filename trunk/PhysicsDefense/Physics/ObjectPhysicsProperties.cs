@@ -9,5 +9,6 @@ namespace PhysicsDefense.Physics
 	public class ObjectPhysicsProperties
 	{
 		public Fixture fixture;
+		public List<Fixture> fixtureList;
 	}
 }
