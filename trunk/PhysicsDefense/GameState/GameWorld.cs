@@ -75,11 +75,19 @@ namespace PhysicsDefense.GameState
 
 			// Find nearby towers to connect to
 			foreach (GameObject tower in entities) {
-				if ((tower.position - previewTower.position).Length() > connectDistance)
+				if (!(tower is Tower))
+					continue;
+
+				float distance = (tower.position - previewTower.position).Length();
+				if (distance > connectDistance || tower == previewTower)
 					continue;
 				
 				// Connect the towers
-
+				Connector con = new Connector(physics.world, distance, tower.size.X / 2);
+				con.position = (tower.position + previewTower.position) / 2f;
+				con.rotation = (float)Math.Atan2((tower.position.Y - previewTower.position.Y), (tower.position.X - previewTower.position.X));
+				con.rotation += (float)Math.PI / 2f;
+				addObject(con);
 			}
 
 			previewTower = null;
@@ -135,6 +143,12 @@ namespace PhysicsDefense.GameState
 			}
 
 			// Remove all dead objects
+			entities.ForEach(delegate(GameObject obj) {
+				if (obj.isDead) {
+					game.graphics.removeObject(obj);
+					physics.removePhysical(obj);
+				}
+			});
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
 
 			// Move any new objects to the main list
@@ -154,8 +168,8 @@ namespace PhysicsDefense.GameState
 		private void removeObject(GameObject obj)
 		{
 			obj.isDead = true;
-			game.graphics.removeObject(obj);
-			physics.removePhysical(obj);
+			//game.graphics.removeObject(obj);
+			//physics.removePhysical(obj);
 		}
 	}
 }

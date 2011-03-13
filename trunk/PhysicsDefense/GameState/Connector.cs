@@ -19,9 +19,9 @@ namespace PhysicsDefense.GameState
 			this.endRadius = endRadius;
 
 			physicsProperties.fixtureList = FixtureFactory.CreateCapsule(world, height, endRadius, 1f);
-			physicsProperties.fixture[0].Restitution = 0.2f;
-			physicsProperties.fixture[0].Body.BodyType = BodyType.Static;
-			physicsProperties.fixture[0].Friction = 0.8f;
+			physicsProperties.fixtureList[0].Restitution = 0.2f;
+			physicsProperties.fixtureList[0].Body.BodyType = BodyType.Static;
+			physicsProperties.fixtureList[0].Friction = 0.8f;
 		}
 
 		public override void update()

@@ -12,23 +12,17 @@ namespace PhysicsDefense.GameState
 	public abstract class GameObject
 	{
 		public Vector2 position {
-			get {
-				return physicsProperties.fixture.Body.Position;
-			}
+			get { return physicsProperties.fixture.Body.Position; }
 			set {
 				physicsProperties.fixture.Body.SetTransformIgnoreContacts(ref value, physicsProperties.fixture.Body.Rotation);
 			}
 		}
 
 		public float rotation {
-			get {
-				return physicsProperties.fixture.Body.Rotation;
-			}
-			set {
-				//physicsProperties.fixture.Body.SetTransform(position, value);
-				physicsProperties.fixture.Body.Rotation = value;
-			}
+			get { return physicsProperties.fixture.Body.Rotation; }
+			set { physicsProperties.fixture.Body.Rotation = value; }
 		}
+
 		public String spriteName { get; protected set; }
 		public Color color;
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }

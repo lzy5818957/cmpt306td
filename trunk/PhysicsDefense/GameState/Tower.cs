@@ -10,15 +10,13 @@ namespace PhysicsDefense.GameState
 {
 	class Tower : GameObject
 	{
-		private static float width = 0.6f;
-		private static float height = 0.6f;
-		private static float density = 0.6f;
+		private static float radius = 0.25f;
+		private static float density = 5.0f;
 
 		public Tower(World world, Vector2 position)
 		{
 			spriteName = "puck";
-			//physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, density, position);
-			physicsProperties.fixture = FixtureFactory.CreateCircle(world, 0.25f, 5.0f);
+			physicsProperties.fixture = FixtureFactory.CreateCircle(world, radius, density);
 			physicsProperties.fixture.Restitution = 0.2f;
 			physicsProperties.fixture.Body.BodyType = BodyType.Static;
 			physicsProperties.fixture.Friction = 0.8f;
