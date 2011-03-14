@@ -13,9 +13,7 @@ namespace PhysicsDefense.GameState
 	{
 		public Vector2 position {
 			get { return physicsProperties.fixture.Body.Position; }
-			set {
-				physicsProperties.fixture.Body.SetTransformIgnoreContacts(ref value, physicsProperties.fixture.Body.Rotation);
-			}
+			set { physicsProperties.fixture.Body.SetTransformIgnoreContacts(ref value, physicsProperties.fixture.Body.Rotation); }
 		}
 
 		public float rotation {
@@ -24,8 +22,11 @@ namespace PhysicsDefense.GameState
 		}
 
 		public String spriteName { get; protected set; }
+		public Color nativeColor = Color.White;
 		public Color color;
+
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
+		public bool isColliding = false;
 
 		public bool isDead = false;
 		public bool isEnabled = true;
@@ -36,19 +37,19 @@ namespace PhysicsDefense.GameState
 				physicsProperties.fixture.GetAABB(out aabb, 0);
 				return new Vector2(aabb.Extents.X * 2, aabb.Extents.Y * 2);
 			}
-			set {
-			}
+			set { }
 		}
 
 		public GameObject()
 		{
 			physicsProperties = new ObjectPhysicsProperties();
-			color = Color.White;
+			//physicsProperties.fixture.OnCollision = (a, b, c) => { return this.isColliding = true; };
+			color = nativeColor;
 		}
 
-		public void activate()
+		public virtual void activate()
 		{
-			physicsProperties.fixture.IsSensor = false;
+			color = nativeColor;
 			color.A = 255;
 		}
 
