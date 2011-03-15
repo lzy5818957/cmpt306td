@@ -26,7 +26,6 @@ namespace PhysicsDefense.GameState
 		public Color color;
 
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
-		public bool isColliding = false;
 
 		public bool isDead = false;
 		public bool isEnabled = true;
@@ -43,7 +42,6 @@ namespace PhysicsDefense.GameState
 		public GameObject()
 		{
 			physicsProperties = new ObjectPhysicsProperties();
-			//physicsProperties.fixture.OnCollision = (a, b, c) => { return this.isColliding = true; };
 			color = nativeColor;
 		}
 

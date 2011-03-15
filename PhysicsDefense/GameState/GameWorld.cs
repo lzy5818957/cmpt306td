@@ -82,10 +82,9 @@ namespace PhysicsDefense.GameState
 				tower.color = tower.nativeColor;
 				
 				// Connect the towers
-				Connector con = new Connector(physics.world, distance, tower.size.X / 2);
+				Connector con = new Connector(physics.world, distance, tower.size.X);
 				con.position = (tower.position + previewTower.position) / 2f;
 				con.rotation = (float)Math.Atan2((tower.position.Y - previewTower.position.Y), (tower.position.X - previewTower.position.X));
-				con.rotation += (float)Math.PI / 2f;
 				addObject(con);
 			}
 
@@ -112,18 +111,21 @@ namespace PhysicsDefense.GameState
 			// Show tower preview if in tower placement mode
 			if (previewTower != null) {  // TODO: make this check if in tower placement
 				previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
-				previewTower.rotation = (float)((mouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
+				//previewTower.rotation = (float)((mouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
 
-				if (previewTower.physicsProperties.fixture.Body.ContactList != null) {
+				//if (previewTower.physicsProperties.fixture.Body.ContactList != null) {
+				if (previewTower.collisionCount > 0) {
 					previewTower.color = Color.Red;
+					previewTower.color.A = 128;
 				} else {
 					previewTower.color = Color.White;
+					previewTower.color.A = 128;
 					foreach (Tower tower in towers) {
 						if (tower == previewTower)
 							continue;
-						if ((tower.position - previewTower.position).Length() < connectDistance) {
+						if ((tower.position - previewTower.position).Length() < connectDistance)
 							tower.color = Color.GreenYellow;
-						} else
+						else
 							tower.color = tower.nativeColor;
 					}
 
@@ -131,7 +133,6 @@ namespace PhysicsDefense.GameState
 						placeTower();
 					}
 				}
-
 			}
 
 			// Temporary for testing
@@ -174,6 +175,7 @@ namespace PhysicsDefense.GameState
 			newEntities.Clear();
 
 			prevMouseState = Mouse.GetState();
+			prevKeyboardState = Keyboard.GetState();
 		}
 
 		private void addObject(GameObject obj)

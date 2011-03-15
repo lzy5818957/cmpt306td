@@ -10,16 +10,16 @@ namespace PhysicsDefense.Physics
 	{
 		public ObjectPhysicsProperties()
 		{
-			fixtureList = new List<Fixture>();
+			//fixtureList = new List<Fixture>();
 		}
 
-		public Fixture fixture
-		{
-			get { return fixtureList[0]; }
-			set { fixtureList.Insert(0, value); }
-		}
+		//public Fixture fixture
+		//{
+		//	get { return fixtureList[0]; }
+		//	set { fixtureList.Insert(0, value); }
+		//}
 
-		//public List<Fixture> fixture;
-		public List<Fixture> fixtureList;
+		public Fixture fixture;
+		//public List<Fixture> fixtureList;
 	}
 }
