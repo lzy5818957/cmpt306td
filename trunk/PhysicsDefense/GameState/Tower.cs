@@ -13,6 +13,7 @@ namespace PhysicsDefense.GameState
 	{
 		private static float radius = 0.25f;
 		private static float density = 5.0f;
+		public int collisionCount = 0;
 
 		public Tower(World world, Vector2 position)
 		{
@@ -24,6 +25,9 @@ namespace PhysicsDefense.GameState
 			physicsProperties.fixture.Body.BodyType = BodyType.Dynamic;
 			physicsProperties.fixture.IsSensor = true;
 			physicsProperties.fixture.Body.IgnoreGravity = true;
+
+			physicsProperties.fixture.OnCollision = (a, b, c) => { return (collisionCount++ >= 0); };
+			physicsProperties.fixture.OnSeparation = (a, b) => { collisionCount--; };
 
 			nativeColor = Color.White;
 			color.A = 128;

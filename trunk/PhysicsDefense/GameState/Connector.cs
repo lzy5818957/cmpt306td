@@ -10,18 +10,19 @@ namespace PhysicsDefense.GameState
 	class Connector : GameObject
 	{
 		public float height;
-		public float endRadius;
+		public float width;
 
-		public Connector(World world, float height, float endRadius)
+		public Connector(World world, float width, float height)
 		{
 			spriteName = "connector";
 			this.height = height;
-			this.endRadius = endRadius;
+			this.width = width;
 
-			physicsProperties.fixtureList = FixtureFactory.CreateCapsule(world, height, endRadius, 1f);
-			physicsProperties.fixtureList[0].Restitution = 0.2f;
-			physicsProperties.fixtureList[0].Body.BodyType = BodyType.Static;
-			physicsProperties.fixtureList[0].Friction = 0.8f;
+			//physicsProperties.fixtureList = FixtureFactory.CreateCapsule(world, height, endRadius, 1f);
+			physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, 1f);
+			physicsProperties.fixture.Restitution = 0.2f;
+			physicsProperties.fixture.Body.BodyType = BodyType.Static;
+			physicsProperties.fixture.Friction = 0.8f;
 		}
 
 		public override void update()
