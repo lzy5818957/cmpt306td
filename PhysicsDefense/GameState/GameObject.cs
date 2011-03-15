@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PhysicsDefense.GameState
 {
+	public delegate void SoundHandler(String soundName);
+
 	public abstract class GameObject
 	{
 		public Vector2 position {
@@ -21,15 +23,6 @@ namespace PhysicsDefense.GameState
 			set { physicsProperties.fixture.Body.Rotation = value; }
 		}
 
-		public String spriteName { get; protected set; }
-		public Color nativeColor = Color.White;
-		public Color color;
-
-		public ObjectPhysicsProperties physicsProperties { get; protected set; }
-
-		public bool isDead = false;
-		public bool isEnabled = true;
-
 		public Vector2 size {
 			get {
 				AABB aabb;
@@ -38,6 +31,17 @@ namespace PhysicsDefense.GameState
 			}
 			set { }
 		}
+
+		public ObjectPhysicsProperties physicsProperties { get; protected set; }
+
+		public String spriteName { get; protected set; }
+		public Color nativeColor = Color.White;
+		public Color color;
+
+		public bool isDead = false;
+		public bool isEnabled = true;
+
+		public SoundHandler onPlaySound;
 
 		public GameObject()
 		{
@@ -49,6 +53,10 @@ namespace PhysicsDefense.GameState
 		{
 			color = nativeColor;
 			color.A = 255;
+		}
+
+		public virtual void initialize()
+		{
 		}
 
         public abstract void update();
