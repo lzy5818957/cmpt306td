@@ -32,6 +32,7 @@ namespace PhysicsDefense.GameState
 		private bool mouseMidPress;
 		private bool mouseRightPress;
 
+		MapObstacles map;
 		List<GameObject> entities;
 		List<Tower> towers;
 		List<GameObject> newEntities;
@@ -48,6 +49,13 @@ namespace PhysicsDefense.GameState
 			entities = new List<GameObject>();
 			towers = new List<Tower>();
 			newEntities = new List<GameObject>();
+		}
+
+		public void LoadContent()
+		{
+			Texture2D obstacles = game.Content.Load<Texture2D>("map1");
+			map = new MapObstacles(physics.world, obstacles);
+			game.graphics.addBackground(obstacles);
 		}
 
 		private void getInputState()
@@ -173,7 +181,7 @@ namespace PhysicsDefense.GameState
 
 				// Check for marbles that have reached bottom
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
-					removeObject(obj);
+					obj.die();
 
 					Explode explode = new Explode(physics.world, obj.position);
 					addObject(explode);
@@ -182,12 +190,6 @@ namespace PhysicsDefense.GameState
 			}
 
 			// Remove all dead objects
-			entities.ForEach(delegate(GameObject obj) {
-				if (obj.isDead) {
-					game.graphics.removeObject(obj);
-					physics.removePhysical(obj);
-				}
-			});
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
 			towers.RemoveAll(delegate(Tower obj) { return obj.isDead; });
 
@@ -202,6 +204,7 @@ namespace PhysicsDefense.GameState
 		private void addObject(GameObject obj)
 		{
 			obj.onPlaySound = game.audio.PlaySound;
+			obj.onDeath = removeObject;
 			obj.initialize();
 
 			newEntities.Add(obj);
@@ -214,7 +217,8 @@ namespace PhysicsDefense.GameState
 
 		private void removeObject(GameObject obj)
 		{
-			obj.isDead = true;
+			game.graphics.removeObject(obj);
+			physics.removePhysical(obj);
 		}
 	}
 }

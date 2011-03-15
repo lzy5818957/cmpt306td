@@ -35,7 +35,7 @@ namespace PhysicsDefense.GameState
 				frameCount++;
 				spriteName = "explode" + frameCount.ToString();
 			} else {
-				isDead = true;
+				die();
 			}
         }
     }

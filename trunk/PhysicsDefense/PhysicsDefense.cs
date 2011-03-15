@@ -52,9 +52,9 @@ namespace PhysicsDefense
 		/// </summary>
 		protected override void LoadContent()
 		{
-			// TODO: use this.Content to load your game content here
 			graphics.LoadContent();
 			audio.LoadContent();
+			gameWorld.LoadContent();
 
 			// Play music
 			audio.PlayMusic();

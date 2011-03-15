@@ -18,6 +18,7 @@ namespace PhysicsDefense.Graphics
 		Game game;
 		
 		List<GameObject> drawableObjects;
+		List<Texture2D> backgrounds;
 		Dictionary<String, Texture2D> textures;
 
 
@@ -31,6 +32,7 @@ namespace PhysicsDefense.Graphics
 			device.ApplyChanges();
 
 			drawableObjects = new List<GameObject>();
+			backgrounds = new List<Texture2D>();
 			textures = new Dictionary<String, Texture2D>();
 		}
 
@@ -51,10 +53,15 @@ namespace PhysicsDefense.Graphics
 
 		public void Draw(GameTime gameTime)
 		{
+			spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
 			game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
+			// Draw background
+			foreach (Texture2D background in backgrounds) {
+				spriteBatch.Draw(background, Vector2.Zero, Color.White);
+			}
+
 			// Draw all objects
-			spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
 			foreach (GameObject obj in drawableObjects) {
 				// Make sure texture is loaded
 				if (!textures.ContainsKey(obj.spriteName)) {
@@ -71,6 +78,7 @@ namespace PhysicsDefense.Graphics
 
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, obj.color, obj.rotation, origin, SpriteEffects.None, 0);
 			}
+			
 			spriteBatch.End();
 		}
 
@@ -83,5 +91,10 @@ namespace PhysicsDefense.Graphics
         {
             drawableObjects.Remove(obj);
         }
+
+		public void addBackground(Texture2D texture)
+		{
+			backgrounds.Add(texture);
+		}
 	}
 }
