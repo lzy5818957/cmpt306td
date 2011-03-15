@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace PhysicsDefense.GameState
 {
 	public delegate void SoundHandler(String soundName);
+	public delegate void DeathHandler(GameObject obj);
 
 	public abstract class GameObject
 	{
@@ -42,6 +43,7 @@ namespace PhysicsDefense.GameState
 		public bool isEnabled = true;
 
 		public SoundHandler onPlaySound;
+		public DeathHandler onDeath;
 
 		public GameObject()
 		{
@@ -57,6 +59,13 @@ namespace PhysicsDefense.GameState
 
 		public virtual void initialize()
 		{
+		}
+
+		public virtual void die()
+		{
+			isDead = true;
+			isEnabled = false;
+			onDeath(this);
 		}
 
         public abstract void update();
