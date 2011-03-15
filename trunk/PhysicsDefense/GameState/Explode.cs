@@ -21,8 +21,13 @@ namespace PhysicsDefense.GameState
             //No collision
             physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
             physicsProperties.fixture.Body.BodyType = BodyType.Static;
-            
         }
+
+		public override void initialize()
+		{
+			onPlaySound("explode");
+			base.initialize();
+		}
 
         public override void update()
         {

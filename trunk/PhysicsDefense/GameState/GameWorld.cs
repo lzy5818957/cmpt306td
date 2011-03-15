@@ -27,9 +27,10 @@ namespace PhysicsDefense.GameState
 		KeyboardState keyboardState;
 		KeyboardState prevKeyboardState;
 
-		bool mouseLeftPress;
-		bool mouseMidPress;
-		bool mouseRightPress;
+		// Convenience accessors for mouse buttons
+		private bool mouseLeftPress;
+		private bool mouseMidPress;
+		private bool mouseRightPress;
 
 		List<GameObject> entities;
 		List<Tower> towers;
@@ -58,18 +59,31 @@ namespace PhysicsDefense.GameState
 			mouseMidPress = (mouseState.MiddleButton == ButtonState.Pressed) && (prevMouseState.MiddleButton == ButtonState.Released);
 		}
 
+		/// <summary>
+		/// Check if a tower was selected to prepare for placement.
+		/// </summary>
 		private void towerSelection()
 		{
-			if (keyboardState.IsKeyDown(Keys.T) && previewTower == null) {
+			if (previewTower != null)
+				return;
+
+			if (keyboardState.IsKeyDown(Keys.T))
 				previewTower = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-				previewTower.physicsProperties.fixture.Body.Rotation = (float)((mouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
+
+			if (previewTower != null)
 				addObject(previewTower);
-			}
 		}
 
+		/// <summary>
+		/// Place a tower by activating the preview tower.
+		/// </summary>
 		private void placeTower()
 		{
 			if (previewTower == null)
+				return;
+
+			// Don't allow placement on top of other towers
+			if (previewTower.collisionCount > 0)
 				return;
 
 			// Find nearby towers to connect to
@@ -78,9 +92,9 @@ namespace PhysicsDefense.GameState
 				if (distance > connectDistance || tower == previewTower)
 					continue;
 
-				// Change the nearby towers back from green to their normal color
+				// Change the nearby towers back from green to their normal color since they were set to green right before this
 				tower.color = tower.nativeColor;
-				
+
 				// Connect the towers
 				Connector con = new Connector(physics.world, distance, tower.size.X);
 				con.position = (tower.position + previewTower.position) / 2f;
@@ -88,9 +102,37 @@ namespace PhysicsDefense.GameState
 				addObject(con);
 			}
 
+			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world
 			previewTower.activate();
-			addObject(previewTower);
+			//addObject(previewTower);
 			previewTower = null;
+		}
+
+		/// <summary>
+		/// Drew the preview tower and indicate connections/collisions.
+		/// </summary>
+		private void showPreviewTower()
+		{
+			if (previewTower == null)
+				return;
+
+			previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
+
+			if (previewTower.collisionCount > 0) {
+				previewTower.color = Color.Red;
+				previewTower.color.A = 128;
+			} else {
+				previewTower.color = Color.White;
+				previewTower.color.A = 128;
+				foreach (Tower tower in towers) {
+					if (tower == previewTower)
+						continue;
+					if ((tower.position - previewTower.position).Length() < connectDistance)
+						tower.color = Color.GreenYellow;
+					else
+						tower.color = tower.nativeColor;
+				}
+			}
 		}
 
 		public void Update(GameTime gameTime)
@@ -108,37 +150,17 @@ namespace PhysicsDefense.GameState
 				}
 			}
 
-			// Show tower preview if in tower placement mode
-			if (previewTower != null) {  // TODO: make this check if in tower placement
-				previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
-				//previewTower.rotation = (float)((mouseState.ScrollWheelValue / 120) * Math.PI / 12.0f);
-
-				//if (previewTower.physicsProperties.fixture.Body.ContactList != null) {
-				if (previewTower.collisionCount > 0) {
-					previewTower.color = Color.Red;
-					previewTower.color.A = 128;
-				} else {
-					previewTower.color = Color.White;
-					previewTower.color.A = 128;
-					foreach (Tower tower in towers) {
-						if (tower == previewTower)
-							continue;
-						if ((tower.position - previewTower.position).Length() < connectDistance)
-							tower.color = Color.GreenYellow;
-						else
-							tower.color = tower.nativeColor;
-					}
-
-					if (mouseLeftPress) {
-						placeTower();
-					}
-				}
-			}
-
 			// Temporary for testing
 			if (mouseMidPress) {
 				Marble m = EnemyFactory.createMarble(new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), physics);
 				addObject(m);
+			}
+
+			// Show tower preview if in tower placement mode
+			if (previewTower != null) {
+				showPreviewTower();
+				if (mouseLeftPress)
+					placeTower();
 			}
 
 			// Update physics
@@ -153,10 +175,9 @@ namespace PhysicsDefense.GameState
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
 					removeObject(obj);
 
-                    Explode explode=new Explode(physics.world,obj.position);
+					Explode explode = new Explode(physics.world, obj.position);
 					addObject(explode);
-                    game.audio.PlaySound("explode");
-                }
+				}
 
 			}
 
@@ -180,6 +201,9 @@ namespace PhysicsDefense.GameState
 
 		private void addObject(GameObject obj)
 		{
+			obj.onPlaySound = game.audio.PlaySound;
+			obj.initialize();
+
 			newEntities.Add(obj);
 			if (obj is Tower)
 				towers.Add((Tower)obj);
