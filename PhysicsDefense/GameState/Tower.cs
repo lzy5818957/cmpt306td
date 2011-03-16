@@ -26,7 +26,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.fixture.IsSensor = true;
 			physicsProperties.fixture.Body.IgnoreGravity = true;
 
-			physicsProperties.fixture.OnCollision = (a, b, c) => { return (collisionCount++ >= 0); };
+			physicsProperties.fixture.OnCollision = (a, b, c) => { collisionCount++;  return true; };
 			physicsProperties.fixture.OnSeparation = (a, b) => { collisionCount--; };
 
 			nativeColor = Color.White;

@@ -13,20 +13,28 @@ namespace PhysicsDefense.GameState
 {
 	class MapObstacles
 	{
-		List<Fixture> fixtures;
+		List<List<Fixture>> fixtures;
 
 		public MapObstacles(World world, Texture2D texture)
 		{
+			fixtures = new List<List<Fixture>>();
 			uint[] data = new uint[texture.Width * texture.Height];
 			texture.GetData(data);
-			Vertices verts = PolygonTools.CreatePolygon(data, texture.Width, texture.Height, true);
-			//Vertices verts = PolygonTools.CreatePolygon(data, texture.Width, texture.Height, 0.01f, 16, true, true);
-			Vector2 scale = new Vector2(0.01f, 0.01f);
-			verts.Scale(ref scale);
+			List<Vertices> verts = PolygonTools.CreatePolygon(data, texture.Width, texture.Height, 1f, 16, true, false);
 
-			List<Vertices> decomposedVerts = BayazitDecomposer.ConvexPartition(verts);
-			fixtures = FixtureFactory.CreateCompoundPolygon(world, decomposedVerts, 1f);
-			fixtures[0].Body.BodyType = BodyType.Static;
+			foreach (Vertices poly in verts) {
+				Vector2 scale = new Vector2(1f / GameWorld.worldScale, 1f / GameWorld.worldScale);
+				poly.Scale(ref scale);
+
+				List<Vertices> decomposedVerts = CDTDecomposer.ConvexPartition(poly);
+				List<Fixture> fix = FixtureFactory.CreateCompoundPolygon(world, decomposedVerts, 1f);
+
+				// Obstacle physics properties
+				fix[0].Friction = 0.8f;
+				fix[0].Restitution = 0.2f;
+				fix[0].Body.BodyType = BodyType.Static;
+				fixtures.Add(fix);
+			}
 		}
 	}
 }
