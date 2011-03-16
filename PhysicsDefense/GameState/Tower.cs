@@ -15,6 +15,9 @@ namespace PhysicsDefense.GameState
 		private static float density = 5.0f;
 		public int collisionCount = 0;
 
+		float range = 5f;
+		public AoeSensor rangeSensor;
+
 		public Tower(World world, Vector2 position)
 		{
 			spriteName = "puck";
@@ -31,6 +34,8 @@ namespace PhysicsDefense.GameState
 
 			nativeColor = Color.White;
 			color.A = 128;
+
+			//rangeSensor = new AoeSensor(world, position, range);
 		}
 
 		public void activate()
