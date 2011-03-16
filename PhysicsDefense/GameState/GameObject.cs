@@ -15,19 +15,19 @@ namespace PhysicsDefense.GameState
 	public abstract class GameObject
 	{
 		public Vector2 position {
-			get { return physicsProperties.fixture.Body.Position; }
-			set { physicsProperties.fixture.Body.SetTransformIgnoreContacts(ref value, physicsProperties.fixture.Body.Rotation); }
+			get { return physicsProperties.body.Position; }
+			set { physicsProperties.body.SetTransformIgnoreContacts(ref value, physicsProperties.body.Rotation); }
 		}
 
 		public float rotation {
-			get { return physicsProperties.fixture.Body.Rotation; }
-			set { physicsProperties.fixture.Body.Rotation = value; }
+			get { return physicsProperties.body.Rotation; }
+			set { physicsProperties.body.Rotation = value; }
 		}
 
 		public Vector2 size {
 			get {
 				AABB aabb;
-				physicsProperties.fixture.GetAABB(out aabb, 0);
+				physicsProperties.body.FixtureList[0].GetAABB(out aabb, 0);
 				return new Vector2(aabb.Extents.X * 2, aabb.Extents.Y * 2);
 			}
 			set { }

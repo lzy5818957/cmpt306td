@@ -19,10 +19,10 @@ namespace PhysicsDefense.GameState
 			this.width = width;
 
 			//physicsProperties.fixtureList = FixtureFactory.CreateCapsule(world, height, endRadius, 1f);
-			physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, 1f);
-			physicsProperties.fixture.Restitution = 0.2f;
-			physicsProperties.fixture.Body.BodyType = BodyType.Static;
-			physicsProperties.fixture.Friction = 0.8f;
+			physicsProperties.body = BodyFactory.CreateRectangle(world, width, height, 1f);
+			physicsProperties.body.Restitution = 0.2f;
+			physicsProperties.body.BodyType = BodyType.Static;
+			physicsProperties.body.Friction = 0.8f;
 		}
 
 		public override void update()
