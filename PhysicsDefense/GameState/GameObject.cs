@@ -30,9 +30,12 @@ namespace PhysicsDefense.GameState
 				physicsProperties.body.FixtureList[0].GetAABB(out aabb, 0);
 				return new Vector2(aabb.Extents.X * 2, aabb.Extents.Y * 2);
 			}
-			set { }
+			private set { }
 		}
 
+		private ulong ticks = 0;
+		private ulong ticksCollision = 0;
+		public bool isColliding = false;
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
 
 		public String spriteName { get; protected set; }
@@ -51,14 +54,10 @@ namespace PhysicsDefense.GameState
 			color = nativeColor;
 		}
 
-		public virtual void activate()
-		{
-			color = nativeColor;
-			color.A = 255;
-		}
-
 		public virtual void initialize()
 		{
+			physicsProperties.body.OnCollision += (a, b, c) => { ticksCollision = ticks; isColliding = true; return true; };
+			physicsProperties.body.OnSeparation += (a, b) => { if (ticksCollision < ticks) isColliding = false; };
 		}
 
 		public virtual void die()
@@ -68,7 +67,9 @@ namespace PhysicsDefense.GameState
 			onDeath(this);
 		}
 
-        public abstract void update();
+		public virtual void update() {
+			ticks++;
+		}
 
 		//public Rectangle getBoundingBox()
 		//{

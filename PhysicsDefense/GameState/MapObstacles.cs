@@ -20,15 +20,14 @@ namespace PhysicsDefense.GameState
 			fixtures = new List<Body>();
 			uint[] data = new uint[texture.Width * texture.Height];
 			texture.GetData(data);
-			List<Vertices> verts = PolygonTools.CreatePolygon(data, texture.Width, 1f, 16, true, false);
+			List<Vertices> verts = PolygonTools.CreatePolygon(data, texture.Width, 0.05f, 16, true, true);
 
 			foreach (Vertices poly in verts) {
 				Vector2 scale = new Vector2(1f / GameWorld.worldScale, 1f / GameWorld.worldScale);
 				poly.Scale(ref scale);
 
-				List<Vertices> decomposedVerts = CDTDecomposer.ConvexPartition(poly);
-				//List<Fixture> fix = FixtureFactory.CreateCompoundPolygon(world, decomposedVerts, 1f);
-				var body = BodyFactory.CreateCompoundPolygon(world, decomposedVerts, 1f);
+				List<Vertices> decomposedVerts = BayazitDecomposer.ConvexPartition(poly);
+				var body = BodyFactory.CreateCompoundPolygon(world, decomposedVerts, 3f);
 
 				// Obstacle physics properties
 				body.Friction = 0.8f;

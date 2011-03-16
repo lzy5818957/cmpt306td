@@ -91,7 +91,8 @@ namespace PhysicsDefense.GameState
 				return;
 
 			// Don't allow placement on top of other towers
-			if (previewTower.collisionCount > 0)
+			//if (previewTower.collisionCount > 0)
+			if (previewTower.isColliding)
 				return;
 
 			// Find nearby towers to connect to
@@ -112,7 +113,6 @@ namespace PhysicsDefense.GameState
 
 			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world
 			previewTower.activate();
-			//addObject(previewTower);
 			previewTower = null;
 		}
 
@@ -126,7 +126,8 @@ namespace PhysicsDefense.GameState
 
 			previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
 
-			if (previewTower.collisionCount > 0) {
+			//if (previewTower.collisionCount > 0) {
+			if (previewTower.isColliding) {
 				previewTower.color = Color.Red;
 				previewTower.color.A = 128;
 			} else {
@@ -159,7 +160,7 @@ namespace PhysicsDefense.GameState
 			}
 
 			// Temporary for testing
-			if (mouseMidPress) {
+			if (mouseRightPress) {
 				Marble m = EnemyFactory.createMarble(new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), physics);
 				addObject(m);
 			}
@@ -167,6 +168,8 @@ namespace PhysicsDefense.GameState
 			// Show tower preview if in tower placement mode
 			if (previewTower != null) {
 				showPreviewTower();
+
+				// Place tower if mouse clicked
 				if (mouseLeftPress)
 					placeTower();
 			}
