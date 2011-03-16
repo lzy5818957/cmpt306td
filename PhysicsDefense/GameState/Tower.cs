@@ -26,8 +26,8 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.IsSensor = true;
 			physicsProperties.body.IgnoreGravity = true;
 
-			//physicsProperties.body.OnCollision += (a, b, c) => { collisionCount++;  return true; };
-			//physicsProperties.body.OnSeparation += (a, b) => { collisionCount--; };
+			physicsProperties.body.OnCollision += (a, b, c) => { collisionCount++;  return true; };
+			physicsProperties.body.OnSeparation += (a, b) => { collisionCount--; };
 
 			nativeColor = Color.White;
 			color.A = 128;

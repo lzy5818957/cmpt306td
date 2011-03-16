@@ -16,7 +16,7 @@ namespace PhysicsDefense.GameState
 	{
 		public Vector2 position {
 			get { return physicsProperties.body.Position; }
-			set { physicsProperties.body.SetTransformIgnoreContacts(ref value, physicsProperties.body.Rotation); }
+			set { physicsProperties.body.SetTransform(ref value, physicsProperties.body.Rotation); }
 		}
 
 		public float rotation {
