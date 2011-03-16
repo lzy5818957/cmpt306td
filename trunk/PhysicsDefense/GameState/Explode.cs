@@ -16,11 +16,11 @@ namespace PhysicsDefense.GameState
         {
             frameCount = 1;
             spriteName = "explode1";
-            physicsProperties.fixture = FixtureFactory.CreateCircle(world, 1.44f, 1f, position);
+            physicsProperties.body = BodyFactory.CreateCircle(world, 1.44f, 1f, position);
 
             //No collision
-            physicsProperties.fixture.CollisionFilter.CollidesWith = Category.None;
-            physicsProperties.fixture.Body.BodyType = BodyType.Static;
+            physicsProperties.body.CollidesWith = Category.None;
+            physicsProperties.body.BodyType = BodyType.Static;
         }
 
 		public override void initialize()

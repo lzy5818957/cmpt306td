@@ -17,10 +17,10 @@ namespace PhysicsDefense.GameState
 		public Box(World world, Vector2 position)
 		{
 			spriteName = "box";
-			physicsProperties.fixture = FixtureFactory.CreateRectangle(world, width, height, density, position);
-			physicsProperties.fixture.Restitution = 0.2f;
-			physicsProperties.fixture.Body.BodyType = BodyType.Static;
-			physicsProperties.fixture.Friction = 0.8f;
+			physicsProperties.body = BodyFactory.CreateRectangle(world, width, height, density, position);
+			physicsProperties.body.Restitution = 0.2f;
+			physicsProperties.body.BodyType = BodyType.Static;
+			physicsProperties.body.Friction = 0.8f;
 		}
 
         public override void update()

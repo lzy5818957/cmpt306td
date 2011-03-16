@@ -29,6 +29,10 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,9 +143,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Farseer\Farseer.csproj">
-      <Project>{FBB78701-F6F0-4042-B88F-90948BFA6916}</Project>
-      <Name>Farseer</Name>
+    <ProjectReference Include="..\Farseer3_15\Farseer3_15.csproj">
+      <Project>{E07DDE9E-F22C-43EE-8C4F-55FFC35AE088}</Project>
+      <Name>Farseer3_15</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

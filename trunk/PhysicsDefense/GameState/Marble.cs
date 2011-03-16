@@ -14,10 +14,10 @@ namespace PhysicsDefense.GameState
 		public Marble(World world, Vector2 position)
 		{
 			spriteName = "puck";
-			physicsProperties.fixture = FixtureFactory.CreateCircle(world, 0.25f, 3.0f, position);
-			physicsProperties.fixture.Restitution = 0.2f;
-			physicsProperties.fixture.Body.BodyType = BodyType.Dynamic;
-			physicsProperties.fixture.Friction = 0.8f;
+			physicsProperties.body = BodyFactory.CreateCircle(world, 0.25f, 3.0f, position);
+			physicsProperties.body.Restitution = 0.2f;
+			physicsProperties.body.BodyType = BodyType.Dynamic;
+			physicsProperties.body.Friction = 0.8f;
 		}
 
         public override void update()

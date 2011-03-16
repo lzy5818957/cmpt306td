@@ -154,7 +154,7 @@ namespace PhysicsDefense.GameState
 			// Temporary for fun: adding torque to marbles
 			if (Keyboard.GetState().IsKeyDown(Keys.S)) {
 				foreach (GameObject obj in entities) {
-					obj.physicsProperties.fixture.Body.ApplyTorque(1000);
+					obj.physicsProperties.body.ApplyTorque(1000);
 				}
 			}
 

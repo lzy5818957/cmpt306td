@@ -18,16 +18,16 @@ namespace PhysicsDefense.GameState
 		public Tower(World world, Vector2 position)
 		{
 			spriteName = "puck";
-			physicsProperties.fixture = FixtureFactory.CreateCircle(world, radius, density);
-			physicsProperties.fixture.Restitution = 0.2f;
-			physicsProperties.fixture.Friction = 0.8f;
+			physicsProperties.body = BodyFactory.CreateCircle(world, radius, density);
+			physicsProperties.body.Restitution = 0.2f;
+			physicsProperties.body.Friction = 0.8f;
 
-			physicsProperties.fixture.Body.BodyType = BodyType.Dynamic;
-			physicsProperties.fixture.IsSensor = true;
-			physicsProperties.fixture.Body.IgnoreGravity = true;
+			physicsProperties.body.BodyType = BodyType.Dynamic;
+			physicsProperties.body.IsSensor = true;
+			physicsProperties.body.IgnoreGravity = true;
 
-			physicsProperties.fixture.OnCollision = (a, b, c) => { collisionCount++;  return true; };
-			physicsProperties.fixture.OnSeparation = (a, b) => { collisionCount--; };
+			physicsProperties.body.OnCollision += (a, b, c) => { collisionCount++;  return true; };
+			physicsProperties.body.OnSeparation += (a, b) => { collisionCount--; };
 
 			nativeColor = Color.White;
 			color.A = 128;
@@ -35,9 +35,9 @@ namespace PhysicsDefense.GameState
 
 		public override void activate()
 		{
-			physicsProperties.fixture.IsSensor = false;
-			physicsProperties.fixture.Body.IgnoreGravity = false;
-			physicsProperties.fixture.Body.BodyType = BodyType.Static;
+			physicsProperties.body.IsSensor = false;
+			physicsProperties.body.IgnoreGravity = false;
+			physicsProperties.body.BodyType = BodyType.Static;
 			base.activate();
 		}
 
