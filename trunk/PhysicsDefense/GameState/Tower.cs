@@ -26,23 +26,26 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.IsSensor = true;
 			physicsProperties.body.IgnoreGravity = true;
 
-			physicsProperties.body.OnCollision += (a, b, c) => { collisionCount++;  return true; };
-			physicsProperties.body.OnSeparation += (a, b) => { collisionCount--; };
+			//physicsProperties.body.OnCollision += (a, b, c) => { collisionCount++;  return true; };
+			//physicsProperties.body.OnSeparation += (a, b) => { collisionCount--; };
 
 			nativeColor = Color.White;
 			color.A = 128;
 		}
 
-		public override void activate()
+		public void activate()
 		{
+			color = nativeColor;
+			color.A = 255;
+
 			physicsProperties.body.IsSensor = false;
 			physicsProperties.body.IgnoreGravity = false;
 			physicsProperties.body.BodyType = BodyType.Static;
-			base.activate();
 		}
 
 		public override void update()
 		{
+			base.update();
 		}
 	}
 }

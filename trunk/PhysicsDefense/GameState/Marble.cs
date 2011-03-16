@@ -18,6 +18,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.Friction = 0.8f;
+			physicsProperties.body.AngularDamping = 4f;
 		}
 
         public override void update()
