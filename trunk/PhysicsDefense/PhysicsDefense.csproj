@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\GameAudio.cs" />
+    <Compile Include="GameState\AoeSensor.cs" />
     <Compile Include="GameState\Box.cs" />
     <Compile Include="GameState\Connector.cs" />
     <Compile Include="GameState\EnemyFactory.cs" />
