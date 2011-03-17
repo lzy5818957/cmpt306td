@@ -22,7 +22,7 @@ namespace PhysicsDefense.GameState
 		public Tower(World world, Vector2 position)
 		{
 			this.world = world;
-			spriteName = "puck";
+			spriteName = "box";
 			physicsProperties.body = BodyFactory.CreateCircle(world, radius, density);
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.Friction = 0.8f;
