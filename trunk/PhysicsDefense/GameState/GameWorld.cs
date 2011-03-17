@@ -17,6 +17,8 @@ namespace PhysicsDefense.GameState
 		public static float worldWidth;
 		public static float worldHeight;
 
+		private String initialMap = "map2";
+		private String currentMap;
 		private float connectDistance = 1.0f;
 
 		PhysicsDefense game;
@@ -53,9 +55,10 @@ namespace PhysicsDefense.GameState
 
 		public void LoadContent()
 		{
-			Texture2D obstacles = game.Content.Load<Texture2D>("map1");
+			Texture2D obstacles = game.Content.Load<Texture2D>(initialMap);
 			map = new MapObstacles(physics.world, obstacles);
 			game.graphics.addBackground(obstacles);
+			currentMap = initialMap;
 		}
 
 		private void getInputState()

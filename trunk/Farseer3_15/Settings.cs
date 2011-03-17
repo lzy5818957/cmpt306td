@@ -89,7 +89,7 @@ namespace FarseerPhysics
         /// We have both FPE and Box2D filtering in the engine. If you are upgrading
         /// from earlier versions of FPE, set this to true.
         /// </summary>
-        public static bool UseFPECollisionCategories = false;
+        public static bool UseFPECollisionCategories = true;
 
         /// <summary>
         /// Conserve memory makes sure that objects are used by reference instead of cloned.
@@ -143,7 +143,7 @@ namespace FarseerPhysics
         /// <summary>
         /// Maximum number of contacts to be handled to solve a TOI impact.
         /// </summary>
-        public const int MaxTOIContacts = 32;
+        public const int MaxTOIContacts = 64;
 
         /// <summary>
         /// A velocity threshold for elastic collisions. Any collision with a relative linear

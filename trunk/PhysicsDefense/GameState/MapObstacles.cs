@@ -33,6 +33,7 @@ namespace PhysicsDefense.GameState
 				body.Friction = 0.8f;
 				body.Restitution = 0.2f;
 				body.BodyType = BodyType.Static;
+				body.CollisionCategories = Category.Cat3;
 				fixtures.Add(body);
 			}
 		}

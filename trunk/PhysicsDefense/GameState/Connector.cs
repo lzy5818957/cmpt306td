@@ -23,6 +23,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Static;
 			physicsProperties.body.Friction = 0.8f;
+			physicsProperties.body.CollisionCategories = Category.Cat3;
 		}
 
 		public override void update()
