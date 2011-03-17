@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState
 		Normal
 	}
 
-	class Marble : GameObject
+	public class Marble : GameObject
 	{
 		public Marble(World world, Vector2 position)
 		{
@@ -25,7 +25,8 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Friction = 0.8f;
 			physicsProperties.body.AngularDamping = 0f;
 			physicsProperties.body.CollisionCategories = Category.Cat1;
-			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3;
+            physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3 | Category.Cat5;
+            physicsProperties.body.UserData = this;
 		}
 
         public override void update()

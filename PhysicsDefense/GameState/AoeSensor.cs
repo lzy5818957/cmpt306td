@@ -6,13 +6,19 @@ using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Dynamics.Contacts;
+using System.Diagnostics;
 
 namespace PhysicsDefense.GameState
 {
-	class AoeSensor : GameObject
+    public delegate void RangeHandler(Marble marble);
+
+	public class AoeSensor : GameObject
 	{
 		private float radius;
 		private Body body;
+
+        public RangeHandler onEnter;
+        public RangeHandler onLeave;
 
 		public AoeSensor(World world, Vector2 position, float radius)
 		{
@@ -32,11 +38,15 @@ namespace PhysicsDefense.GameState
 
 		bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 		{
+            Debug.Assert(fixtureB.UserData != null);
 			Console.WriteLine("Tower range sensor triggered");
-			return false;
+            onEnter((Marble)fixtureB.UserData);
+            return true;
 		}
 
 		void body_OnSeparation(Fixture fixtureA, Fixture fixtureB) {
+            Debug.Assert(fixtureB.UserData != null);
+            onLeave((Marble)fixtureB.UserData);
 			Console.WriteLine("Tower range sensor un-triggered");
 		}
 	}
