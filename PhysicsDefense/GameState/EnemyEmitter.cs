@@ -13,7 +13,8 @@ namespace PhysicsDefense.GameState {
 		public int wave { get; private set; }
 		private int waveEnemiesSpawned = 0;
 		private double timer = 0;
-		bool active = false;
+		public bool active = false;
+		public bool waveFinished = true;
 
 		public Vector2 position { get; private set; }
 
@@ -36,6 +37,7 @@ namespace PhysicsDefense.GameState {
 		public void start()
 		{
 			active = true;
+			waveFinished = false;
 		}
 
 		public void update(GameTime gameTime)
@@ -54,7 +56,8 @@ namespace PhysicsDefense.GameState {
 			// Check if this was the end of the wave
 			if (waveEnemiesSpawned >= wave + 9) {
 				active = false;
-				onWaveFinished();
+				waveFinished = true;
+				//onWaveFinished();
 			}
 		}
 	}

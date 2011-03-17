@@ -17,6 +17,9 @@ namespace PhysicsDefense.GameState
 		public static float worldWidth;
 		public static float worldHeight;
 
+		private int lives = 20;
+		private bool active = true;
+
 		private String initialMap = "map2";
 		private String currentMap;
 		private float connectDistance = 1.0f;
@@ -39,6 +42,7 @@ namespace PhysicsDefense.GameState
 
 		List<GameObject> entities;
 		List<Tower> towers;
+		List<Marble> enemies;
 		List<GameObject> newEntities;
 
 		Tower previewTower;
@@ -51,6 +55,7 @@ namespace PhysicsDefense.GameState
 
 			physics = new PhysicsSystem();
 			entities = new List<GameObject>();
+			enemies = new List<Marble>();
 			towers = new List<Tower>();
 			newEntities = new List<GameObject>();
 		}
@@ -76,6 +81,15 @@ namespace PhysicsDefense.GameState
 
 		private void waveFinished()
 		{
+			Console.WriteLine("Wave " + spawner.wave + " finished");
+			spawner.nextWave();
+			spawner.start();
+		}
+
+		public void lose()
+		{
+			Console.WriteLine("*** All lives lost! ***");
+			active = false;
 		}
 
 		private void getInputState()
@@ -166,6 +180,9 @@ namespace PhysicsDefense.GameState
 
 		public void Update(GameTime gameTime)
 		{
+			if (!active)
+				return;
+
 			// Get input state
 			getInputState();
 
@@ -208,6 +225,7 @@ namespace PhysicsDefense.GameState
 				// Check for marbles that have reached bottom
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
 					obj.die();
+					lives--;
 
 					Explode explode = new Explode(physics.world, obj.position);
 					addObject(explode);
@@ -218,10 +236,21 @@ namespace PhysicsDefense.GameState
 			// Remove all dead objects
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
 			towers.RemoveAll(delegate(Tower obj) { return obj.isDead; });
+			enemies.RemoveAll(delegate(Marble obj) { return obj.isDead; });
 
 			// Move any new objects to the main list
 			entities.AddRange(newEntities);
 			newEntities.Clear();
+
+			// Check if all lives were lost
+			if (lives <= 0) {
+				lose();
+			}
+
+			// Check if ready to go to the next wave
+			if (!spawner.active && spawner.waveFinished && enemies.Count <= 0) {
+				waveFinished();
+			}
 
 			prevMouseState = Mouse.GetState();
 			prevKeyboardState = Keyboard.GetState();
@@ -236,6 +265,8 @@ namespace PhysicsDefense.GameState
 			newEntities.Add(obj);
 			if (obj is Tower)
 				towers.Add((Tower)obj);
+			if (obj is Marble)
+				enemies.Add((Marble)obj);
 
 			game.graphics.addObject(obj);
 			physics.addPhysical(obj);
