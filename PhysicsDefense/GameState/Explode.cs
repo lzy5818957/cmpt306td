@@ -20,6 +20,7 @@ namespace PhysicsDefense.GameState
 
             //No collision
             physicsProperties.body.CollidesWith = Category.None;
+			physicsProperties.body.CollisionCategories = Category.Cat4;
             physicsProperties.body.BodyType = BodyType.Static;
         }
 

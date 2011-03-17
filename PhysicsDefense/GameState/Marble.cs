@@ -18,7 +18,9 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.Friction = 0.8f;
-			physicsProperties.body.AngularDamping = 4f;
+			physicsProperties.body.AngularDamping = 0.5f;
+			physicsProperties.body.CollisionCategories = Category.Cat1;
+			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3;
 		}
 
         public override void update()

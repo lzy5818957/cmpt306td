@@ -56,8 +56,16 @@ namespace PhysicsDefense.GameState
 
 		public virtual void initialize()
 		{
-			physicsProperties.body.OnCollision += (a, b, c) => { ticksCollision = ticks; isColliding = true; return true; };
-			physicsProperties.body.OnSeparation += (a, b) => { if (ticksCollision < ticks) isColliding = false; };
+			physicsProperties.body.OnCollision += (a, b, c) => {
+				//Console.WriteLine("Collision: " + a. + "," + b + "," + c);
+				ticksCollision = ticks;
+				isColliding = true;
+				return true;
+			};
+			physicsProperties.body.OnSeparation += (a, b) => {
+				if (ticksCollision < ticks)
+					isColliding = false;
+			};
 		}
 
 		public virtual void die()

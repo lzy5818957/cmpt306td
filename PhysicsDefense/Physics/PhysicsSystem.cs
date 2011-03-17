@@ -37,6 +37,7 @@ namespace PhysicsDefense.Physics
 		public void removePhysical(GameObject obj)
 		{
 			physicalObjects.Remove(obj);
+			world.RemoveBody(obj.physicsProperties.body);
 		}
 	}
 }
