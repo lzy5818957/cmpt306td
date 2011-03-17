@@ -92,6 +92,7 @@
     <Compile Include="GameState\AoeSensor.cs" />
     <Compile Include="GameState\Box.cs" />
     <Compile Include="GameState\Connector.cs" />
+    <Compile Include="GameState\EnemyEmitter.cs" />
     <Compile Include="GameState\EnemyFactory.cs" />
     <Compile Include="GameState\Explode.cs" />
     <Compile Include="GameState\MapObstacles.cs" />

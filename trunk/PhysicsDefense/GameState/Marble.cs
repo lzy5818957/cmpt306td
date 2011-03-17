@@ -9,6 +9,11 @@ using FarseerPhysics.Factories;
 
 namespace PhysicsDefense.GameState
 {
+	public enum EnemyType
+	{
+		Normal
+	}
+
 	class Marble : GameObject
 	{
 		public Marble(World world, Vector2 position)
@@ -18,7 +23,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.Friction = 0.8f;
-			physicsProperties.body.AngularDamping = 0.5f;
+			physicsProperties.body.AngularDamping = 0f;
 			physicsProperties.body.CollisionCategories = Category.Cat1;
 			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3;
 		}
