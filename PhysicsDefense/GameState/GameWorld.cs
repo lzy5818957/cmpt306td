@@ -35,6 +35,8 @@ namespace PhysicsDefense.GameState
 		private bool mouseRightPress;
 
 		MapObstacles map;
+		EnemyEmitter spawner;
+
 		List<GameObject> entities;
 		List<Tower> towers;
 		List<GameObject> newEntities;
@@ -59,6 +61,21 @@ namespace PhysicsDefense.GameState
 			map = new MapObstacles(physics.world, obstacles);
 			game.graphics.addBackground(obstacles);
 			currentMap = initialMap;
+
+			spawner = new EnemyEmitter(new Vector2(1f, 0f), 1);
+			spawner.onSpawn = spawnEnemy;
+			spawner.onWaveFinished = waveFinished;
+			spawner.start();
+		}
+
+		private void spawnEnemy(EnemyType enemy)
+		{
+			Marble m = new Marble(physics.world, spawner.position);
+			addObject(m);
+		}
+
+		private void waveFinished()
+		{
 		}
 
 		private void getInputState()
@@ -179,6 +196,9 @@ namespace PhysicsDefense.GameState
 
 			// Update physics
 			physics.Update(gameTime);
+
+			// Update enemy spawners
+			spawner.update(gameTime);
 
 			// Update game objects
 			foreach (GameObject obj in entities) {
