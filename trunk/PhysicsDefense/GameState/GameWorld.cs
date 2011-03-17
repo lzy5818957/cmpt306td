@@ -43,6 +43,7 @@ namespace PhysicsDefense.GameState
 		List<GameObject> entities;
 		List<Tower> towers;
 		List<Marble> enemies;
+        List<Bullet> bullets;
 		List<GameObject> newEntities;
 
 		Tower previewTower;
@@ -58,6 +59,7 @@ namespace PhysicsDefense.GameState
 			enemies = new List<Marble>();
 			towers = new List<Tower>();
 			newEntities = new List<GameObject>();
+            bullets = new List<Bullet>();
 		}
 
 		public void LoadContent()
@@ -148,6 +150,7 @@ namespace PhysicsDefense.GameState
 
 			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world
 			previewTower.activate();
+            previewTower.onBulletCreate = addObject;
 			previewTower = null;
 		}
 
@@ -231,12 +234,27 @@ namespace PhysicsDefense.GameState
 					Explode explode = new Explode(physics.world, obj.position);
 					addObject(explode);
 				}
-
+           
+                //Shot Bullet
+                //if ((obj is Tower)&&(((Tower)obj).isActivated))
+                //{
+                  //  foreach (Marble aMarble in enemies)
+                    //{
+                      //  Vector2 displacement=new Vector2(aMarble.position.X-obj.position.X,aMarble.position.Y-obj.position.Y);
+                        //if (displacement.Length() <= ((Tower)obj).range)
+                        //{
+                         //   Bullet aBullet=((Tower)obj).shot(aMarble);
+                          //  if (aBullet != null)
+                           //     addObject(aBullet); 
+                       // }
+                   // }
+               // }
 			}
 
 			// Remove all dead objects
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
 			towers.RemoveAll(delegate(Tower obj) { return obj.isDead; });
+            bullets.RemoveAll(delegate(Bullet obj) { return obj.isDead; });
 			enemies.RemoveAll(delegate(Marble obj) { return obj.isDead; });
 
 			// Move any new objects to the main list
@@ -268,7 +286,8 @@ namespace PhysicsDefense.GameState
 				towers.Add((Tower)obj);
 			if (obj is Marble)
 				enemies.Add((Marble)obj);
-
+            if (obj is Bullet)
+                bullets.Add((Bullet)obj);
 			game.graphics.addObject(obj);
 			physics.addPhysical(obj);
 		}
@@ -278,5 +297,6 @@ namespace PhysicsDefense.GameState
 			game.graphics.removeObject(obj);
 			physics.removePhysical(obj);
 		}
+
 	}
 }
