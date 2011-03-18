@@ -34,6 +34,7 @@ namespace PhysicsDefense.GameState
 				body.Restitution = 0.2f;
 				body.BodyType = BodyType.Static;
 				body.CollisionCategories = Category.Cat3;
+				body.CollidesWith = Category.Cat1;
 				fixtures.Add(body);
 			}
 		}

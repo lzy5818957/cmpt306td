@@ -15,16 +15,5 @@ namespace PhysicsDefense.GameState
 	/// </summary>
 	class EnemyFactory
 	{
-		public static Marble createMarble(Vector2 position, PhysicsSystem physics)
-		{
-			Marble m = new Marble(physics.world, position);
-			return m;
-		}
-
-		public static Box createBox(Vector2 position, PhysicsSystem physics)
-		{
-			Box b = new Box(physics.world, position);
-			return b;
-		}
 	}
 }

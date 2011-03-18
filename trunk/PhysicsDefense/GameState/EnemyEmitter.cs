@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState {
 		private int waveEnemiesSpawned = 0;
 		private double timer = 0;
 		public bool active = false;
-		public bool waveFinished = true;
+		public bool waveFinished = false;
 
 		public Vector2 position { get; private set; }
 

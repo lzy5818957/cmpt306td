@@ -9,22 +9,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PhysicsDefense.GameState
 {
-    public delegate void BulletHandler(Bullet bullet);
-
 	class Tower : GameObject
 	{
 		private static float radius = 0.25f;
 		private static float density = 5.0f;
-		public int collisionCount = 0;
-		private World world;
-        public int rechargeTime=30;
-        private int rechargeCount=0;
-		public float range = 1f;
+
+        private double rechargeTime=500;
+        private double timer = 0;
+		public float range = 3f;
+
 		public AoeSensor rangeSensor;
         public bool isActivated = false;
 
         List<Marble> enemiesInRange;
-        public BulletHandler onBulletCreate;
 
 		public Tower(World world, Vector2 position)
 		{
@@ -38,10 +35,8 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.IsSensor = true;
 			physicsProperties.body.IgnoreGravity = true;
+			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat3;
 			physicsProperties.body.CollisionCategories = Category.Cat2;
-
-			physicsProperties.body.OnCollision += (a, b, c) => { collisionCount++;  return true; };
-			physicsProperties.body.OnSeparation += (a, b) => { collisionCount--; };
 
 			nativeColor = Color.White;
 			color.A = 128;
@@ -54,7 +49,6 @@ namespace PhysicsDefense.GameState
             isActivated = true;
 			physicsProperties.body.IsSensor = false;
 			physicsProperties.body.IgnoreGravity = true;
-			//physicsProperties.body.CollidesWith = Category.None;
 			physicsProperties.body.BodyType = BodyType.Static;
 
 			rangeSensor = new AoeSensor(world, position, range);
@@ -72,36 +66,31 @@ namespace PhysicsDefense.GameState
             enemiesInRange.Remove(m);
         }
 
-        public Bullet shoot()
+        public void shoot()
         {
             if (enemiesInRange.Count == 0)
-                return null;
-
-            Marble target = enemiesInRange[0];
-            if (rechargeCount >= rechargeTime)
-            {
-                rechargeCount = 0;
-                Bullet newBullet = new Bullet(world, position);
-                Vector2 displacement=new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
-                displacement.Normalize();
-                //newBullet.physicsProperties.body.ApplyLinearImpulse(new Vector2(-0.001f*displacement.X/displacement.Length(),0.001f*displacement.Y/displacement.Length()));
-                newBullet.physicsProperties.body.LinearVelocity = displacement * 5;
-                onBulletCreate(newBullet);
-                return newBullet;
-            }
-            return null;
+                return;
+			Marble target = enemiesInRange[0];
+			
+			Vector2 direction = new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
+            Bullet newBullet = new Bullet(world, position, direction);
+			onCreateObject(newBullet);
         }
 
-		public override void update()
+		public override void update(GameTime gameTime)
 		{
+			base.update(gameTime);
+
             if (!isActivated)
                 return;
 
-            rechargeCount++;
-            if (rechargeCount > rechargeTime)
-                rechargeCount = rechargeTime;
-            shoot();
-			base.update();
+			enemiesInRange.RemoveAll(delegate(Marble obj) { return obj.isDead; });
+
+			timer += gameTime.ElapsedGameTime.TotalMilliseconds;
+			if (timer >= rechargeTime) {
+				timer -= rechargeTime;
+				shoot();
+			}
 		}
 	}
 }
