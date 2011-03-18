@@ -7,6 +7,7 @@ using PhysicsDefense.Physics;
 using FarseerPhysics.Collision;
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
+using System.Diagnostics;
 
 namespace PhysicsDefense.GameState
 {
@@ -62,14 +63,15 @@ namespace PhysicsDefense.GameState
 		public virtual void initialize()
 		{
 			physicsProperties.body.OnCollision += (a, b, c) => {
-				Console.WriteLine("(collision " + ticks + ")");
+				//Console.WriteLine("(collision " + ticks + ")");
+
 				ticksCollision = ticks;
 				isColliding = true;
 				collisionCount++;
 				return true;
 			};
 			physicsProperties.body.OnSeparation += (a, b) => {
-				Console.WriteLine("(separation)" + ticks + ")");
+				//Console.WriteLine("(separation)" + ticks + ")");
 				if (ticksCollision < ticks)
 					collisionCount--;
 

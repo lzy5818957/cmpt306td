@@ -20,7 +20,7 @@ namespace PhysicsDefense.GameState
 		private int lives = 20;
 		private bool active = true;
 
-		private String initialMap = "map1";
+		private String initialMap = "map3";
 		private String currentMap;
 		private float connectDistance = 1.0f;
 		private float waveHealthMult = 0.5f;

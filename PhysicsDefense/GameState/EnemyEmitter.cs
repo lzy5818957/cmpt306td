@@ -16,6 +16,8 @@ namespace PhysicsDefense.GameState {
 		public bool active = false;
 		public bool waveFinished = false;
 
+		public float spawnInterval = 750f;
+
 		public Vector2 position { get; private set; }
 
 		public SpawnHandler onSpawn;
@@ -47,17 +49,16 @@ namespace PhysicsDefense.GameState {
 
 			// Spawn new enemy every second
 			timer += gameTime.ElapsedGameTime.TotalMilliseconds;
-			if (timer > 1000) {
+			if (timer > spawnInterval) {
 				onSpawn(EnemyType.Normal);
 				waveEnemiesSpawned++;
-				timer -= 1000;
+				timer -= spawnInterval;
 			}
 
 			// Check if this was the end of the wave
 			if (waveEnemiesSpawned >= wave + 9) {
 				active = false;
 				waveFinished = true;
-				//onWaveFinished();
 			}
 		}
 	}

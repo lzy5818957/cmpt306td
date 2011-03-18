@@ -16,7 +16,7 @@ namespace PhysicsDefense.GameState
 
         private double rechargeTime=500;
         private double timer = 0;
-		public float range = 3f;
+		public float range = 2f;
 
 		public AoeSensor rangeSensor;
         public bool isActivated = false;

@@ -38,14 +38,14 @@ namespace PhysicsDefense.GameState
 
 		bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
 		{
-            Debug.Assert(fixtureB.UserData != null);
+            Debug.Assert(fixtureB.Body.UserData != null);
 			Console.WriteLine("Tower range sensor triggered");
             onEnter((Marble)fixtureB.Body.UserData);
             return true;
 		}
 
 		void body_OnSeparation(Fixture fixtureA, Fixture fixtureB) {
-            Debug.Assert(fixtureB.UserData != null);
+			Debug.Assert(fixtureB.Body.UserData != null);
 			onLeave((Marble)fixtureB.Body.UserData);
 			Console.WriteLine("Tower range sensor un-triggered");
 		}
