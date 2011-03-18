@@ -6,11 +6,13 @@ using Microsoft.Xna.Framework;
 using PhysicsDefense.Physics;
 using FarseerPhysics.Collision;
 using Microsoft.Xna.Framework.Graphics;
+using FarseerPhysics.Dynamics;
 
 namespace PhysicsDefense.GameState
 {
 	public delegate void SoundHandler(String soundName);
 	public delegate void DeathHandler(GameObject obj);
+	public delegate void CreateHandler(GameObject obj);
 
 	public abstract class GameObject
 	{
@@ -36,7 +38,9 @@ namespace PhysicsDefense.GameState
 		private ulong ticks = 0;
 		private ulong ticksCollision = 0;
 		public bool isColliding = false;
+		private int collisionCount = 0;
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
+		protected World world;
 
 		public String spriteName { get; protected set; }
 		public Color nativeColor = Color.White;
@@ -47,6 +51,7 @@ namespace PhysicsDefense.GameState
 
 		public SoundHandler onPlaySound;
 		public DeathHandler onDeath;
+		public CreateHandler onCreateObject;
 
 		public GameObject()
 		{
@@ -57,13 +62,18 @@ namespace PhysicsDefense.GameState
 		public virtual void initialize()
 		{
 			physicsProperties.body.OnCollision += (a, b, c) => {
-				//Console.WriteLine("Collision: " + a. + "," + b + "," + c);
+				Console.WriteLine("(collision " + ticks + ")");
 				ticksCollision = ticks;
 				isColliding = true;
+				collisionCount++;
 				return true;
 			};
 			physicsProperties.body.OnSeparation += (a, b) => {
+				Console.WriteLine("(separation)" + ticks + ")");
 				if (ticksCollision < ticks)
+					collisionCount--;
+
+				if(collisionCount <= 0)
 					isColliding = false;
 			};
 		}
@@ -75,7 +85,7 @@ namespace PhysicsDefense.GameState
 			onDeath(this);
 		}
 
-		public virtual void update() {
+		public virtual void update(GameTime gameTime) {
 			ticks++;
 		}
 

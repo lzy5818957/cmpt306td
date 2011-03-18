@@ -40,13 +40,13 @@ namespace PhysicsDefense.GameState
 		{
             Debug.Assert(fixtureB.UserData != null);
 			Console.WriteLine("Tower range sensor triggered");
-            onEnter((Marble)fixtureB.UserData);
+            onEnter((Marble)fixtureB.Body.UserData);
             return true;
 		}
 
 		void body_OnSeparation(Fixture fixtureA, Fixture fixtureB) {
             Debug.Assert(fixtureB.UserData != null);
-            onLeave((Marble)fixtureB.UserData);
+			onLeave((Marble)fixtureB.Body.UserData);
 			Console.WriteLine("Tower range sensor un-triggered");
 		}
 	}

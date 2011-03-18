@@ -30,8 +30,10 @@ namespace PhysicsDefense.GameState
 			base.initialize();
 		}
 
-        public override void update()
+        public override void update(GameTime gameTime)
         {
+			base.update(gameTime);
+			
 			if (frameCount < 17) {
 				frameCount++;
 				spriteName = "explode" + frameCount.ToString();

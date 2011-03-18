@@ -20,9 +20,10 @@ namespace PhysicsDefense.GameState
 		private int lives = 20;
 		private bool active = true;
 
-		private String initialMap = "map2";
+		private String initialMap = "map1";
 		private String currentMap;
 		private float connectDistance = 1.0f;
+		private float waveHealthMult = 0.5f;
 
 		PhysicsDefense game;
 		PhysicsSystem physics;
@@ -78,7 +79,7 @@ namespace PhysicsDefense.GameState
 
 		private void spawnEnemy(EnemyType enemy)
 		{
-			Marble m = new Marble(physics.world, spawner.position);
+			Marble m = new Marble(physics.world, spawner.position, ((spawner.wave - 1) * waveHealthMult) + 1f);
 			addObject(m);
 		}
 
@@ -150,7 +151,6 @@ namespace PhysicsDefense.GameState
 
 			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world
 			previewTower.activate();
-            previewTower.onBulletCreate = addObject;
 			previewTower = null;
 		}
 
@@ -164,7 +164,6 @@ namespace PhysicsDefense.GameState
 
 			previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
 
-			//if (previewTower.collisionCount > 0) {
 			if (previewTower.isColliding) {
 				previewTower.color = Color.Red;
 				previewTower.color.A = 128;
@@ -202,7 +201,7 @@ namespace PhysicsDefense.GameState
 
 			// Temporary for testing
 			if (mouseRightPress) {
-				Marble m = EnemyFactory.createMarble(new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), physics);
+				Marble m = new Marble(physics.world, new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), 1f);
 				addObject(m);
 			}
 
@@ -224,32 +223,14 @@ namespace PhysicsDefense.GameState
 			// Update game objects
 			foreach (GameObject obj in entities) {
 				// Update object
-				obj.update();
+				obj.update(gameTime);
 
 				// Check for marbles that have reached bottom
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
 					obj.die();
 					lives--;
-
-					Explode explode = new Explode(physics.world, obj.position);
-					addObject(explode);
 				}
-           
-                //Shot Bullet
-                //if ((obj is Tower)&&(((Tower)obj).isActivated))
-                //{
-                  //  foreach (Marble aMarble in enemies)
-                    //{
-                      //  Vector2 displacement=new Vector2(aMarble.position.X-obj.position.X,aMarble.position.Y-obj.position.Y);
-                        //if (displacement.Length() <= ((Tower)obj).range)
-                        //{
-                         //   Bullet aBullet=((Tower)obj).shot(aMarble);
-                          //  if (aBullet != null)
-                           //     addObject(aBullet); 
-                       // }
-                   // }
-               // }
-			}
+   			}
 
 			// Remove all dead objects
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
@@ -279,6 +260,7 @@ namespace PhysicsDefense.GameState
 		{
 			obj.onPlaySound = game.audio.PlaySound;
 			obj.onDeath = removeObject;
+			obj.onCreateObject = addObject;
 			obj.initialize();
 
 			newEntities.Add(obj);
@@ -288,6 +270,7 @@ namespace PhysicsDefense.GameState
 				enemies.Add((Marble)obj);
             if (obj is Bullet)
                 bullets.Add((Bullet)obj);
+
 			game.graphics.addObject(obj);
 			physics.addPhysical(obj);
 		}
@@ -297,6 +280,5 @@ namespace PhysicsDefense.GameState
 			game.graphics.removeObject(obj);
 			physics.removePhysical(obj);
 		}
-
 	}
 }

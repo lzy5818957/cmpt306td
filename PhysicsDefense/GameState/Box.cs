@@ -23,9 +23,9 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Friction = 0.8f;
 		}
 
-        public override void update()
+        public override void update(GameTime gameTime)
         {
-
+			base.update(gameTime);
         }
 	}
 }

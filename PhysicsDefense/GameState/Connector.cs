@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Dynamics;
+using Microsoft.Xna.Framework;
 
 namespace PhysicsDefense.GameState
 {
@@ -24,10 +25,12 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.BodyType = BodyType.Static;
 			physicsProperties.body.Friction = 0.8f;
 			physicsProperties.body.CollisionCategories = Category.Cat3;
+			physicsProperties.body.CollidesWith = Category.Cat1;
 		}
 
-		public override void update()
+		public override void update(GameTime gameTime)
 		{
+			base.update(gameTime);
 		}
 	}
 }

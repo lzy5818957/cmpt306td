@@ -16,8 +16,12 @@ namespace PhysicsDefense.GameState
 
 	public class Marble : GameObject
 	{
-		public Marble(World world, Vector2 position)
+		private float baseHealth = 100;
+		public float health;
+
+		public Marble(World world, Vector2 position, float healthMult)
 		{
+			this.world = world;
 			spriteName = "basicEnemy";
 			physicsProperties.body = BodyFactory.CreateCircle(world, 0.25f, 3.0f, position);
 			physicsProperties.body.Restitution = 0.2f;
@@ -27,12 +31,27 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.CollisionCategories = Category.Cat1;
             physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3 | Category.Cat5;
             physicsProperties.body.UserData = this;
+
+			health = baseHealth * healthMult;
 		}
 
-        public override void update()
+		public override void update(GameTime gameTime)
         {
-
+			base.update(gameTime);
         }
 
+		public void takeDamage(int damage)
+		{
+			health -= damage;
+			if (health <= 0)
+				die();
+		}
+
+		public override void die()
+		{
+			Explode explosion = new Explode(world, position);
+			onCreateObject(explosion);
+			base.die();
+		}
 	}
 }
