@@ -20,7 +20,7 @@ namespace PhysicsDefense.GameState
 			fixtures = new List<Body>();
 			uint[] data = new uint[texture.Width * texture.Height];
 			texture.GetData(data);
-			List<Vertices> verts = PolygonTools.CreatePolygon(data, texture.Width, 0.05f, 16, true, true);
+			List<Vertices> verts = PolygonTools.CreatePolygon(data, texture.Width, 1f, 64, true, true);
 
 			foreach (Vertices poly in verts) {
 				Vector2 scale = new Vector2(1f / GameWorld.worldScale, 1f / GameWorld.worldScale);
