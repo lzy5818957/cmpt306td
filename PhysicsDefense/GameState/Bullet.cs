@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState
         private static float radius = 0.05f;
         private double age = 0;
 
-		private int damage = 100;
+		private int damage = 15;
 		private float speed = 8f;
 
         public Bullet(World world, Vector2 position, Vector2 direction) {
