@@ -45,6 +45,7 @@ namespace PhysicsDefense.GameState
 		List<Tower> towers;
 		List<Marble> enemies;
         List<Bullet> bullets;
+        List<Missile> missiles;
 		List<GameObject> newEntities;
 
 		Tower previewTower;
@@ -61,6 +62,7 @@ namespace PhysicsDefense.GameState
 			towers = new List<Tower>();
 			newEntities = new List<GameObject>();
             bullets = new List<Bullet>();
+            missiles = new List<Missile>();
 		}
 
 		public void LoadContent()
@@ -239,6 +241,7 @@ namespace PhysicsDefense.GameState
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
 			towers.RemoveAll(delegate(Tower obj) { return obj.isDead; });
             bullets.RemoveAll(delegate(Bullet obj) { return obj.isDead; });
+            missiles.RemoveAll(delegate(Missile obj) { return obj.isDead; });
 			enemies.RemoveAll(delegate(Marble obj) { return obj.isDead; });
 
 			// Move any new objects to the main list
@@ -273,6 +276,8 @@ namespace PhysicsDefense.GameState
 				enemies.Add((Marble)obj);
             if (obj is Bullet)
                 bullets.Add((Bullet)obj);
+            if (obj is Missile)
+                missiles.Add((Missile)obj);
 
 			game.graphics.addObject(obj);
 			physics.addPhysical(obj);

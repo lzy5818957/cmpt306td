@@ -72,9 +72,11 @@ namespace PhysicsDefense.GameState
                 return;
 			Marble target = enemiesInRange[0];
 			
-			Vector2 direction = new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
-            Bullet newBullet = new Bullet(world, position, direction);
-			onCreateObject(newBullet);
+			//Vector2 direction = new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
+            //Bullet newBullet = new Bullet(world, position, direction);
+            //onCreateObject(newBullet);
+            Missile newMissile = new Missile(world, position, target);
+			onCreateObject(newMissile);
         }
 
 		public override void update(GameTime gameTime)
