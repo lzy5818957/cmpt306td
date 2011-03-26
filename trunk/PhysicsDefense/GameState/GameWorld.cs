@@ -85,7 +85,8 @@ namespace PhysicsDefense.GameState
 
 		private void waveFinished()
 		{
-			Console.WriteLine("Wave " + spawner.wave + " finished");
+			Console.WriteLine("Wave " + spawner.wave + " finished\n"+"LIVE(S)="+lives);
+            MessageBoard.updateMessage("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
 			spawner.nextWave();
 			spawner.start();
 		}
@@ -93,6 +94,7 @@ namespace PhysicsDefense.GameState
 		public void lose()
 		{
 			Console.WriteLine("*** All lives lost! ***");
+            MessageBoard.updateMessage("*** All lives lost! ***\nGame Over");
 			active = false;
 		}
 
@@ -229,6 +231,7 @@ namespace PhysicsDefense.GameState
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
 					obj.die();
 					lives--;
+                    MessageBoard.updateMessage("LIVE(S)=" + lives);
 				}
    			}
 

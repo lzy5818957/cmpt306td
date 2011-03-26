@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using PhysicsDefense.GameState;
 
 namespace PhysicsDefense.Graphics
@@ -16,6 +17,7 @@ namespace PhysicsDefense.Graphics
 		public GraphicsDeviceManager device;
 		SpriteBatch spriteBatch;
 		Game game;
+        MessageBoard messageBoard;
 		
 		List<GameObject> drawableObjects;
 		List<Texture2D> backgrounds;
@@ -24,6 +26,7 @@ namespace PhysicsDefense.Graphics
 
 		public GraphicsEngine(Microsoft.Xna.Framework.Game game)
 		{
+            game.Content.RootDirectory = "Content";
 			this.game = game;
 			device = new GraphicsDeviceManager(game);
 			device.PreferredBackBufferWidth = screenWidth;
@@ -34,12 +37,14 @@ namespace PhysicsDefense.Graphics
 			drawableObjects = new List<GameObject>();
 			backgrounds = new List<Texture2D>();
 			textures = new Dictionary<String, Texture2D>();
+            
 		}
 
 		public void LoadContent()
 		{
 			spriteBatch = new SpriteBatch(game.GraphicsDevice);
-
+            SpriteFont msgFont = game.Content.Load<SpriteFont>("FirstFont");
+            messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont, "Game Starting...");
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("basicEnemy"));
             textures.Add("puck", game.Content.Load<Texture2D>("puck"));
@@ -79,7 +84,9 @@ namespace PhysicsDefense.Graphics
 
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, obj.color, obj.rotation, origin, SpriteEffects.None, 0);
 			}
-			
+
+            messageBoard.draw(spriteBatch);
+
 			spriteBatch.End();
 		}
 

@@ -73,7 +73,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.OnSeparation += (a, b) => {
 				//Console.WriteLine("(separation)" + ticks + ")");
 				if (ticksCollision < ticks)
-					collisionCount--;
+					collisionCount=0;
 
 				if(collisionCount <= 0)
 					isColliding = false;
