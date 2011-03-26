@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState
 	public delegate void SoundHandler(String soundName);
 	public delegate void DeathHandler(GameObject obj);
 	public delegate void CreateHandler(GameObject obj);
-
+    
 	public abstract class GameObject
 	{
 		public Vector2 position {
@@ -37,9 +37,11 @@ namespace PhysicsDefense.GameState
 		}
 
 		private ulong ticks = 0;
-		private ulong ticksCollision = 0;
-		public bool isColliding = false;
-		private int collisionCount = 0;
+        public bool isColliding {
+            get { return physicsProperties.body.ContactList != null; }
+            private set { }
+        }
+
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
 		protected World world;
 
@@ -63,20 +65,12 @@ namespace PhysicsDefense.GameState
 		public virtual void initialize()
 		{
 			physicsProperties.body.OnCollision += (a, b, c) => {
-				//Console.WriteLine("(collision " + ticks + ")");
-
-				ticksCollision = ticks;
-				isColliding = true;
-				collisionCount++;
+   
 				return true;
 			};
 			physicsProperties.body.OnSeparation += (a, b) => {
-				//Console.WriteLine("(separation)" + ticks + ")");
-				if (ticksCollision < ticks)
-					collisionCount=0;
 
-				if(collisionCount <= 0)
-					isColliding = false;
+
 			};
 		}
 
@@ -88,6 +82,15 @@ namespace PhysicsDefense.GameState
 		}
 
 		public virtual void update(GameTime gameTime) {
+
+            if (physicsProperties.body.ContactList == null)
+            {
+                isColliding = false;
+            }
+            else
+            {
+                isColliding = true;
+            }
 			ticks++;
 		}
 
