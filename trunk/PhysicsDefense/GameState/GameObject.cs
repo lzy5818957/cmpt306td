@@ -8,6 +8,7 @@ using FarseerPhysics.Collision;
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 using System.Diagnostics;
+using FarseerPhysics.Common;
 
 namespace PhysicsDefense.GameState
 {
@@ -37,10 +38,7 @@ namespace PhysicsDefense.GameState
 		}
 
 		private ulong ticks = 0;
-        public bool isColliding {
-            get { return physicsProperties.body.ContactList != null; }
-            private set { }
-        }
+        public bool isColliding;
 
 		public ObjectPhysicsProperties physicsProperties { get; protected set; }
 		protected World world;
@@ -65,7 +63,8 @@ namespace PhysicsDefense.GameState
 		public virtual void initialize()
 		{
 			physicsProperties.body.OnCollision += (a, b, c) => {
-   
+                
+                isColliding = true;
 				return true;
 			};
 			physicsProperties.body.OnSeparation += (a, b) => {
@@ -82,14 +81,9 @@ namespace PhysicsDefense.GameState
 		}
 
 		public virtual void update(GameTime gameTime) {
-
             if (physicsProperties.body.ContactList == null)
             {
                 isColliding = false;
-            }
-            else
-            {
-                isColliding = true;
             }
 			ticks++;
 		}
