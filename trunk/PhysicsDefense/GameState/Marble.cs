@@ -82,7 +82,7 @@ namespace PhysicsDefense.GameState
 
 		public override void die()
 		{
-			Explode explosion = new Explode(world, position);
+			Explode explosion = new Explode(world, position,1.44f);
 			onCreateObject(explosion);
 			base.die();
 		}

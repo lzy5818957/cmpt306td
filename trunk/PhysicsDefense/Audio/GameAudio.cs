@@ -23,6 +23,7 @@ namespace PhysicsDefense.Audio
 		{
 			music = game.Content.Load<Song>("music");
 			sounds.Add("explode", game.Content.Load<SoundEffect>("explode"));
+            sounds.Add("missilelaunch", game.Content.Load<SoundEffect>("missilelaunch"));
 		}
 
 		public void PlaySound(String soundName)
