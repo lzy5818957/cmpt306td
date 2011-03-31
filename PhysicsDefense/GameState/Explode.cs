@@ -12,7 +12,7 @@ namespace PhysicsDefense.GameState
     class Explode : GameObject
     {
         public int frameCount;
-        float size;
+        float radius;
         /*public Explode(World world, Vector2 position)
         {
             frameCount = 1;
@@ -27,9 +27,9 @@ namespace PhysicsDefense.GameState
         public Explode(World world, Vector2 position, float s)
         {
             frameCount = 1;
-            size = s;
+            radius = s;
             spriteName = "explode1";
-            physicsProperties.body = BodyFactory.CreateCircle(world,size, 1f, position);
+            physicsProperties.body = BodyFactory.CreateCircle(world,radius, 1f, position);
 
             //No collision
             physicsProperties.body.CollidesWith = Category.None;
@@ -38,7 +38,7 @@ namespace PhysicsDefense.GameState
         }
 		public override void initialize()
 		{
-            if(size>1f)
+            if(radius>1f)
 			    onPlaySound("explode");
 			base.initialize();
 		}
