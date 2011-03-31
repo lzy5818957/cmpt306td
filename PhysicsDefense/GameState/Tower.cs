@@ -15,22 +15,22 @@ namespace PhysicsDefense.GameState
 		private static float density = 5.0f;
 
 		// Game-related properties
-        private double rechargeTime=500;
-		public float range = 2f;
-		public static float cost = 30f;
+        public double rechargeTime;
+		public float range;
+		public static float cost;
 
 		public AoeSensor rangeSensor;
         public bool isActivated = false;
 
 		private double timer = 0;
 
-        List<Marble> enemiesInRange;
+        protected List<Marble> enemiesInRange;
 
 		public Tower(World world, Vector2 position)
 		{
             enemiesInRange = new List<Marble>();
 			this.world = world;
-			spriteName = "tower";
+			
 			physicsProperties.body = BodyFactory.CreateCircle(world, radius, density);
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.Friction = 0.8f;
@@ -69,19 +69,13 @@ namespace PhysicsDefense.GameState
             enemiesInRange.Remove(m);
         }
 
-        public void shoot()
+        public virtual void shoot()
         {
-            if (enemiesInRange.Count == 0)
-                return;
-            Marble target = enemiesInRange[0];
-			//Bullet Creatiion
-			//Vector2 direction = new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
-           // Bullet newBullet = new Bullet(world, position, direction);
-            //onCreateObject(newBullet);
-
+            
+            
             //Missile Creation
-            Missile newMissile = new Missile(world, position, target);
-			onCreateObject(newMissile);
+            //Missile newMissile = new Missile(world, position, target);
+			//onCreateObject(newMissile);
 
         }
 
