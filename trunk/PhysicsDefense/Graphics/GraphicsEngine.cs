@@ -43,20 +43,19 @@ namespace PhysicsDefense.Graphics
 		public void LoadContent()
 		{
 			spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            SpriteFont msgFont = game.Content.Load<SpriteFont>("FirstFont");
+            SpriteFont msgFont = game.Content.Load<SpriteFont>("fonts/FirstFont");
             messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont, "Game Starting...");
 			// Load textures
-            textures.Add("basicEnemy", game.Content.Load<Texture2D>("basicEnemy"));
-            textures.Add("puck", game.Content.Load<Texture2D>("puck"));
-            textures.Add("tower", game.Content.Load<Texture2D>("tower"));
-            textures.Add("missile",game.Content.Load<Texture2D>("missile"));
-			textures.Add("box", game.Content.Load<Texture2D>("box"));
-			textures.Add("connector", game.Content.Load<Texture2D>("connector"));
-            textures.Add("smoke", game.Content.Load<Texture2D>("smoke"));
+            textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
+            textures.Add("puck", game.Content.Load<Texture2D>("pictures/towers/puck"));
+            textures.Add("tower", game.Content.Load<Texture2D>("pictures/towers/tower"));
+            textures.Add("missile",game.Content.Load<Texture2D>("pictures/bullets/missile"));
+            textures.Add("connector", game.Content.Load<Texture2D>("pictures/towers/connector"));
+            textures.Add("smoke", game.Content.Load<Texture2D>("pictures/bullets/smoke"));
 			//textures.Add("basicTower", game.Content.Load<Texture2D>("basicTower"));
 
             for (int i = 1; i < 18; i++) {
-                textures.Add("explode"+i.ToString(), game.Content.Load<Texture2D>("explode"+i.ToString()));
+                textures.Add("explode" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode/explode" + i.ToString()));
             }
 		}
 
