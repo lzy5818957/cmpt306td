@@ -84,7 +84,7 @@ namespace PhysicsDefense.GameState
 
         private void initPanel()
         {
-            Panel m = new Panel(physics.world, new Vector2(1,2));
+            Panel m = new Panel(physics.world, new Vector2(9,3));
             addObject(m);
         }
 
@@ -236,7 +236,7 @@ namespace PhysicsDefense.GameState
 
 			// Temporary for fun: adding torque to marbles
 			if (Keyboard.GetState().IsKeyDown(KeyBindings.spin)) {
-				foreach (GameObject obj in entities) {
+				foreach (Marble obj in enemies) {
 					obj.physicsProperties.body.ApplyTorque(1000);
 				}
 			}
