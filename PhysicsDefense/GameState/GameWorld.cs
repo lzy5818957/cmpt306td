@@ -70,7 +70,7 @@ namespace PhysicsDefense.GameState
 		{
 			Texture2D obstacles = game.Content.Load<Texture2D>(initialMap);
 			map = new MapObstacles(physics.world, obstacles);
-            game.graphics.addBackground("background");
+            game.graphics.addBackground("gamescreenbackground");
             game.graphics.addBackground(obstacles);
 			currentMap = initialMap;
 
