@@ -14,6 +14,7 @@ using FarseerPhysics.Dynamics;
 using PhysicsDefense.GameState;
 using PhysicsDefense.Graphics;
 using PhysicsDefense.Audio;
+using GameStateManagement;
 
 namespace PhysicsDefense
 {
@@ -25,13 +26,25 @@ namespace PhysicsDefense
 		public GraphicsEngine graphics;
 		public GameAudio audio;
 		public GameWorld gameWorld;
+        public ScreenManager screenManager;
 
 		public PhysicsDefense()
 		{
 			Content.RootDirectory = "Content";
-			graphics = new GraphicsEngine(this);
-			audio = new GameAudio(this);
-			gameWorld = new GameWorld(this);
+            ResourceManager.game = this;
+            graphics = ResourceManager.getGraphicsEngine();
+            audio = ResourceManager.getGameAudio();
+            gameWorld = ResourceManager.getGameWorld();
+
+
+            // Create the screen manager component.
+            screenManager = new ScreenManager(this);
+
+            Components.Add(screenManager);
+
+            // Activate the first screens.
+            screenManager.AddScreen(new BackgroundScreen(), null);
+            screenManager.AddScreen(new MainMenuScreen(), null);
 		}
 
 		/// <summary>
@@ -52,12 +65,7 @@ namespace PhysicsDefense
 		/// </summary>
 		protected override void LoadContent()
 		{
-			graphics.LoadContent();
-			audio.LoadContent();
-			gameWorld.LoadContent();
 
-			// Play music
-			audio.PlayMusic();
 		}
 
 		/// <summary>
@@ -76,7 +84,7 @@ namespace PhysicsDefense
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
-			gameWorld.Update(gameTime);
+
 
 			base.Update(gameTime);
 		}
@@ -87,8 +95,9 @@ namespace PhysicsDefense
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			graphics.Draw(gameTime);
+            graphics.device.GraphicsDevice.Clear(Color.Black);
 
+            
 			base.Draw(gameTime);
 		}
 	}
