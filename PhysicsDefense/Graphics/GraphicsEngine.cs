@@ -48,7 +48,8 @@ namespace PhysicsDefense.Graphics
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
             textures.Add("puck", game.Content.Load<Texture2D>("pictures/towers/puck"));
-            textures.Add("tower", game.Content.Load<Texture2D>("pictures/towers/tower"));
+            textures.Add("basictower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
+            textures.Add("missiletower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));
             textures.Add("missile",game.Content.Load<Texture2D>("pictures/bullets/missile"));
             textures.Add("connector", game.Content.Load<Texture2D>("pictures/towers/connector"));
             textures.Add("smoke", game.Content.Load<Texture2D>("pictures/bullets/smoke"));

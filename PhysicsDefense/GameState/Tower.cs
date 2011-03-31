@@ -71,12 +71,6 @@ namespace PhysicsDefense.GameState
 
         public virtual void shoot()
         {
-            
-            
-            //Missile Creation
-            //Missile newMissile = new Missile(world, position, target);
-			//onCreateObject(newMissile);
-
         }
 
 		public override void update(GameTime gameTime)
