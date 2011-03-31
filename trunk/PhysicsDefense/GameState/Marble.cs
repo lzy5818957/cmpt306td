@@ -16,9 +16,15 @@ namespace PhysicsDefense.GameState
 
 	public class Marble : GameObject
 	{
-		private float baseHealth = 80;
+		private float radius = 0.25f;
+
+		private float baseHealth = 100;
 		private float baseBounty = 5;
 		public float health;
+
+		private float stuckFactor;
+		private const float stuckLimit = 30f;
+		private const float stuckThreshholdSpeed = 0.5f;
 
 		// The amount of money awarded when the marble is killed
 		public float bounty;
@@ -27,7 +33,7 @@ namespace PhysicsDefense.GameState
 		{
 			this.world = world;
 			spriteName = "basicEnemy";
-			physicsProperties.body = BodyFactory.CreateCircle(world, 0.25f, 3.0f, position);
+			physicsProperties.body = BodyFactory.CreateCircle(world, radius, 3.0f, position);
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.Friction = 0.8f;
@@ -42,6 +48,24 @@ namespace PhysicsDefense.GameState
 
 		public override void update(GameTime gameTime)
         {
+			// Handle anti-stuck
+			if (physicsProperties.speed < stuckThreshholdSpeed) {
+				stuckFactor += stuckThreshholdSpeed - physicsProperties.speed;
+			}
+
+			if (stuckFactor > stuckLimit) {
+				// Marble was stuck for too long
+				die();
+			}
+
+			color.G = color.B = (byte)(255f - (255f * (stuckFactor / stuckLimit)));
+
+			stuckFactor -= stuckThreshholdSpeed / 2f;
+			if (stuckFactor < 0f) {
+				stuckFactor = 0f;
+				color = nativeColor;
+			}
+
 			base.update(gameTime);
         }
 
