@@ -103,6 +103,7 @@
     <Compile Include="GameState\Tower.cs" />
     <Compile Include="GameState\WaveData.cs" />
     <Compile Include="Graphics\GraphicsEngine.cs" />
+    <Compile Include="KeyBindings.cs" />
     <Compile Include="Physics\ObjectPhysicsProperties.cs" />
     <Compile Include="Physics\PhysicsSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
