@@ -17,13 +17,14 @@ namespace PhysicsDefense.GameState
 		public static float worldWidth;
 		public static float worldHeight;
 
-		private int lives = 20;
 		private bool active = true;
 
 		private String initialMap = "map3";
 		private String currentMap;
 		private float connectDistance = 1.0f;
-		private float waveHealthMult = 0.5f;
+
+		private float money = 100;
+		private int lives = 20;
 
 		PhysicsDefense game;
 		PhysicsSystem physics;
@@ -81,7 +82,7 @@ namespace PhysicsDefense.GameState
 
 		private void spawnEnemy(EnemyType enemy)
 		{
-			Marble m = new Marble(physics.world, spawner.position, ((spawner.wave - 1) * waveHealthMult) + 1f);
+			Marble m = new Marble(physics.world, spawner.position, ((spawner.wave - 1) * WaveData.healthMult) + 1f, ((spawner.wave - 1) * WaveData.bountyMult) + 1f);
 			addObject(m);
 		}
 
@@ -89,13 +90,17 @@ namespace PhysicsDefense.GameState
 		{
 			Console.WriteLine("Wave " + spawner.wave + " finished\n"+"LIVE(S)="+lives);
             MessageBoard.updateMessage("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
+
+			// Give wave money reward
+			money += 50 + (spawner.wave * 10);
+
 			spawner.nextWave();
 			spawner.start();
 		}
 
 		public void lose()
 		{
-			Console.WriteLine("*** All lives lost! ***");
+			Console.WriteLine("All lives lost!");
             MessageBoard.updateMessage("*** All lives lost! ***\nGame Over");
 			active = false;
 		}
@@ -136,6 +141,13 @@ namespace PhysicsDefense.GameState
 			//if (previewTower.collisionCount > 0)
 			if (previewTower.isColliding)
 				return;
+			
+			// Check if sufficient money is available
+			float cost = Tower.cost;
+			if (money < cost) {
+				MessageBoard.updateMessage("Insufficient funds to place tower");
+				return;
+			}
 
 			// Find nearby towers to connect to
 			foreach (Tower tower in towers) {
@@ -156,6 +168,7 @@ namespace PhysicsDefense.GameState
 			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world
 			previewTower.activate();
 			previewTower = null;
+			money -= cost;
 		}
 
 		/// <summary>
@@ -204,10 +217,10 @@ namespace PhysicsDefense.GameState
 			}
 
 			// Temporary for testing
-			if (mouseRightPress) {
-				Marble m = new Marble(physics.world, new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), 1f);
-				addObject(m);
-			}
+			//if (mouseRightPress) {
+			//	Marble m = new Marble(physics.world, new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), 1f);
+			//	addObject(m);
+			//}
 
 			// Show tower preview if in tower placement mode
 			if (previewTower != null) {
@@ -285,6 +298,11 @@ namespace PhysicsDefense.GameState
 
 		private void removeObject(GameObject obj)
 		{
+			// If this is a marble that was shot down, award money
+			if (obj is Marble) {
+				money += ((Marble)obj).bounty;
+			}
+
 			game.graphics.removeObject(obj);
 			physics.removePhysical(obj);
 		}

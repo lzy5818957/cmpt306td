@@ -16,10 +16,14 @@ namespace PhysicsDefense.GameState
 
 	public class Marble : GameObject
 	{
-		private float baseHealth = 100;
+		private float baseHealth = 80;
+		private float baseBounty = 5;
 		public float health;
 
-		public Marble(World world, Vector2 position, float healthMult)
+		// The amount of money awarded when the marble is killed
+		public float bounty;
+
+		public Marble(World world, Vector2 position, float healthMult, float bountyMult)
 		{
 			this.world = world;
 			spriteName = "basicEnemy";
@@ -33,6 +37,7 @@ namespace PhysicsDefense.GameState
             physicsProperties.body.UserData = this;
 
 			health = baseHealth * healthMult;
+			bounty = baseBounty * bountyMult;
 		}
 
 		public override void update(GameTime gameTime)

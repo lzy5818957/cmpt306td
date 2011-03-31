@@ -56,7 +56,7 @@ namespace PhysicsDefense.GameState {
 			}
 
 			// Check if this was the end of the wave
-			if (waveEnemiesSpawned >= wave + 9) {
+			if (waveEnemiesSpawned >= (WaveData.initialEnemyCount - 1) + (WaveData.extraEnemiesPerWave * wave)) {
 				active = false;
 				waveFinished = true;
 			}
