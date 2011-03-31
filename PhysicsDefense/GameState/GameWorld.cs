@@ -9,14 +9,6 @@ using PhysicsDefense.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 
-/* Collision Category Definition
- * Cat1: Marble
- * Cat2: Tower
- * Cat3: MapObstacle
- * Cat4: AoeSensor
- * Cat5: Bullet
- * 
- */
 
 
 namespace PhysicsDefense.GameState
