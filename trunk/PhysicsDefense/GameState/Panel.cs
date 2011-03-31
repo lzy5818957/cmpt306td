@@ -23,7 +23,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Friction = 0.0f;
 			physicsProperties.body.AngularDamping = 0f;
             physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3 | Category.Cat4 | Category.Cat5;
-            physicsProperties.body.CollisionCategories = Category.Cat1;
+            physicsProperties.body.CollisionCategories = Category.Cat6;
             physicsProperties.body.UserData = this;
 
 		}

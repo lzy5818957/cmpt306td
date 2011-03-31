@@ -10,6 +10,15 @@ using FarseerPhysics.Dynamics;
 using System.Diagnostics;
 using FarseerPhysics.Common;
 
+/* Collision Category Definition
+ * Cat1: Marble
+ * Cat2: Tower
+ * Cat3: MapObstacle
+ * Cat4: AoeSensor
+ * Cat5: Bullet
+ * 
+ */
+
 namespace PhysicsDefense.GameState
 {
 	public delegate void SoundHandler(String soundName);
