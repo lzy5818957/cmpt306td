@@ -15,7 +15,7 @@ namespace PhysicsDefense.GameState
         private double age = 0;
 
 		private int damage = 15;
-		private float speed = 8f;
+		private float speed = 6f;
 
         public Bullet(World world, Vector2 position, Vector2 direction) {
 			this.world = world;

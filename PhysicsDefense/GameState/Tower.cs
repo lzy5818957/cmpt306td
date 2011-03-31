@@ -74,11 +74,12 @@ namespace PhysicsDefense.GameState
             if (enemiesInRange.Count == 0)
                 return;
             Marble target = enemiesInRange[0];
-            //rotation = (float)Math.Atan2(target.position.Y-position.Y,target.position.X-position.X);
-			
+			//Bullet Creatiion
 			//Vector2 direction = new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
-            //Bullet newBullet = new Bullet(world, position, direction);
+           // Bullet newBullet = new Bullet(world, position, direction);
             //onCreateObject(newBullet);
+
+            //Missile Creation
             Missile newMissile = new Missile(world, position, target);
 			onCreateObject(newMissile);
 
