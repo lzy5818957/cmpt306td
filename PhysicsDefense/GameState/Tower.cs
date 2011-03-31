@@ -30,7 +30,7 @@ namespace PhysicsDefense.GameState
 		{
             enemiesInRange = new List<Marble>();
 			this.world = world;
-			spriteName = "puck";
+			spriteName = "tower";
 			physicsProperties.body = BodyFactory.CreateCircle(world, radius, density);
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.Friction = 0.8f;
@@ -73,13 +73,15 @@ namespace PhysicsDefense.GameState
         {
             if (enemiesInRange.Count == 0)
                 return;
-			Marble target = enemiesInRange[0];
+            Marble target = enemiesInRange[0];
+            //rotation = (float)Math.Atan2(target.position.Y-position.Y,target.position.X-position.X);
 			
 			//Vector2 direction = new Vector2((target.position.X - position.X), (target.position.Y - position.Y));
             //Bullet newBullet = new Bullet(world, position, direction);
             //onCreateObject(newBullet);
             Missile newMissile = new Missile(world, position, target);
 			onCreateObject(newMissile);
+
         }
 
 		public override void update(GameTime gameTime)
@@ -88,7 +90,15 @@ namespace PhysicsDefense.GameState
 
             if (!isActivated)
                 return;
-
+            if (enemiesInRange.Count != 0)
+            {
+                Marble target = enemiesInRange[0];
+                rotation = (float)Math.Atan2(target.position.Y - position.Y, target.position.X - position.X);
+            }
+            else
+            {
+                rotation += 0.01f;
+            }
 			enemiesInRange.RemoveAll(delegate(Marble obj) { return obj.isDead; });
 
 			timer += gameTime.ElapsedGameTime.TotalMilliseconds;
