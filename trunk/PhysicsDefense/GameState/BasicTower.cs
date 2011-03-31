@@ -7,15 +7,15 @@ using Microsoft.Xna.Framework;
 
 namespace PhysicsDefense.GameState
 {
-    class BaseTower:Tower
+    class BasicTower:Tower
     {
-        public BaseTower(World world,Vector2 position):base(world, position)
+        public BasicTower(World world,Vector2 position):base(world, position)
         {
             // Game-related properties
             rechargeTime = 500;
             range = 2f;
             cost = 30f;
-            spriteName = "tower";
+            spriteName = "basictower";
         }
 
         public override void shoot()

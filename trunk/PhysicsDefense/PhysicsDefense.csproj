@@ -90,7 +90,7 @@
   <ItemGroup>
     <Compile Include="Audio\GameAudio.cs" />
     <Compile Include="GameState\AoeSensor.cs" />
-    <Compile Include="GameState\BaseTower.cs" />
+    <Compile Include="GameState\BasicTower.cs" />
     <Compile Include="GameState\Box.cs" />
     <Compile Include="GameState\Bullet.cs" />
     <Compile Include="GameState\Connector.cs" />
@@ -99,6 +99,7 @@
     <Compile Include="GameState\Explode.cs" />
     <Compile Include="GameState\MapObstacles.cs" />
     <Compile Include="GameState\Marble.cs" />
+    <Compile Include="GameState\MissileTower.cs" />
     <Compile Include="GameState\Panel.cs" />
     <Compile Include="GameState\Smoke.cs" />
     <Compile Include="Graphics\MessageBoard.cs" />

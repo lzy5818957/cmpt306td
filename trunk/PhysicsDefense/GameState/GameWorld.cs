@@ -49,7 +49,7 @@ namespace PhysicsDefense.GameState
         List<Missile> missiles;
 		List<GameObject> newEntities;
 
-		BaseTower previewBaseTower;
+		Tower previewTower;
 
 		public GameWorld(PhysicsDefense game)
 		{
@@ -128,14 +128,18 @@ namespace PhysicsDefense.GameState
 		/// </summary>
 		private void towerSelection()
 		{
-			if (previewBaseTower != null)
+			if (previewTower != null)
 				return;
 
-			if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower))
-				previewBaseTower = new BaseTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-
-			if (previewBaseTower != null)
-				addObject(previewBaseTower);
+            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower))
+            {
+                previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
+            }else if(keyboardState.IsKeyDown(KeyBindings.placeMissileTower))
+            {
+                previewTower = new MissileTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
+            }
+			if (previewTower != null)
+				addObject(previewTower);
 		}
 
 		/// <summary>
@@ -143,12 +147,12 @@ namespace PhysicsDefense.GameState
 		/// </summary>
 		private void placeTower()
 		{
-			if (previewBaseTower == null)
+			if (previewTower == null)
 				return;
 
 			// Don't allow placement on top of other towers
 			//if (previewTower.collisionCount > 0)
-			if (previewBaseTower.isColliding)
+			if (previewTower.isColliding)
 				return;
 			
 			// Check if sufficient money is available
@@ -160,8 +164,8 @@ namespace PhysicsDefense.GameState
 
 			// Find nearby towers to connect to
 			foreach (Tower tower in towers) {
-				float distance = (tower.position - previewBaseTower.position).Length();
-				if (distance > connectDistance || tower == previewBaseTower)
+				float distance = (tower.position - previewTower.position).Length();
+				if (distance > connectDistance || tower == previewTower)
 					continue;
 
 				// Change the nearby towers back from green to their normal color since they were set to green right before this
@@ -169,14 +173,14 @@ namespace PhysicsDefense.GameState
 
 				// Connect the towers
 				Connector con = new Connector(physics.world, distance, tower.size.X);
-				con.position = (tower.position + previewBaseTower.position) / 2f;
-				con.rotation = (float)Math.Atan2((tower.position.Y - previewBaseTower.position.Y), (tower.position.X - previewBaseTower.position.X));
+				con.position = (tower.position + previewTower.position) / 2f;
+				con.rotation = (float)Math.Atan2((tower.position.Y - previewTower.position.Y), (tower.position.X - previewTower.position.X));
 				addObject(con);
 			}
 
 			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world
-			previewBaseTower.activate();
-			previewBaseTower = null;
+			previewTower.activate();
+			previewTower = null;
 			money -= cost;
 		}
 
@@ -185,21 +189,21 @@ namespace PhysicsDefense.GameState
 		/// </summary>
 		private void showPreviewTower()
 		{
-			if (previewBaseTower == null)
+			if (previewTower == null)
 				return;
 
-			previewBaseTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
+			previewTower.position = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
 
-			if (previewBaseTower.isColliding) {
-				previewBaseTower.color = Color.Red;
-				previewBaseTower.color.A = 128;
+			if (previewTower.isColliding) {
+				previewTower.color = Color.Red;
+				previewTower.color.A = 128;
 			} else {
-				previewBaseTower.color = Color.White;
-				previewBaseTower.color.A = 128;
+				previewTower.color = Color.White;
+				previewTower.color.A = 128;
 				foreach (Tower tower in towers) {
-					if (tower == previewBaseTower)
+					if (tower == previewTower)
 						continue;
-					if ((tower.position - previewBaseTower.position).Length() < connectDistance)
+					if ((tower.position - previewTower.position).Length() < connectDistance)
 						tower.color = Color.GreenYellow;
 					else
 						tower.color = tower.nativeColor;
@@ -221,10 +225,10 @@ namespace PhysicsDefense.GameState
 			// Get input state
 			getInputState();
 
-			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewBaseTower != null) {
+			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
 				// Cancel tower placement
-				removeObject(previewBaseTower);
-				previewBaseTower = null;
+				removeObject(previewTower);
+				previewTower = null;
 			}
 
 			// Check for tower placement activation
@@ -244,7 +248,7 @@ namespace PhysicsDefense.GameState
 			//}
 
 			// Show tower preview if in tower placement mode
-			if (previewBaseTower != null) {
+			if (previewTower != null) {
 				showPreviewTower();
 
 				// Place tower if mouse clicked
