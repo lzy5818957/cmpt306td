@@ -122,7 +122,7 @@ namespace PhysicsDefense.GameState
 			if (previewTower != null)
 				return;
 
-			if (keyboardState.IsKeyDown(Keys.T))
+			if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower))
 				previewTower = new Tower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
 
 			if (previewTower != null)
@@ -212,11 +212,17 @@ namespace PhysicsDefense.GameState
 			// Get input state
 			getInputState();
 
+			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
+				// Cancel tower placement
+				removeObject(previewTower);
+				previewTower = null;
+			}
+
 			// Check for tower placement activation
 			towerSelection();
 
 			// Temporary for fun: adding torque to marbles
-			if (Keyboard.GetState().IsKeyDown(Keys.S)) {
+			if (Keyboard.GetState().IsKeyDown(KeyBindings.spin)) {
 				foreach (GameObject obj in entities) {
 					obj.physicsProperties.body.ApplyTorque(1000);
 				}
@@ -313,6 +319,15 @@ namespace PhysicsDefense.GameState
 					money += m.bounty;
 				}
 			}
+
+			if (obj is Tower)
+				towers.Remove((Tower)obj);
+			if (obj is Marble)
+				enemies.Remove((Marble)obj);
+			if (obj is Bullet)
+				bullets.Remove((Bullet)obj);
+			if (obj is Missile)
+				missiles.Remove((Missile)obj);
 
 			game.graphics.removeObject(obj);
 			physics.removePhysical(obj);
