@@ -14,12 +14,15 @@ namespace PhysicsDefense.GameState
 		private static float radius = 0.25f;
 		private static float density = 5.0f;
 
+		// Game-related properties
         private double rechargeTime=500;
-        private double timer = 0;
 		public float range = 2f;
+		public static float cost = 30f;
 
 		public AoeSensor rangeSensor;
         public bool isActivated = false;
+
+		private double timer = 0;
 
         List<Marble> enemiesInRange;
 
