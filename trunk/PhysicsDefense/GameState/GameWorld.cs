@@ -198,6 +198,12 @@ namespace PhysicsDefense.GameState
 			}
 		}
 
+		public void loseLife()
+		{
+			lives--;
+			MessageBoard.updateMessage("LIVE(S)=" + lives);
+		}
+
 		public void Update(GameTime gameTime)
 		{
 			if (!active)
@@ -245,8 +251,7 @@ namespace PhysicsDefense.GameState
 				// Check for marbles that have reached bottom
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
 					obj.die();
-					lives--;
-                    MessageBoard.updateMessage("LIVE(S)=" + lives);
+					loseLife();
 				}
    			}
 
@@ -300,7 +305,13 @@ namespace PhysicsDefense.GameState
 		{
 			// If this is a marble that was shot down, award money
 			if (obj is Marble) {
-				money += ((Marble)obj).bounty;
+				Marble m = (Marble)obj;
+
+				if (m.diedByStuck) {
+					loseLife();
+				} else {
+					money += m.bounty;
+				}
 			}
 
 			game.graphics.removeObject(obj);
