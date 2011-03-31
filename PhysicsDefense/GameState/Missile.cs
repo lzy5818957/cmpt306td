@@ -15,7 +15,7 @@ namespace PhysicsDefense.GameState
         private double age = 0;
 
 		private int damage = 15;
-		private float strength = 15f;
+		private float strength = 5f;
         private GameObject target;
 
         public Missile(World world, Vector2 position, GameObject tgt)
@@ -64,7 +64,11 @@ namespace PhysicsDefense.GameState
             {
                 Vector2 direction = new Vector2(target.position.X - this.position.X, target.position.Y - this.position.Y);
                 direction.Normalize();
-                physicsProperties.body.ApplyForce(direction * strength);
+                physicsProperties.body.LinearVelocity = direction * strength;
+                //physicsProperties.body.ApplyForce(direction * strength);
+                //Vector2 speed = physicsProperties.body.LinearVelocity;
+                //speed.Normalize();
+                //physicsProperties.body.LinearVelocity = speed * strength;
                 rotation = (float)Math.Atan2(direction.Y,direction.X);
             }
             if (target.isDead)
