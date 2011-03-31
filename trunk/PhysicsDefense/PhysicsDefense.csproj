@@ -98,6 +98,7 @@
     <Compile Include="GameState\Explode.cs" />
     <Compile Include="GameState\MapObstacles.cs" />
     <Compile Include="GameState\Marble.cs" />
+    <Compile Include="GameState\Smoke.cs" />
     <Compile Include="Graphics\MessageBoard.cs" />
     <Compile Include="GameState\Missile.cs" />
     <Compile Include="GameState\Tower.cs" />
