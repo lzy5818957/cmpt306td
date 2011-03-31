@@ -19,7 +19,7 @@ namespace PhysicsDefense.GameState
 
 		private bool active = true;
 
-		private String initialMap = "map3";
+        private String initialMap = "pictures/maps/map3";
 		private String currentMap;
 		private float connectDistance = 1.0f;
 
@@ -70,7 +70,7 @@ namespace PhysicsDefense.GameState
 		{
 			Texture2D obstacles = game.Content.Load<Texture2D>(initialMap);
 			map = new MapObstacles(physics.world, obstacles);
-            game.graphics.addBackground("gamescreenbackground");
+            game.graphics.addBackground("pictures/backgrounds/gamescreenbackground");
             game.graphics.addBackground(obstacles);
 			currentMap = initialMap;
 
@@ -78,13 +78,22 @@ namespace PhysicsDefense.GameState
 			spawner.onSpawn = spawnEnemy;
 			spawner.onWaveFinished = waveFinished;
 			spawner.start();
+            initPanel();
 		}
+
+
+        private void initPanel()
+        {
+            Panel m = new Panel(physics.world, new Vector2(1,2));
+            addObject(m);
+        }
 
 		private void spawnEnemy(EnemyType enemy)
 		{
 			Marble m = new Marble(physics.world, spawner.position, ((spawner.wave - 1) * WaveData.healthMult) + 1f, ((spawner.wave - 1) * WaveData.bountyMult) + 1f);
 			addObject(m);
 		}
+
 
 		private void waveFinished()
 		{
@@ -328,7 +337,6 @@ namespace PhysicsDefense.GameState
 				bullets.Remove((Bullet)obj);
 			if (obj is Missile)
 				missiles.Remove((Missile)obj);
-
 			game.graphics.removeObject(obj);
 			physics.removePhysical(obj);
 		}

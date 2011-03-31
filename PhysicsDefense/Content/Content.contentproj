@@ -42,7 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="puck.png">
+    <Compile Include="pictures\towers\puck.png">
       <Name>puck</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -56,209 +56,209 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="explode1.png">
+    <Compile Include="pictures\effect\explode\explode1.png">
       <Name>explode1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode10.png">
+    <Compile Include="pictures\effect\explode\explode10.png">
       <Name>explode10</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode11.png">
+    <Compile Include="pictures\effect\explode\explode11.png">
       <Name>explode11</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode12.png">
+    <Compile Include="pictures\effect\explode\explode12.png">
       <Name>explode12</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode13.png">
+    <Compile Include="pictures\effect\explode\explode13.png">
       <Name>explode13</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode14.png">
+    <Compile Include="pictures\effect\explode\explode14.png">
       <Name>explode14</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode15.png">
+    <Compile Include="pictures\effect\explode\explode15.png">
       <Name>explode15</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode16.png">
+    <Compile Include="pictures\effect\explode\explode16.png">
       <Name>explode16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode17.png">
+    <Compile Include="pictures\effect\explode\explode17.png">
       <Name>explode17</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode2.png">
+    <Compile Include="pictures\effect\explode\explode2.png">
       <Name>explode2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode3.png">
+    <Compile Include="pictures\effect\explode\explode3.png">
       <Name>explode3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode4.png">
+    <Compile Include="pictures\effect\explode\explode4.png">
       <Name>explode4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode5.png">
+    <Compile Include="pictures\effect\explode\explode5.png">
       <Name>explode5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode6.png">
+    <Compile Include="pictures\effect\explode\explode6.png">
       <Name>explode6</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode7.png">
+    <Compile Include="pictures\effect\explode\explode7.png">
       <Name>explode7</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode8.png">
+    <Compile Include="pictures\effect\explode\explode8.png">
       <Name>explode8</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explode9.png">
+    <Compile Include="pictures\effect\explode\explode9.png">
       <Name>explode9</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="explode.wav">
+    <Compile Include="audio\explode.wav">
       <Name>explode</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="music.wav">
+    <Compile Include="audio\music.wav">
       <Name>music</Name>
       <Importer>WavImporter</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapsuleSprite.png">
+    <Compile Include="pictures\towers\CapsuleSprite.png">
       <Name>connector</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="map1.png">
+    <Compile Include="pictures\maps\map1.png">
       <Name>map1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="map2.png">
+    <Compile Include="pictures\maps\map2.png">
       <Name>map2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gamescreenbackground.jpg">
+    <Compile Include="pictures\backgrounds\gamescreenbackground.jpg">
       <Name>gamescreenbackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="basicEnemy.png">
+    <Compile Include="pictures\enemies\basicEnemy.png">
       <Name>basicEnemy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="map3.png">
+    <Compile Include="pictures\maps\map3.png">
       <Name>map3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FirstFont.spritefont">
+    <Compile Include="fonts\FirstFont.spritefont">
       <Name>FirstFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="menufont.spritefont">
+    <Compile Include="fonts\menufont.spritefont">
       <Name>menufont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="menubackground.png">
+    <Compile Include="pictures\backgrounds\menubackground.png">
       <Name>menubackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="blank.png">
+    <Compile Include="pictures\backgrounds\blank.png">
       <Name>blank</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="gradient.png">
+    <Compile Include="pictures\backgrounds\gradient.png">
       <Name>gradient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="missile.png">
+    <Compile Include="pictures\bullets\missile.png">
       <Name>missile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gamefont.spritefont">
+    <Compile Include="fonts\gamefont.spritefont">
       <Name>gamefont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="missilelaunch.wav">
+    <Compile Include="audio\missilelaunch.wav">
       <Name>missilelaunch</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="tower.png">
+    <Compile Include="pictures\towers\tower.png">
       <Name>tower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="smoke.png">
+    <Compile Include="pictures\bullets\smoke.png">
       <Name>smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
