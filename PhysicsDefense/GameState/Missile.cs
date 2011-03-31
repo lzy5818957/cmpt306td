@@ -34,6 +34,13 @@ namespace PhysicsDefense.GameState
             direction.Normalize();
             rotation = (float)Math.Atan2(direction.Y, direction.X);
             physicsProperties.body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
+            
+        }
+
+        public override void initialize()
+        {
+            onPlaySound("missilelaunch");
+            base.initialize();
         }
 
         bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
@@ -42,6 +49,13 @@ namespace PhysicsDefense.GameState
             m.takeDamage(damage);
             this.die();
             return true;
+        }
+
+        public override void die()
+        {
+            Explode explosion = new Explode(world, position, 0.36f);
+            onCreateObject(explosion);
+            base.die();
         }
 
         public override void update(GameTime gameTime)
