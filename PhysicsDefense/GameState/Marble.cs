@@ -18,13 +18,14 @@ namespace PhysicsDefense.GameState
 	{
 		private float radius = 0.25f;
 
-		private float baseHealth = 100;
+		private float baseHealth = 50f;
 		private float baseBounty = 5;
 		public float health;
 
 		private float stuckFactor;
 		private const float stuckLimit = 30f;
 		private const float stuckThreshholdSpeed = 0.5f;
+		public bool diedByStuck = false;
 
 		// The amount of money awarded when the marble is killed
 		public float bounty;
@@ -48,18 +49,21 @@ namespace PhysicsDefense.GameState
 
 		public override void update(GameTime gameTime)
         {
-			// Handle anti-stuck
+			// If speed is below threshhold, start adding up the anti-stuck factor
 			if (physicsProperties.speed < stuckThreshholdSpeed) {
 				stuckFactor += stuckThreshholdSpeed - physicsProperties.speed;
 			}
 
 			if (stuckFactor > stuckLimit) {
 				// Marble was stuck for too long
+				diedByStuck = true;
 				die();
 			}
 
+			// Change color to indicate
 			color.G = color.B = (byte)(255f - (255f * (stuckFactor / stuckLimit)));
 
+			// Tend towards restoring anti-stuck back to 0
 			stuckFactor -= stuckThreshholdSpeed / 2f;
 			if (stuckFactor < 0f) {
 				stuckFactor = 0f;
