@@ -16,7 +16,8 @@ using FarseerPhysics.Common;
  * Cat3: MapObstacle
  * Cat4: AoeSensor
  * Cat5: Bullet
- * 
+ * Cat6: Panel
+ * Cat7: SampleTower
  */
 
 namespace PhysicsDefense.GameState
