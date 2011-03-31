@@ -11,7 +11,7 @@ namespace PhysicsDefense.Graphics
 {
 	public class GraphicsEngine
 	{
-		public static int screenWidth = 800;
+		public static int screenWidth = 1000;
 		public static int screenHeight = 600;
 
 		public GraphicsDeviceManager device;
@@ -58,6 +58,8 @@ namespace PhysicsDefense.Graphics
             for (int i = 1; i < 18; i++) {
                 textures.Add("explode" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode/explode" + i.ToString()));
             }
+
+            textures.Add("panel", game.Content.Load<Texture2D>("pictures/panel/panel"));
 		}
 
 		public void Draw(GameTime gameTime)

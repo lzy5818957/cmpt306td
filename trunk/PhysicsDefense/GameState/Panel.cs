@@ -15,8 +15,8 @@ namespace PhysicsDefense.GameState
         public Panel(World world, Vector2 position)
 		{
 			this.world = world;
-			spriteName = "basicEnemy";
-            physicsProperties.body = BodyFactory.CreateRectangle(world, 3f, 3f, 1.0f, position);
+			spriteName = "panel";
+            physicsProperties.body = BodyFactory.CreateRectangle(world, 2f, 6f, 1.0f, position);
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
             physicsProperties.body.IgnoreGravity = true;
