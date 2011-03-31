@@ -251,15 +251,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pictures\towers\tower.png">
-      <Name>tower</Name>
+    <Compile Include="pictures\bullets\smoke.png">
+      <Name>smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pictures\bullets\smoke.png">
-      <Name>smoke</Name>
+    <Compile Include="pictures\towers\missiletower.png">
+      <Name>missiletower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pictures\towers\basictower.png">
+      <Name>basictower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
