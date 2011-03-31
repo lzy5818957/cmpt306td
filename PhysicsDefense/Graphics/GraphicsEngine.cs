@@ -91,7 +91,8 @@ namespace PhysicsDefense.Graphics
 			}
 
             messageBoard.draw(spriteBatch);
-
+            spriteBatch.Draw(textures["basictower"],
+                new Rectangle(screenWidth*81/100, screenHeight*30/100, textures["basictower"].Width*16/30, textures["puck"].Height*32/50),Color.White);
 			spriteBatch.End();
 		}
 
