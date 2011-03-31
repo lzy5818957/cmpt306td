@@ -18,12 +18,12 @@ namespace PhysicsDefense.GameState
 			spriteName = "panel";
             physicsProperties.body = BodyFactory.CreateRectangle(world, 2f, 6f, 1.0f, position);
 			physicsProperties.body.Restitution = 0.2f;
-			physicsProperties.body.BodyType = BodyType.Dynamic;
+			physicsProperties.body.BodyType = BodyType.Static;
             physicsProperties.body.IgnoreGravity = true;
 			physicsProperties.body.Friction = 0.0f;
 			physicsProperties.body.AngularDamping = 0f;
-            physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat3;
-            physicsProperties.body.CollisionCategories = Category.Cat2;
+            physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3 | Category.Cat4 | Category.Cat5;
+            physicsProperties.body.CollisionCategories = Category.Cat1;
             physicsProperties.body.UserData = this;
 
 		}
