@@ -243,10 +243,10 @@ namespace PhysicsDefense.GameState
 			// Check for tower placement activation
 			towerSelection();
 
-			// Temporary for fun: adding torque to marbles
 			if (Keyboard.GetState().IsKeyDown(KeyBindings.spin)) {
-				foreach (Marble obj in enemies) {
-					obj.physicsProperties.body.ApplyTorque(1000);
+				foreach (Tower tower in towers) {
+					if(tower.isActivated)
+						tower.applySpin(100f);
 				}
 			}
 

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
-using Microsoft.Xna.Framework.Input;
 using FarseerPhysics.Factories;
+using Microsoft.Xna.Framework.Input;
 
 namespace PhysicsDefense.GameState
 {

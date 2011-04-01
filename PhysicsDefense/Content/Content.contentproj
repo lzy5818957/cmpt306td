@@ -279,6 +279,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pictures\effect\spinner.png">
+      <Name>spinner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="audio\cannonshot.wav">
       <Name>cannonshot</Name>
       <Importer>WavImporter</Importer>
