@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState
 
             this.world = world;
             spriteName = "sampleTower";
-            physicsProperties.body = BodyFactory.CreateRectangle(world, 2f, 6f, 1.0f, position);
+            //physicsProperties.body = BodyFactory.CreateRectangle(world, 2f, 6f, 1.0f, position);
             physicsProperties.body.Restitution = 0.2f;
             physicsProperties.body.BodyType = BodyType.Static;
             physicsProperties.body.IgnoreGravity = true;
