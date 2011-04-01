@@ -75,9 +75,15 @@ namespace PhysicsDefense.GameState
 
 		public void takeDamage(int damage)
 		{
+            if (isDead)
+                return;
+
 			health -= damage;
-			if (health <= 0)
-				die();
+            if (health <= 0)
+            {
+                HeroTower.gainExperiences(bounty);
+                die();
+            }
 		}
 
 		public override void die()

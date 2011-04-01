@@ -15,7 +15,7 @@ namespace PhysicsDefense.GameState
 	public class AoeSensor : GameObject
 	{
 		private float radius;
-		private Body body;
+		public Body body;
 
         public RangeHandler onEnter;
         public RangeHandler onLeave;

@@ -13,10 +13,26 @@ namespace PhysicsDefense.GameState
 	{
 		private static float radius = 0.25f;
 		private static float density = 5.0f;
+        private float _range;
 
 		// Game-related properties
         public double rechargeTime;
-		public float range;
+		public float range {
+            get {
+                return _range;
+            }
+            set {
+                _range = value;
+                if (rangeSensor == null)
+                    return;
+
+                if(world.BodyList.Contains(rangeSensor.body))
+                    world.RemoveBody(rangeSensor.body);
+                this.rangeSensor = new AoeSensor(world, position, value);
+                rangeSensor.onEnter = enemyEnter;
+                rangeSensor.onLeave = enemyLeave;
+            }
+        }
 		public static float cost;
 
 		public AoeSensor rangeSensor;
@@ -54,7 +70,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.IgnoreGravity = true;
 			physicsProperties.body.BodyType = BodyType.Static;
 
-			rangeSensor = new AoeSensor(world, position, range);
+            this.rangeSensor = new AoeSensor(world, position, _range);
             rangeSensor.onEnter = enemyEnter;
             rangeSensor.onLeave = enemyLeave;
 		}
