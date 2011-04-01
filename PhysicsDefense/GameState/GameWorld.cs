@@ -27,7 +27,7 @@ namespace PhysicsDefense.GameState
 		private float clickSpinTorque = 200f;
 
 
-		public static float money = 150;
+		public static float money = 150009;
 
 		private int lives = 20;
 
@@ -40,9 +40,9 @@ namespace PhysicsDefense.GameState
 		KeyboardState prevKeyboardState;
 
 		// Convenience accessors for mouse buttons
-		private bool mouseLeftPress;
-		private bool mouseMidPress;
-		private bool mouseRightPress;
+		public static bool mouseLeftPress;
+        public static bool mouseMidPress;
+        public static bool mouseRightPress;
 
 		MapObstacles map;
 		EnemyEmitter spawner;

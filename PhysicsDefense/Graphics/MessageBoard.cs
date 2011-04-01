@@ -40,11 +40,13 @@ namespace PhysicsDefense.GameState
             }
             if (typeof(BasicTower) == selectedTower.GetType())
             {
-                menuOption = new string[] { "sell" }; 
+                menuOption = new string[] { "sell" };
+                talent = "";
             }
             else if (typeof(MissileTower) == selectedTower.GetType())
             {
-                menuOption = new string[] { "sell" }; 
+                menuOption = new string[] { "sell" };
+                talent = "";
             }
             else if (typeof(HeroTower) == selectedTower.GetType())
             {
@@ -123,20 +125,20 @@ namespace PhysicsDefense.GameState
                         && GameWorld.mouseState.X < 904
                         && GameWorld.mouseState.Y > 382
                         && GameWorld.mouseState.Y < 426
-                        && GameWorld.mouseState.LeftButton == ButtonState.Pressed
+                        && GameWorld.mouseLeftPress == true
                         ){
                             ((HeroTower)currentTower).upgradeRange();
-                            updateMenu(null);
+
                     }
                     if (GameWorld.mouseState.X > 910
                         && GameWorld.mouseState.X < 954
                         && GameWorld.mouseState.Y > 382
                         && GameWorld.mouseState.Y < 426
-                        && GameWorld.mouseState.LeftButton == ButtonState.Pressed
+                        && GameWorld.mouseLeftPress == true
                         )
                     {
                         ((HeroTower)currentTower).upgradeSpeed();
-                        updateMenu(null);
+
                     }
                 }
             }
