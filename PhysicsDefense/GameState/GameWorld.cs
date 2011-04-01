@@ -18,12 +18,12 @@ namespace PhysicsDefense.GameState
 		public static float worldScale = 100f;
 		public static float worldWidth;
 		public static float worldHeight;
+        public static float connectDistance = 1.0f;
 
 		private bool active = true;
 		private float spinDirection = 1f;
 
 		private String currentMap;
-		public static float connectDistance = 1.0f;
 		private float clickSpinTorque = 200f;
 
 		private float money = 150;
@@ -191,10 +191,8 @@ namespace PhysicsDefense.GameState
 				tower.color = tower.nativeColor;
 
 				// Connect the towers
-				Connector con = new Connector(physics.world, distance, tower.size.X);
-				con.position = (tower.position + previewTower.position) / 2f;
-				con.rotation = (float)Math.Atan2((tower.position.Y - previewTower.position.Y), (tower.position.X - previewTower.position.X));
-				addObject(con);
+				Connector con = new Connector(physics.world, distance, tower.size.X,previewTower,tower);
+                addObject(con);
 			}
 
 			// Activate the preview tower so it becomes a real, solid new tower, and add it to the world

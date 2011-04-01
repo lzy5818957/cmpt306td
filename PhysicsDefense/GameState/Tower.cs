@@ -165,8 +165,7 @@ namespace PhysicsDefense.GameState
         {
             foreach (Connector con in Connector.connectors)
             {
-                Vector2 distance = new Vector2(position.X - con.position.X, position.Y - con.position.Y);
-                if (distance.Length() <= GameWorld.connectDistance)
+                if (con.towerA == this || con.towerB == this)
                     con.die();
             }
             die();
