@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using PhysicsDefense;
 #endregion
 
 namespace GameStateManagement
@@ -22,22 +23,22 @@ namespace GameStateManagement
     {
         #region Fields
 
-        MenuEntry ungulateMenuEntry;
-        MenuEntry languageMenuEntry;
+        MenuEntry difficultyMenuEntry;
+        MenuEntry mapMenuEntry;
         MenuEntry frobnicateMenuEntry;
         MenuEntry elfMenuEntry;
 
-        enum Ungulate
+        enum Difficulty
         {
-            BactrianCamel,
-            Dromedary,
-            Llama,
+            Easy,
+            Normal,
+            Hard,
         }
 
-        static Ungulate currentUngulate = Ungulate.Dromedary;
+        static Difficulty currentDifficulty = Difficulty.Normal;
 
-        static string[] languages = { "C#", "French", "Deoxyribonucleic acid" };
-        static int currentLanguage = 0;
+        static string[] maps = { "map1", "map2", "map3" };
+        static int currentMap = 0;
 
         static bool frobnicate = true;
 
@@ -55,8 +56,8 @@ namespace GameStateManagement
             : base("Options")
         {
             // Create our menu entries.
-            ungulateMenuEntry = new MenuEntry(string.Empty);
-            languageMenuEntry = new MenuEntry(string.Empty);
+            difficultyMenuEntry = new MenuEntry(string.Empty);
+            mapMenuEntry = new MenuEntry(string.Empty);
             frobnicateMenuEntry = new MenuEntry(string.Empty);
             elfMenuEntry = new MenuEntry(string.Empty);
 
@@ -65,17 +66,17 @@ namespace GameStateManagement
             MenuEntry backMenuEntry = new MenuEntry("Back");
 
             // Hook up menu event handlers.
-            ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
-            languageMenuEntry.Selected += LanguageMenuEntrySelected;
+            difficultyMenuEntry.Selected += DifficultyMenuEntrySelected;
+            mapMenuEntry.Selected += MapMenuEntrySelected;
             frobnicateMenuEntry.Selected += FrobnicateMenuEntrySelected;
             elfMenuEntry.Selected += ElfMenuEntrySelected;
             backMenuEntry.Selected += OnCancel;
             
             // Add entries to the menu.
-            MenuEntries.Add(ungulateMenuEntry);
-            MenuEntries.Add(languageMenuEntry);
-            MenuEntries.Add(frobnicateMenuEntry);
-            MenuEntries.Add(elfMenuEntry);
+            MenuEntries.Add(difficultyMenuEntry);
+            MenuEntries.Add(mapMenuEntry);
+            //MenuEntries.Add(frobnicateMenuEntry);
+            //MenuEntries.Add(elfMenuEntry);
             MenuEntries.Add(backMenuEntry);
         }
 
@@ -85,10 +86,10 @@ namespace GameStateManagement
         /// </summary>
         void SetMenuEntryText()
         {
-            ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
-            languageMenuEntry.Text = "Language: " + languages[currentLanguage];
-            frobnicateMenuEntry.Text = "Frobnicate: " + (frobnicate ? "on" : "off");
-            elfMenuEntry.Text = "elf: " + elf;
+            difficultyMenuEntry.Text = "Difficulty: " + currentDifficulty;
+            mapMenuEntry.Text = "Map: " + maps[currentMap];
+            //frobnicateMenuEntry.Text = "Frobnicate: " + (frobnicate ? "on" : "off");
+            //elfMenuEntry.Text = "elf: " + elf;
         }
 
 
@@ -98,26 +99,26 @@ namespace GameStateManagement
 
 
         /// <summary>
-        /// Event handler for when the Ungulate menu entry is selected.
+        /// Event handler for when the Difficulty menu entry is selected.
         /// </summary>
-        void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void DifficultyMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            currentUngulate++;
+            currentDifficulty++;
 
-            if (currentUngulate > Ungulate.Llama)
-                currentUngulate = 0;
+            if (currentDifficulty > Difficulty.Hard)
+                currentDifficulty = 0;
 
             SetMenuEntryText();
         }
 
 
         /// <summary>
-        /// Event handler for when the Language menu entry is selected.
+        /// Event handler for when the Map menu entry is selected.
         /// </summary>
-        void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void MapMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            currentLanguage = (currentLanguage + 1) % languages.Length;
-
+            currentMap = (currentMap + 1) % maps.Length;
+            ResourceManager.initialMap = "pictures/maps/" + maps[currentMap];
             SetMenuEntryText();
         }
 

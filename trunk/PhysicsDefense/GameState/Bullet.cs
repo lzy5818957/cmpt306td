@@ -35,10 +35,18 @@ namespace PhysicsDefense.GameState
 
 		bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
 		{
-			Marble m = (Marble)fixtureB.Body.UserData;
-			m.takeDamage(damage);
-			this.die();
-			return true;
+            if(typeof(Marble) == fixtureB.Body.UserData.GetType())
+            {
+			    Marble m = (Marble)fixtureB.Body.UserData;
+			    m.takeDamage(damage);
+                this.die();
+                return true;
+            }
+             else
+            {
+                this.die();
+                return false;
+            }
 		}
 
 		public override void update(GameTime gameTime)
