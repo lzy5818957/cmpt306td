@@ -105,6 +105,9 @@
     <Compile Include="GameState\Marble.cs" />
     <Compile Include="GameState\MissileTower.cs" />
     <Compile Include="GameState\Panel.cs" />
+    <Compile Include="GameState\SampleBTower.cs" />
+    <Compile Include="GameState\SampleHTower.cs" />
+    <Compile Include="GameState\SampleMTower.cs" />
     <Compile Include="GameState\SampleTower.cs" />
     <Compile Include="GameState\Smoke.cs" />
     <Compile Include="GameState\Spinner.cs" />
