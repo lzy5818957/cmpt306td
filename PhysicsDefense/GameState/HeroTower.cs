@@ -12,6 +12,7 @@ namespace PhysicsDefense.GameState
         static List<HeroTower> heroTowers=new List<HeroTower>();
         float experience;
         int level = 1;
+        int availablePoint = 1;
         public HeroTower(World world,Vector2 position):base(world, position)
         {
             // Game-related properties
@@ -28,6 +29,7 @@ namespace PhysicsDefense.GameState
             if (Math.Log(experience/WaveData.initialEnemyCount,2+WaveData.bountyMult)>level)
             {
                 level++;
+                availablePoint++;
                 rechargeTime -= 10;
                 range +=0.01f;
                 Console.WriteLine("Tower upgraded to level "+level);
@@ -54,8 +56,21 @@ namespace PhysicsDefense.GameState
             }
         }
 
-        public bool upgrade()
+        public bool upgradeRange()
         {
+            if (availablePoint <= 0)
+                return false;
+            availablePoint--;
+            range += 0.1f;
+            return true;
+        }
+
+        public bool upgradeSpeed()
+        {
+            if (availablePoint <= 0)
+                return false;
+            availablePoint--;
+            rechargeTime-= 10;
             return true;
         }
     }

@@ -48,7 +48,7 @@ namespace PhysicsDefense.GameState
             if (typeof(Marble) == fixtureB.Body.UserData.GetType())
             {
                 Marble m = (Marble)fixtureB.Body.UserData;
-                m.takeDamage(damage);
+                //m.takeDamage(damage);
                 for (int i = 0; i < Marble.marbles.Count; i++)
                 {
                     Marble tgt = Marble.marbles[i];
