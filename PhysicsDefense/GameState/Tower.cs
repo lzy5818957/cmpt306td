@@ -12,38 +12,42 @@ namespace PhysicsDefense.GameState
 {
 	class Tower : GameObject
 	{
-		private static float radius = 0.25f;
+		public float radius = 0.25f;
 		private static float density = 5.0f;
         private float _range;
 
         public double rechargeTime;
-		public float range {
-            get {
-                return _range;
-            }
-            set {
-                _range = value;
-                if (rangeSensor == null)
-                    return;
-
-                if(world.BodyList.Contains(rangeSensor.body))
-                    world.RemoveBody(rangeSensor.body);
-                this.rangeSensor = new AoeSensor(world, position, value);
-                rangeSensor.onEnter = enemyEnter;
-                rangeSensor.onLeave = enemyLeave;
-            }
-        }
 
 		public static float cost;
 
 		public AoeSensor rangeSensor;
-		float spinTransferFactor = 0.001f;
+		float spinTransferFactor = 0.005f;
 		public Spinner spinner;
         public bool isActivated = false;
 
 		private double timer = 0;
 
         protected List<Marble> enemiesInRange;
+
+		public float range
+		{
+			get
+			{
+				return _range;
+			}
+			set
+			{
+				_range = value;
+				if (rangeSensor == null)
+					return;
+
+				if (world.BodyList.Contains(rangeSensor.body))
+					world.RemoveBody(rangeSensor.body);
+				this.rangeSensor = new AoeSensor(world, position, value);
+				rangeSensor.onEnter = enemyEnter;
+				rangeSensor.onLeave = enemyLeave;
+			}
+		}
 
 		public Tower(World world, Vector2 position)
 		{

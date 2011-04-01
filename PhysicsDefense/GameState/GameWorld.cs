@@ -20,10 +20,11 @@ namespace PhysicsDefense.GameState
 		public static float worldHeight;
 
 		private bool active = true;
-
+		private float spinDirection = 1f;
 
 		private String currentMap;
 		private float connectDistance = 1.0f;
+		private float clickSpinTorque = 100f;
 
 		private float money = 100;
 		private int lives = 20;
@@ -221,9 +222,25 @@ namespace PhysicsDefense.GameState
 			}
 		}
 
-        public void towerOperation() {
+		public void spinClick()
+		{
+			// Check for tower spin-click
+			if (keyboardState.IsKeyDown(KeyBindings.spinLeft))
+				spinDirection = -1f;
+			if (keyboardState.IsKeyDown(KeyBindings.spinRight))
+				spinDirection = 1f;
 
-       
+			if (keyboardState.IsKeyDown(KeyBindings.spinMod) && mouseLeftPress) {
+				Vector2 clickPos = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
+				foreach (Tower tower in towers) {
+					if ((clickPos - tower.position).Length() < tower.radius) {
+						tower.applySpin(clickSpinTorque * spinDirection);
+					}
+				}
+			}
+		}
+
+        public void towerOperation() {
             foreach (Tower tower in towers)
             {
                 if (tower.isSelected(mouseState))
@@ -232,7 +249,6 @@ namespace PhysicsDefense.GameState
                     continue;
                 }
             }        
-        
         }
 
 		public void loseLife()
@@ -257,6 +273,9 @@ namespace PhysicsDefense.GameState
 
 			// Check for tower placement activation
 			towerSelection();
+
+			// Check for spin clicks
+			spinClick();
 
 			if (Keyboard.GetState().IsKeyDown(KeyBindings.spin)) {
 				foreach (Tower tower in towers) {

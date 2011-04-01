@@ -13,5 +13,8 @@ namespace PhysicsDefense
         public static Keys placeMissileTower = Keys.M;
         public static Keys placeHeroTower = Keys.H;
 		public static Keys spin = Keys.S;
+		public static Keys spinLeft = Keys.Z;
+		public static Keys spinRight = Keys.X;
+		public static Keys spinMod = Keys.LeftShift;
 	}
 }
