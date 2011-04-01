@@ -164,18 +164,20 @@ namespace PhysicsDefense.GameState
 
         public float sell()
         {
-            for (int i = 0; i < Connector.connectors.Count;i++ )
+            List<Connector> removeList=new List<Connector>();
+            foreach (Connector con in Connector.connectors)
             {
-                Connector con = Connector.connectors[i];
                 if (con == null)
                     continue;
                 if (con.towerA == this || con.towerB == this)
                 {
                     if (world.BodyList.Contains(rangeSensor.body))
                         world.RemoveBody(rangeSensor.body);
-                    con.die();
+                    removeList.Add(con);
                 }
             }
+            foreach (Connector con in removeList)
+                con.die();
             die();
             return cost;
         }
