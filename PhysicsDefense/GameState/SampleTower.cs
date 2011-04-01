@@ -30,10 +30,11 @@ namespace PhysicsDefense.GameState
         public bool isSelected(MouseState state) { 
             
             if(state.LeftButton == ButtonState.Pressed
+                    // state.LeftButton == ButtonState.Released
                     && state.X/GameWorld.worldScale <= position.X+0.25f
                     && state.X/GameWorld.worldScale >= position.X-0.25f
                     && state.Y/GameWorld.worldScale <= position.Y+0.25f
-                    && state.Y/GameWorld.worldScale <= position.Y-0.25f)
+                    && state.Y/GameWorld.worldScale >= position.Y-0.25f)
             {
                 return true;
             }
