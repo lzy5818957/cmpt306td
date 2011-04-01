@@ -329,12 +329,11 @@ namespace PhysicsDefense.GameState
 			// Update enemy spawners
 			spawner.update(gameTime);
 
-            // Update game objects
-            foreach (GameObject obj in entities)
-            {
-                // Update object
-                obj.update(gameTime);
-
+			// Update game objects
+			foreach (GameObject obj in entities) {
+				// Update object
+                if(!obj.isDead)
+				    obj.update(gameTime);
 
                 // Check for marbles that have reached bottom
                 if ((obj is Marble) && (obj.position.Y > worldHeight))
