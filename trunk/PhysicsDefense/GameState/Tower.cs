@@ -21,7 +21,7 @@ namespace PhysicsDefense.GameState
 		public static float cost;
 
 		public AoeSensor rangeSensor;
-		float spinTransferFactor = 0.005f;
+		float spinTransferFactor = 0.001f;
 		public Spinner spinner;
         public bool isActivated = false;
 
@@ -128,9 +128,10 @@ namespace PhysicsDefense.GameState
                 return;
 
 			// Spin
+			spinner.update(gameTime);
 			foreach (Marble target in enemiesInRange) {
 				float distance = (target.position - this.position).Length();
-				if (distance < radius * 2f) {
+				if (distance < radius * 3f) {
 					target.physicsProperties.body.ApplyAngularImpulse(spinner.physicsProperties.body.AngularVelocity * spinTransferFactor);
 				}
 			}
