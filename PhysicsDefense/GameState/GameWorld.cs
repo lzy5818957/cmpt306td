@@ -265,7 +265,7 @@ namespace PhysicsDefense.GameState
                     
                 }
             }
-            if (!isAnyTowerSelectedAtAll)
+            if (!isAnyTowerSelectedAtAll && currentTower != null)
             {
                 currentTower.color = currentTower.nativeColor;
                 currentTower = null;

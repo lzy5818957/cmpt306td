@@ -46,10 +46,14 @@ namespace PhysicsDefense.GameState
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 65), null, Color.White);
             if (menuOption != null)
             {
+                int i = 0;
                 foreach (String texture in menuOption)
                 {
-                    spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures[texture], new Vector2((screenSize.X) - 170, 300), null, Color.White);
+                    i++;
+                    spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures[texture], new Vector2((screenSize.X) - 170 + i*25, 420), null, Color.White);
+                    
                 }
+                i = 0;
             }
         }
     }
