@@ -132,7 +132,7 @@ namespace PhysicsDefense.GameState
 		public override void update(GameTime gameTime)
 		{
 			base.update(gameTime);
-            if (!isActivated)
+            if (!isActivated || isDead)
                 return;
 
 			// Spin
@@ -149,6 +149,7 @@ namespace PhysicsDefense.GameState
                 Marble target = enemiesInRange[0];
                 rotation = (float)Math.Atan2(target.position.Y - position.Y, target.position.X - position.X);
             } else {
+                
                 rotation += 0.01f;
             }
 			enemiesInRange.RemoveAll(delegate(Marble obj) { return obj.isDead; });

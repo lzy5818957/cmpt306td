@@ -329,17 +329,20 @@ namespace PhysicsDefense.GameState
 			// Update enemy spawners
 			spawner.update(gameTime);
 
-			// Update game objects
-			foreach (GameObject obj in entities) {
-				// Update object
-				obj.update(gameTime);
+            // Update game objects
+            foreach (GameObject obj in entities)
+            {
+                // Update object
+                obj.update(gameTime);
 
-				// Check for marbles that have reached bottom
-				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
-					((Marble)obj).diedByStuck = true;
-					obj.die();
-				}
-   			}
+
+                // Check for marbles that have reached bottom
+                if ((obj is Marble) && (obj.position.Y > worldHeight))
+                {
+                    ((Marble)obj).diedByStuck = true;
+                    obj.die();
+                }
+            }
 
 			// Remove all dead objects
 			entities.RemoveAll(delegate(GameObject obj) { return obj.isDead; });
@@ -347,6 +350,8 @@ namespace PhysicsDefense.GameState
             bullets.RemoveAll(delegate(Bullet obj) { return obj.isDead; });
             missiles.RemoveAll(delegate(Missile obj) { return obj.isDead; });
 			enemies.RemoveAll(delegate(Marble obj) { return obj.isDead; });
+
+
 
 			// Move any new objects to the main list
 			entities.AddRange(newEntities);
