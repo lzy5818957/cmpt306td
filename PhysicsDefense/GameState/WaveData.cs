@@ -17,7 +17,7 @@ namespace PhysicsDefense.GameState
 		public static int initialEnemyCount = 10;
 		public static int extraEnemiesPerWave = 1;
 
-		public static float healthMult = 0.4f;
+		public static float healthMult = 0.5f;
 		public static float bountyMult = 0.2f;
 	}
 }

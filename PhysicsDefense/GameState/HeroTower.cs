@@ -56,22 +56,22 @@ namespace PhysicsDefense.GameState
             }
         }
 
-        public bool upgradeRange()
+        public void upgradeRange()
         {
             if (availablePoint <= 0)
-                return false;
+            {
+                return;
+            }
             availablePoint--;
             range += 0.1f;
-            return true;
         }
 
-        public bool upgradeSpeed()
+        public void upgradeSpeed()
         {
             if (availablePoint <= 0)
-                return false;
+                return;
             availablePoint--;
             rechargeTime-= 10;
-            return true;
         }
     }
 }

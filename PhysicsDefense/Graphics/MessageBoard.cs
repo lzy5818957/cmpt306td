@@ -43,7 +43,7 @@ namespace PhysicsDefense.GameState
             }
             else if (typeof(HeroTower) == selectedTower.GetType())
             {
-                menuOption = new string[] { "sell","left" };
+                menuOption = new string[] { "sell","left" ,"right"};
             }
         }
         public void draw(SpriteBatch spriteBatch)
@@ -108,6 +108,26 @@ namespace PhysicsDefense.GameState
                         && GameWorld.mouseState.LeftButton == ButtonState.Pressed)
                     {
                         GameWorld.money += currentTower.sell() / 2;
+                        currentTower = null;
+                    }
+
+                    if (GameWorld.mouseState.X > 866
+                        && GameWorld.mouseState.X < 904
+                        && GameWorld.mouseState.Y > 382
+                        && GameWorld.mouseState.Y < 426
+                        && GameWorld.mouseState.LeftButton == ButtonState.Pressed
+                        ){
+                            ((HeroTower)currentTower).upgradeRange();    
+                            currentTower = null;
+                    }
+                    if (GameWorld.mouseState.X > 910
+                        && GameWorld.mouseState.X < 954
+                        && GameWorld.mouseState.Y > 382
+                        && GameWorld.mouseState.Y < 426
+                        && GameWorld.mouseState.LeftButton == ButtonState.Pressed
+                        )
+                    {
+                        ((HeroTower)currentTower).upgradeSpeed();
                         currentTower = null;
                     }
                 }
