@@ -47,7 +47,7 @@ namespace PhysicsDefense.Graphics
             messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont, "Game Starting...");
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
-            textures.Add("puck", game.Content.Load<Texture2D>("pictures/towers/puck"));
+            textures.Add("basicbullet", game.Content.Load<Texture2D>("pictures/bullets/basicbullet"));
             textures.Add("basictower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
             textures.Add("missiletower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));
             textures.Add("herotower", game.Content.Load<Texture2D>("pictures/towers/herotower"));

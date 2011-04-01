@@ -121,6 +121,14 @@ namespace PhysicsDefense.GameState
             }
         }
 
+        public void spin(bool isLeft)
+        {
+            if (isLeft)
+                applySpin(200f);
+            else
+                applySpin(-200f);
+        }
+
 		public override void update(GameTime gameTime)
 		{
 			base.update(gameTime);
