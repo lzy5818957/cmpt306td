@@ -21,7 +21,7 @@ namespace PhysicsDefense.Graphics
 		
 		List<GameObject> drawableObjects;
 		List<Texture2D> backgrounds;
-		Dictionary<String, Texture2D> textures;
+		public Dictionary<String, Texture2D> textures;
 
 
 		public GraphicsEngine(Microsoft.Xna.Framework.Game game)
@@ -57,7 +57,8 @@ namespace PhysicsDefense.Graphics
             textures.Add("smoke", game.Content.Load<Texture2D>("pictures/bullets/smoke"));
             textures.Add("aoesmoke", game.Content.Load<Texture2D>("pictures/bullets/aoesmoke"));
 			textures.Add("spinner", game.Content.Load<Texture2D>("pictures/effect/spinner"));
-
+            textures.Add("gold", game.Content.Load<Texture2D>("pictures/panel/gold"));
+            textures.Add("life", game.Content.Load<Texture2D>("pictures/panel/life"));
             for (int i = 1; i < 18; i++) {
                 textures.Add("explode" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode/explode" + i.ToString()));
             }

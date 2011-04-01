@@ -23,6 +23,7 @@ namespace PhysicsDefense.GameState
 		private float spinDirection = 1f;
 
 		private String currentMap;
+        private String currentMessage;
 		private float connectDistance = 1.0f;
 		private float clickSpinTorque = 200f;
 
@@ -88,7 +89,6 @@ namespace PhysicsDefense.GameState
             initPanel();
 		}
 
-
         private void initPanel()
         {
             Panel m = new Panel(physics.world, new Vector2(9, 3));
@@ -110,8 +110,7 @@ namespace PhysicsDefense.GameState
 
 		private void waveFinished()
 		{
-			Console.WriteLine("Wave " + spawner.wave + " finished\n"+"LIVE(S)="+lives);
-            MessageBoard.updateMessage("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
+            Console.WriteLine("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
 
 			// Give wave money reward
 			money += 50 + (spawner.wave * 10);
@@ -122,8 +121,7 @@ namespace PhysicsDefense.GameState
 
 		public void lose()
 		{
-			Console.WriteLine("All lives lost!");
-            MessageBoard.updateMessage("*** All lives lost! ***\nGame Over");
+            Console.WriteLine("All lives lost!\nGame Over");
 			active = false;
 		}
 
@@ -180,7 +178,7 @@ namespace PhysicsDefense.GameState
 			// Check if sufficient money is available
 			float cost = Tower.cost;
 			if (money < cost) {
-				MessageBoard.updateMessage("Insufficient funds\n to place tower");
+				Console.WriteLine("Insufficient funds\n to place tower");
 				return;
 			}
 
@@ -265,7 +263,7 @@ namespace PhysicsDefense.GameState
 		public void loseLife()
 		{
 			lives--;
-			MessageBoard.updateMessage("LIVE(S)=" + lives);
+			Console.WriteLine("LIVE(S)=" + lives);
 		}
 
 		public void Update(GameTime gameTime)
@@ -345,6 +343,8 @@ namespace PhysicsDefense.GameState
 
 			prevMouseState = Mouse.GetState();
 			prevKeyboardState = Keyboard.GetState();
+
+            MessageBoard.updateMessage("=" + money + "\n\n=" + lives );
 		}
 
 		private void addObject(GameObject obj)
