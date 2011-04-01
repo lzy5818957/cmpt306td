@@ -19,7 +19,7 @@ namespace PhysicsDefense.GameState
 		public static float worldWidth;
 		public static float worldHeight;
         public static float connectDistance = 1.0f;
-
+        private bool paused = false;
 		private bool active = true;
 		private float spinDirection = 1f;
 
@@ -123,6 +123,14 @@ namespace PhysicsDefense.GameState
             Console.WriteLine("All lives lost!\nGame Over");
 			active = false;
 		}
+
+        public void checkPause()
+        {
+            if(keyboardState.IsKeyDown(KeyBindings.pauseGame))
+                paused = true;
+            if (keyboardState.IsKeyDown(KeyBindings.resumeGame))
+                paused = false;
+        }
 
 		private void getInputState()
 		{
@@ -285,12 +293,16 @@ namespace PhysicsDefense.GameState
 
 		public void Update(GameTime gameTime)
 		{
+            
+            // Get input state
+            getInputState();
 
-			if (!active)
+            checkPause();
+
+			if (!active||paused)
 				return;
 
-			// Get input state
-			getInputState();
+			
 
 			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
 				// Cancel tower placement
