@@ -119,7 +119,9 @@ namespace PhysicsDefense.GameState
 			money += 20*((int)(spawner.wave/10) +1);
 
 			spawner.nextWave();
-			spawner.start();
+			spawner.active = false;
+			started = false;
+			//spawner.start();
 		}
 
 		public void lose()
@@ -375,6 +377,7 @@ namespace PhysicsDefense.GameState
 			// Check if ready to go to the next wave
 			if (!spawner.active && spawner.waveFinished && enemies.Count <= 0) {
 				waveFinished();
+				spawner.waveFinished = false;
 			}
 
 			prevMouseState = Mouse.GetState();
