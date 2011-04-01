@@ -115,7 +115,7 @@ namespace PhysicsDefense.GameState
             Console.WriteLine("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
 
 			// Give wave money reward
-			money += 10*((int)(spawner.wave/10) +1);
+			money += 20*((int)(spawner.wave/10) +1);
 
 			spawner.nextWave();
 			spawner.start();

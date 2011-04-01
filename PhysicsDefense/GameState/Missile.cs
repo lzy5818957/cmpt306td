@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState
         private static float radius = 0.2f;
         private double age = 0;
 
-		private int damage = 15;
+		private int damage = 18;
 		private float strength = 5f;
         private GameObject target;
 
