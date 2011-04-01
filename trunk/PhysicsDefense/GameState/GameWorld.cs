@@ -19,7 +19,7 @@ namespace PhysicsDefense.GameState
 		public static float worldWidth;
 		public static float worldHeight;
         public static float connectDistance = 1.0f;
-        private bool paused = false;
+        private bool started = false;
 		private bool active = true;
 		private float spinDirection = 1f;
 
@@ -84,7 +84,8 @@ namespace PhysicsDefense.GameState
 			spawner = new EnemyEmitter(new Vector2(1f, 0f), 1);
 			spawner.onSpawn = spawnEnemy;
 			spawner.onWaveFinished = waveFinished;
-			spawner.start();
+			
+            started = false;
             initPanel();
 		}
 
@@ -124,13 +125,7 @@ namespace PhysicsDefense.GameState
 			active = false;
 		}
 
-        public void checkPause()
-        {
-            if(keyboardState.IsKeyDown(KeyBindings.pauseGame))
-                paused = true;
-            if (keyboardState.IsKeyDown(KeyBindings.resumeGame))
-                paused = false;
-        }
+ 
 
 		private void getInputState()
 		{
@@ -293,16 +288,18 @@ namespace PhysicsDefense.GameState
 
 		public void Update(GameTime gameTime)
 		{
+			if (!active)
+				return;
             
             // Get input state
             getInputState();
 
-            checkPause();
-
-			if (!active||paused)
-				return;
-
-			
+            if (keyboardState.IsKeyDown(KeyBindings.startGame))
+            {
+                if(!started)
+                    spawner.start();
+                started = true;
+            }
 
 			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
 				// Cancel tower placement
