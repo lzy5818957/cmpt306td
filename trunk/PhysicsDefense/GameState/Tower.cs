@@ -88,7 +88,10 @@ namespace PhysicsDefense.GameState
 
 		public void applySpin(float torque)
 		{
-			spinner.physicsProperties.body.ApplyTorque(torque);
+            if (spinner != null)
+            {
+                spinner.physicsProperties.body.ApplyTorque(torque);
+            }
 		}
 
         public void enemyEnter(Marble m)
@@ -119,14 +122,6 @@ namespace PhysicsDefense.GameState
             else{
                 isSelected = false;
             }
-        }
-
-        public void spin(bool isLeft)
-        {
-            if (isLeft)
-                applySpin(200f);
-            else
-                applySpin(-200f);
         }
 
 		public override void update(GameTime gameTime)

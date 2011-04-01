@@ -277,7 +277,7 @@ namespace PhysicsDefense.GameState
 
             if (currentTower != null)
             {
-                currentTower.color = Color.Pink;
+                currentTower.color = Color.DimGray;
             }
             MessageBoard.updateMenu(currentTower);
         }
