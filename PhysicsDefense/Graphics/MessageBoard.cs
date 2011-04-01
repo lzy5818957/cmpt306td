@@ -6,6 +6,8 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
 
 namespace PhysicsDefense.GameState
 {
@@ -33,11 +35,15 @@ namespace PhysicsDefense.GameState
             if (currentTower == null) return;
             if (typeof(BasicTower) == selectedTower.GetType())
             {
-                menuOption = new string[] { "left", "right","left" }; 
+                menuOption = new string[] { "sell" }; 
             }
             else if (typeof(MissileTower) == selectedTower.GetType())
             {
-                menuOption = new string[] { "left", "left" }; 
+                menuOption = new string[] { "sell" }; 
+            }
+            else if (typeof(HeroTower) == selectedTower.GetType())
+            {
+                menuOption = new string[] { "sell","left" };
             }
         }
         public void draw(SpriteBatch spriteBatch)
@@ -67,9 +73,41 @@ namespace PhysicsDefense.GameState
                 {
                     Console.WriteLine(GameWorld.mouseState.X + ":" + GameWorld.mouseState.Y);
 
-                    if(GameWorld.mouseState.X > 816 && GameWorld.mouseState.X < 860 && GameWorld.mouseState.Y >382 && GameWorld.mouseState.Y < 426)
+                    if(GameWorld.mouseState.X > 816 
+                        && GameWorld.mouseState.X < 860 
+                        && GameWorld.mouseState.Y >382 
+                        && GameWorld.mouseState.Y < 426 
+                        && GameWorld.mouseState.LeftButton  == ButtonState.Pressed)
                     {
-                        currentTower.sell();
+                        GameWorld.money += currentTower.sell()/2;
+                        currentTower = null;
+                    }
+                }
+                else if (typeof(MissileTower) == currentTower.GetType())
+                {
+                    Console.WriteLine(GameWorld.mouseState.X + ":" + GameWorld.mouseState.Y);
+
+                    if (GameWorld.mouseState.X > 816
+                        && GameWorld.mouseState.X < 860
+                        && GameWorld.mouseState.Y > 382
+                        && GameWorld.mouseState.Y < 426
+                        && GameWorld.mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        GameWorld.money += currentTower.sell() / 2;
+                        currentTower = null;
+                    }
+                }
+                else if (typeof(HeroTower) == currentTower.GetType())
+                {
+                    Console.WriteLine(GameWorld.mouseState.X + ":" + GameWorld.mouseState.Y);
+
+                    if (GameWorld.mouseState.X > 816
+                        && GameWorld.mouseState.X < 860
+                        && GameWorld.mouseState.Y > 382
+                        && GameWorld.mouseState.Y < 426
+                        && GameWorld.mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        GameWorld.money += currentTower.sell() / 2;
                         currentTower = null;
                     }
                 }
