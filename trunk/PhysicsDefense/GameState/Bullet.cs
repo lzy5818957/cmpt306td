@@ -19,7 +19,7 @@ namespace PhysicsDefense.GameState
 
         public Bullet(World world, Vector2 position, Vector2 direction) {
 			this.world = world;
-            spriteName = "puck";
+            spriteName = "basicbullet";
 			physicsProperties.body = BodyFactory.CreateCircle(world, radius, density, position);
             physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.IsSensor = true;

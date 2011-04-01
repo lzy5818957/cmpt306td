@@ -25,7 +25,7 @@ namespace PhysicsDefense.GameState
 
         public override void shoot()
         {
-            if (Math.Log(experience/WaveData.initialEnemyCount,1+WaveData.bountyMult)>level)
+            if (Math.Log(experience/WaveData.initialEnemyCount,2+WaveData.bountyMult)>level)
             {
                 level++;
                 rechargeTime -= 10;
