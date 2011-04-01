@@ -21,7 +21,7 @@ namespace PhysicsDefense.GameState
 
 		private bool active = true;
 
-        private String initialMap = "pictures/maps/map3";
+
 		private String currentMap;
 		private float connectDistance = 1.0f;
 
@@ -71,11 +71,11 @@ namespace PhysicsDefense.GameState
 
 		public void LoadContent()
 		{
-			Texture2D obstacles = game.Content.Load<Texture2D>(initialMap);
+			Texture2D obstacles = game.Content.Load<Texture2D>(ResourceManager.initialMap);
 			map = new MapObstacles(physics.world, obstacles);
             game.graphics.addBackground("pictures/backgrounds/gamescreenbackground");
             game.graphics.addBackground(obstacles);
-			currentMap = initialMap;
+            currentMap = ResourceManager.initialMap;
 
 			spawner = new EnemyEmitter(new Vector2(1f, 0f), 1);
 			spawner.onSpawn = spawnEnemy;
