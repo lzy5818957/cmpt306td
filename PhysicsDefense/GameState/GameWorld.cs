@@ -32,7 +32,7 @@ namespace PhysicsDefense.GameState
 		PhysicsDefense game;
 		PhysicsSystem physics;
 
-		MouseState mouseState;
+		public static MouseState mouseState;
 		MouseState prevMouseState;
 		KeyboardState keyboardState;
 		KeyboardState prevKeyboardState;
