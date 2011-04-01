@@ -306,8 +306,8 @@ namespace PhysicsDefense.GameState
 
 				// Check for marbles that have reached bottom
 				if ((obj is Marble) && (obj.position.Y > worldHeight)) {
+					((Marble)obj).diedByStuck = true;
 					obj.die();
-					loseLife();
 				}
    			}
 
