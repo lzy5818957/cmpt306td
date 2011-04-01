@@ -52,6 +52,7 @@ namespace PhysicsDefense.GameState
 		List<GameObject> newEntities;
 
 		Tower previewTower;
+        SampleTower sampleTower;
 
 		public GameWorld(PhysicsDefense game)
 		{
@@ -86,8 +87,10 @@ namespace PhysicsDefense.GameState
 
         private void initPanel()
         {
-            Panel m = new Panel(physics.world, new Vector2(9,3));
+            Panel m = new Panel(physics.world, new Vector2(9, 3));
             addObject(m);
+            sampleTower = new SampleTower(physics.world, new Vector2(8.4f, 2));
+            addObject(sampleTower);
         }
 
 		private void spawnEnemy(EnemyType enemy)
@@ -133,7 +136,7 @@ namespace PhysicsDefense.GameState
 			if (previewTower != null)
 				return;
 
-            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower))
+            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleTower.isSelected(mouseState))
             {
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }else if(keyboardState.IsKeyDown(KeyBindings.placeMissileTower))
