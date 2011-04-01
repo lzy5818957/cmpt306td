@@ -53,7 +53,7 @@ namespace PhysicsDefense.GameState
             {
                 menuOption = new string[] { "sell","left" ,"right"};
 
-                talent = "Points\n" + "     "+((HeroTower)currentTower).availablePoint;
+                talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
             }
         }
         public void draw(SpriteBatch spriteBatch)
@@ -129,6 +129,7 @@ namespace PhysicsDefense.GameState
                         && GameWorld.mouseLeftPress == true
                         ){
                             ((HeroTower)currentTower).upgradeRange();
+                            talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
 
                     }
                     if (GameWorld.mouseState.X > 910
@@ -139,6 +140,7 @@ namespace PhysicsDefense.GameState
                         )
                     {
                         ((HeroTower)currentTower).upgradeSpeed();
+                        talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
 
                     }
                 }
