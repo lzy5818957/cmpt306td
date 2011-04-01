@@ -96,11 +96,11 @@ namespace PhysicsDefense.GameState
         {
             Panel m = new Panel(physics.world, new Vector2(9, 3));
             addObject(m);
-            sampleBTower = new SampleBTower(physics.world, new Vector2(8.4f, 2));
+            sampleBTower = new SampleBTower(physics.world, new Vector2(8.4f, 2.05f));
             addObject(sampleBTower);
-            sampleMTower = new SampleMTower(physics.world, new Vector2(9.0f, 2));
+            sampleMTower = new SampleMTower(physics.world, new Vector2(9.0f, 2.05f));
             addObject(sampleMTower);
-            sampleHTower = new SampleHTower(physics.world, new Vector2(9.6f, 2));
+            sampleHTower = new SampleHTower(physics.world, new Vector2(9.6f, 2.05f));
             addObject(sampleHTower);
         }
 
