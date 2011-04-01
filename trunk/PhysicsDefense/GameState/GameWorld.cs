@@ -266,18 +266,17 @@ namespace PhysicsDefense.GameState
                     
                 }
             }
-            if (!isAnyTowerSelectedAtAll && currentTower != null)
+            if (!isAnyTowerSelectedAtAll && currentTower != null && mouseState.X < 800)
             {
                 currentTower.color = currentTower.nativeColor;
                 currentTower = null;
-
             }
 
             if (currentTower != null)
             {
                 currentTower.color = Color.Pink;
-                MessageBoard.updateMenu(currentTower);
             }
+            MessageBoard.updateMenu(currentTower);
         }
 
 		public void loseLife()
