@@ -20,7 +20,7 @@ namespace PhysicsDefense.GameState
 		private float radius = 0.25f;
 
 		private float baseHealth = 50f;
-		private float baseBounty = 5;
+		private float baseBounty = 5f;
 		public float health;
         
 		private float stuckFactor;
@@ -45,7 +45,7 @@ namespace PhysicsDefense.GameState
             physicsProperties.body.UserData = this;
 
 			health = baseHealth * healthMult;
-			bounty = baseBounty * bountyMult;
+			bounty = baseBounty;
             marbles.Add(this);
 		}
 

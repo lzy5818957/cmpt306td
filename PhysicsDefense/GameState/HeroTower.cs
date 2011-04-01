@@ -18,7 +18,7 @@ namespace PhysicsDefense.GameState
             // Game-related properties
             rechargeTime = 1000;
             range = 2f;
-            cost = 100f;
+            cost = 300f;
             spriteName = "herotower";
             experience = 0;
             heroTowers.Add(this);

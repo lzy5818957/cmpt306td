@@ -14,7 +14,7 @@ namespace PhysicsDefense.GameState
             // Game-related properties
             rechargeTime = 1000;
             range = 3f;
-            cost = 60f;
+            cost = 100f;
             spriteName = "missiletower";
         }
 
