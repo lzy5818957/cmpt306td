@@ -19,7 +19,7 @@ namespace PhysicsDefense.GameState
         public double rechargeTime;
 
 		public static float cost;
-
+        public bool isSelected;
 		public AoeSensor rangeSensor;
 		float spinTransferFactor = 0.001f;
 		public Spinner spinner;
@@ -105,7 +105,7 @@ namespace PhysicsDefense.GameState
         {
         }
 
-        public bool isSelected(MouseState state) { 
+        public void checkSelected(MouseState state) { 
             if(
                 state.LeftButton == ButtonState.Pressed
                     && state.X/GameWorld.worldScale <= position.X+0.25f
@@ -113,11 +113,11 @@ namespace PhysicsDefense.GameState
                     && state.Y/GameWorld.worldScale <= position.Y+0.25f
                     && state.Y/GameWorld.worldScale >= position.Y-0.25f
             ){
-                return true;
+                isSelected = true;
             }
 
             else{
-                return false;
+                isSelected = false;
             }
         }
 
