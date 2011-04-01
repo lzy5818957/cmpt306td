@@ -52,6 +52,7 @@ namespace PhysicsDefense.GameState
 		List<GameObject> newEntities;
 
 		Tower previewTower;
+        Tower currentTower;
         SampleTower sampleTower;
 
 		public GameWorld(PhysicsDefense game)
@@ -136,7 +137,7 @@ namespace PhysicsDefense.GameState
 			if (previewTower != null)
 				return;
 
-            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) ||( sampleTower.isSelected(mouseState) && mouseState.LeftButton==ButtonState.Pressed))
+            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleTower.isSelected(mouseState))
             {
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }else if(keyboardState.IsKeyDown(KeyBindings.placeMissileTower))
@@ -219,6 +220,20 @@ namespace PhysicsDefense.GameState
 				}
 			}
 		}
+
+        public void towerOperation() {
+
+       
+            foreach (Tower tower in towers)
+            {
+                if (tower.isSelected)
+                {
+                    currentTower = tower;
+                    continue;
+                }
+            }        
+        
+        }
 
 		public void loseLife()
 		{
