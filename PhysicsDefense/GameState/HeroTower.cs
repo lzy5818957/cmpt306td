@@ -25,12 +25,12 @@ namespace PhysicsDefense.GameState
 
         public override void shoot()
         {
-            if (experience > 5 && level <= 1)
+            if (Math.Log(experience/WaveData.initialEnemyCount,1+WaveData.bountyMult)>level)
             {
                 level++;
-                rechargeTime = 500;
-                range =4f;
-                Console.WriteLine("Tower upgraded.");
+                rechargeTime -= 10;
+                range +=0.01f;
+                Console.WriteLine("Tower upgraded to level "+level);
             }
             base.shoot();
             if (enemiesInRange.Count <= 0)
