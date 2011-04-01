@@ -23,7 +23,6 @@ namespace PhysicsDefense.GameState
 		private float spinDirection = 1f;
 
 		private String currentMap;
-        private String currentMessage;
 		public static float connectDistance = 1.0f;
 		private float clickSpinTorque = 200f;
 
@@ -250,14 +249,34 @@ namespace PhysicsDefense.GameState
 		}
 
         public void towerOperation() {
+
+            bool isAnyTowerSelectedAtAll = false;
             foreach (Tower tower in towers)
             {
-                if (tower.isSelected(mouseState))
+                tower.checkSelected(mouseState);
+                if (tower.isSelected)
                 {
+                    if (currentTower != null)
+                    {
+                        currentTower.color = tower.nativeColor;
+                    }
                     currentTower = tower;
-                    continue;
+                    isAnyTowerSelectedAtAll = true;
+                    
                 }
-            }        
+            }
+            if (!isAnyTowerSelectedAtAll)
+            {
+                currentTower.color = currentTower.nativeColor;
+                currentTower = null;
+
+            }
+
+            if (currentTower != null)
+            {
+                currentTower.color = Color.Black;
+                MessageBoard.updateMenu(currentTower);
+            }
         }
 
 		public void loseLife()
@@ -268,6 +287,7 @@ namespace PhysicsDefense.GameState
 
 		public void Update(GameTime gameTime)
 		{
+
 			if (!active)
 				return;
 
@@ -295,8 +315,10 @@ namespace PhysicsDefense.GameState
 				showPreviewTower();
 
 				// Place tower if mouse clicked
-				if (mouseLeftPress)
-					placeTower();
+                if (mouseLeftPress)
+                {
+                    placeTower();
+                }
 			}
 
 			// Check for tower placement activation
@@ -345,6 +367,11 @@ namespace PhysicsDefense.GameState
 			prevMouseState = Mouse.GetState();
 			prevKeyboardState = Keyboard.GetState();
 
+            // Place tower if mouse clicked
+            if (mouseLeftPress)
+            {
+                towerOperation();
+            }
             MessageBoard.updateMessage("=" + money + "\n\n=" + lives );
 		}
 

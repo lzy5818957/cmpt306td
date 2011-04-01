@@ -14,6 +14,7 @@ namespace PhysicsDefense.GameState
         SpriteFont messageFont;
         static String message;
         Vector2 screenSize;
+        static String[] menuOption;
         public MessageBoard(Vector2 sSize,SpriteFont msgFont,String msg)
         {
             message = msg;
@@ -25,7 +26,14 @@ namespace PhysicsDefense.GameState
         {
             message = msg;
         }
-
+        public static void updateMenu(Tower selectedTower)
+        {
+            if (selectedTower == null) return;
+            if (typeof(BasicTower) == selectedTower.GetType())
+            {
+                menuOption = new string[] { "life", "life", "life", "life", "life" }; 
+            }
+        }
         public void draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(
@@ -36,6 +44,13 @@ namespace PhysicsDefense.GameState
 
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["gold"], new Vector2((screenSize.X) - 170, 15), null, Color.White);
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 65), null, Color.White);
+            if (menuOption != null)
+            {
+                foreach (String texture in menuOption)
+                {
+                    spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures[texture], new Vector2((screenSize.X) - 170, 300), null, Color.White);
+                }
+            }
         }
     }
 }
