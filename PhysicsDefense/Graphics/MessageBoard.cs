@@ -122,8 +122,8 @@ namespace PhysicsDefense.GameState
                         updateMenu(null);
                     }
 
-                    if (GameWorld.mouseState.X > 866
-                        && GameWorld.mouseState.X < 904
+                    if (GameWorld.mouseState.X > 871
+                        && GameWorld.mouseState.X < 915
                         && GameWorld.mouseState.Y > 382
                         && GameWorld.mouseState.Y < 426
                         && GameWorld.mouseLeftPress == true
@@ -132,8 +132,8 @@ namespace PhysicsDefense.GameState
                             talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
 
                     }
-                    if (GameWorld.mouseState.X > 910
-                        && GameWorld.mouseState.X < 954
+                    if (GameWorld.mouseState.X > 926
+                        && GameWorld.mouseState.X < 970
                         && GameWorld.mouseState.Y > 382
                         && GameWorld.mouseState.Y < 426
                         && GameWorld.mouseLeftPress == true
