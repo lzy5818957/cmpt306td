@@ -26,7 +26,7 @@ namespace PhysicsDefense.GameState
 		public static float connectDistance = 1.0f;
 		private float clickSpinTorque = 200f;
 
-		private float money = 100;
+		private float money = 150;
 		private int lives = 20;
 
 		PhysicsDefense game;
@@ -112,7 +112,7 @@ namespace PhysicsDefense.GameState
             Console.WriteLine("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
 
 			// Give wave money reward
-			money += 50 + (spawner.wave * 10);
+			money += 10;
 
 			spawner.nextWave();
 			spawner.start();
