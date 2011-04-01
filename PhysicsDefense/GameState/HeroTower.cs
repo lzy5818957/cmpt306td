@@ -53,5 +53,10 @@ namespace PhysicsDefense.GameState
                 heroTower.experience += (bounty / i);
             }
         }
+
+        public bool upgrade()
+        {
+            return true;
+        }
     }
 }

@@ -12,10 +12,10 @@ namespace PhysicsDefense.GameState
     class Smoke:GameObject
     {
         int frameCount = 0;
-        public Smoke(World world, Vector2 position)
+        public Smoke(World world, Vector2 position,String sN,float radius)
         {
-            spriteName = "smoke";
-            physicsProperties.body = BodyFactory.CreateCircle(world, 0.06f, 1f, position);
+            spriteName = sN;
+            physicsProperties.body = BodyFactory.CreateCircle(world, radius, 1f, position);
 
             //No collision
             physicsProperties.body.CollidesWith = Category.None;

@@ -25,7 +25,7 @@ namespace PhysicsDefense.GameState
                 return;
             //Missile Creation
             Marble target = enemiesInRange[0];
-            Missile newMissile = new Missile(world, position, target);
+            AoeMissile newMissile = new AoeMissile(world, position, target);
             onCreateObject(newMissile);
         }
     }

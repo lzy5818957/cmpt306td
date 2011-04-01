@@ -16,12 +16,13 @@ namespace PhysicsDefense.GameState
 
 	public class Marble : GameObject
 	{
+        public static List<Marble> marbles = new List<Marble>();
 		private float radius = 0.25f;
 
 		private float baseHealth = 50f;
 		private float baseBounty = 5;
 		public float health;
-
+        
 		private float stuckFactor;
 		private const float stuckLimit = 30f;
 		private const float stuckThreshholdSpeed = 0.5f;
@@ -45,6 +46,7 @@ namespace PhysicsDefense.GameState
 
 			health = baseHealth * healthMult;
 			bounty = baseBounty * bountyMult;
+            marbles.Add(this);
 		}
 
 		public override void update(GameTime gameTime)
@@ -90,6 +92,7 @@ namespace PhysicsDefense.GameState
 		{
 			Explode explosion = new Explode(world, position,1.44f);
 			onCreateObject(explosion);
+            marbles.Remove(this);
 			base.die();
 		}
 	}
