@@ -57,14 +57,16 @@ namespace PhysicsDefense.Graphics
             textures.Add("smoke", game.Content.Load<Texture2D>("pictures/bullets/smoke"));
             textures.Add("aoesmoke", game.Content.Load<Texture2D>("pictures/bullets/aoesmoke"));
 			textures.Add("spinner", game.Content.Load<Texture2D>("pictures/effect/spinner"));
-			//textures.Add("basicTower", game.Content.Load<Texture2D>("basicTower"));
 
             for (int i = 1; i < 18; i++) {
                 textures.Add("explode" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode/explode" + i.ToString()));
             }
 
             textures.Add("panel", game.Content.Load<Texture2D>("pictures/panel/panel"));
-            textures.Add("sampleTower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
+            textures.Add("sampleBTower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
+            textures.Add("sampleMTower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));
+            textures.Add("sampleHTower", game.Content.Load<Texture2D>("pictures/towers/herotower"));
+
 		}
 
 		public void Draw(GameTime gameTime)
