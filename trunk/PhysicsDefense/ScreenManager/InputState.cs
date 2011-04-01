@@ -212,7 +212,7 @@ namespace GameStateManagement
         {
             PlayerIndex playerIndex;
 
-            return IsNewKeyPress(Keys.Escape, controllingPlayer, out playerIndex) ||
+            return IsNewKeyPress(Keys.F10, controllingPlayer, out playerIndex) ||
                    IsNewButtonPress(Buttons.Back, controllingPlayer, out playerIndex) ||
                    IsNewButtonPress(Buttons.Start, controllingPlayer, out playerIndex);
         }
