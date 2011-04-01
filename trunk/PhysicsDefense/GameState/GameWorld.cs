@@ -280,9 +280,6 @@ namespace PhysicsDefense.GameState
 				previewTower = null;
 			}
 
-			// Check for tower placement activation
-			towerSelection();
-
 			// Check for spin clicks
 			spinClick();
 
@@ -301,6 +298,10 @@ namespace PhysicsDefense.GameState
 				if (mouseLeftPress)
 					placeTower();
 			}
+
+			// Check for tower placement activation
+			// This must be after the tower placement check.
+			towerSelection();
 
 			// Update physics
 			physics.Update(gameTime);
