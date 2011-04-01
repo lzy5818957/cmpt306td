@@ -17,6 +17,7 @@ namespace PhysicsDefense.GameState
         static String message;
         Vector2 screenSize;
         static String[] menuOption;
+        static String talent="";
         static Tower currentTower;
         public MessageBoard(Vector2 sSize,SpriteFont msgFont,String msg)
         {
@@ -48,6 +49,8 @@ namespace PhysicsDefense.GameState
             else if (typeof(HeroTower) == selectedTower.GetType())
             {
                 menuOption = new string[] { "sell","left" ,"right"};
+
+                talent = "Points\n" + "     "+((HeroTower)currentTower).availablePoint;
             }
         }
         public void draw(SpriteBatch spriteBatch)
@@ -60,6 +63,7 @@ namespace PhysicsDefense.GameState
 
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["gold"], new Vector2((screenSize.X) - 170, 35), null, Color.White);
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 85), null, Color.White);
+            spriteBatch.DrawString(messageFont, talent, new Vector2((screenSize.X - 190), 440), Color.Black);
 
             if (menuOption != null)
             {

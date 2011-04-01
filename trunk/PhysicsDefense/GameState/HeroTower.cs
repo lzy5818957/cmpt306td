@@ -12,7 +12,7 @@ namespace PhysicsDefense.GameState
         static List<HeroTower> heroTowers=new List<HeroTower>();
         float experience;
         int level = 1;
-        int availablePoint = 1;
+        public int availablePoint = 1;
         public HeroTower(World world,Vector2 position):base(world, position)
         {
             // Game-related properties
