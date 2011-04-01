@@ -11,6 +11,7 @@ namespace PhysicsDefense.GameState
 	public class Spinner : GameObject
 	{
 		float radius;
+		private float maxSpinVelocity = 50f;
 
 		public Spinner(World world, Vector2 position, float radius)
 		{
@@ -25,6 +26,16 @@ namespace PhysicsDefense.GameState
 			this.radius = radius;
 
 			this.spriteName = "spinner";
+		}
+
+		public override void update(GameTime gameTime)
+		{
+			if (physicsProperties.body.AngularVelocity > maxSpinVelocity)
+				physicsProperties.body.AngularVelocity = maxSpinVelocity;
+			if (physicsProperties.body.AngularVelocity < maxSpinVelocity * -1f)
+				physicsProperties.body.AngularVelocity = maxSpinVelocity * -1f;
+			color.A = (byte)(255f * Math.Abs(physicsProperties.body.AngularVelocity / maxSpinVelocity));
+			base.update(gameTime);
 		}
 	}
 }

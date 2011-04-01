@@ -24,7 +24,7 @@ namespace PhysicsDefense.GameState
 
 		private String currentMap;
 		private float connectDistance = 1.0f;
-		private float clickSpinTorque = 100f;
+		private float clickSpinTorque = 200f;
 
 		private float money = 100;
 		private int lives = 20;
@@ -225,12 +225,12 @@ namespace PhysicsDefense.GameState
 		public void spinClick()
 		{
 			// Check for tower spin-click
-			if (keyboardState.IsKeyDown(KeyBindings.spinLeft))
+			if (mouseLeftPress)
 				spinDirection = -1f;
-			if (keyboardState.IsKeyDown(KeyBindings.spinRight))
+			if (mouseRightPress)
 				spinDirection = 1f;
 
-			if (keyboardState.IsKeyDown(KeyBindings.spinMod) && mouseLeftPress) {
+			if (keyboardState.IsKeyDown(KeyBindings.spinMod) && (mouseLeftPress || mouseRightPress)) {
 				Vector2 clickPos = new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale);
 				foreach (Tower tower in towers) {
 					if ((clickPos - tower.position).Length() < tower.radius) {
@@ -283,12 +283,6 @@ namespace PhysicsDefense.GameState
 						tower.applySpin(100f);
 				}
 			}
-
-			// Temporary for testing
-			//if (mouseRightPress) {
-			//	Marble m = new Marble(physics.world, new Vector2(mouseState.X / worldScale, mouseState.Y / worldScale), 1f);
-			//	addObject(m);
-			//}
 
 			// Show tower preview if in tower placement mode
 			if (previewTower != null) {
