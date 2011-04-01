@@ -383,7 +383,7 @@ namespace PhysicsDefense.GameState
             {
                 towerOperation();
             }
-            MessageBoard.updateMessage("=" + money + "\n\n=" + lives );
+            MessageBoard.updateMessage("=" + money + "\n=" + lives );
 		}
 
 		private void addObject(GameObject obj)

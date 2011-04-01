@@ -52,10 +52,10 @@ namespace PhysicsDefense.GameState
                 messageFont,
                 message,
                 new Vector2(
-                    (screenSize.X) - 130,20), Color.White);
+                    (screenSize.X) - 130,30), Color.Black);
 
-            spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["gold"], new Vector2((screenSize.X) - 170, 15), null, Color.White);
-            spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 65), null, Color.White);
+            spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["gold"], new Vector2((screenSize.X) - 170, 35), null, Color.White);
+            spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 85), null, Color.White);
 
             if (menuOption != null)
             {
