@@ -56,6 +56,7 @@ namespace PhysicsDefense.Graphics
             textures.Add("connector", game.Content.Load<Texture2D>("pictures/towers/connector"));
             textures.Add("smoke", game.Content.Load<Texture2D>("pictures/bullets/smoke"));
             textures.Add("aoesmoke", game.Content.Load<Texture2D>("pictures/bullets/aoesmoke"));
+            textures.Add("bullethit", game.Content.Load<Texture2D>("pictures/bullets/bullethit"));
 			textures.Add("spinner", game.Content.Load<Texture2D>("pictures/effect/spinner"));
             textures.Add("gold", game.Content.Load<Texture2D>("pictures/panel/gold"));
             textures.Add("life", game.Content.Load<Texture2D>("pictures/panel/life"));

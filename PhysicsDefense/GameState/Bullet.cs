@@ -64,5 +64,12 @@ namespace PhysicsDefense.GameState
 				die();
 
         }
+
+        public override void die()
+        {
+            Smoke smoke = new Smoke(world, position, "bullethit", 0.12f);
+            onCreateObject(smoke);
+            base.die();
+        }
     }
 }
