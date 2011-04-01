@@ -15,7 +15,7 @@ namespace PhysicsDefense
         private static GameAudio audio;
         private static GameWorld gameWorld;
         public static Game game;
-        public static String initialMap = "pictures/maps/map1";
+        public static String initialMap = "pictures/maps/map3";
 
         public static GraphicsEngine getGraphicsEngine()
         {

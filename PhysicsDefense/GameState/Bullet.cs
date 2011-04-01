@@ -42,7 +42,7 @@ namespace PhysicsDefense.GameState
                 this.die();
                 return true;
             }
-             else
+            else
             {
                 this.die();
                 return false;
