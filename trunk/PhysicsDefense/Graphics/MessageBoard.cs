@@ -75,11 +75,11 @@ namespace PhysicsDefense.GameState
                 }
                 i = 0;
             }
-            if (currentTower != null)
+            if (currentTower != null && currentTower.isActivated == true)
             {
                 if (typeof(BasicTower) == currentTower.GetType())
                 {
-                    Console.WriteLine(GameWorld.mouseState.X + ":" + GameWorld.mouseState.Y);
+
 
                     if(GameWorld.mouseState.X > 816 
                         && GameWorld.mouseState.X < 860 
@@ -93,7 +93,7 @@ namespace PhysicsDefense.GameState
                 }
                 else if (typeof(MissileTower) == currentTower.GetType())
                 {
-                    Console.WriteLine(GameWorld.mouseState.X + ":" + GameWorld.mouseState.Y);
+
 
                     if (GameWorld.mouseState.X > 816
                         && GameWorld.mouseState.X < 860
@@ -107,7 +107,7 @@ namespace PhysicsDefense.GameState
                 }
                 else if (typeof(HeroTower) == currentTower.GetType())
                 {
-                    Console.WriteLine(GameWorld.mouseState.X + ":" + GameWorld.mouseState.Y);
+
 
                     if (GameWorld.mouseState.X > 816
                         && GameWorld.mouseState.X < 860
