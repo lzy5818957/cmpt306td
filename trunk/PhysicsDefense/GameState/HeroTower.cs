@@ -73,5 +73,12 @@ namespace PhysicsDefense.GameState
             availablePoint--;
             rechargeTime-= 10;
         }
+
+        public override void die()
+        {
+            heroTowers.Remove(this);
+            base.die();
+        }
+
     }
 }
