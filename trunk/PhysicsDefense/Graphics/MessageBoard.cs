@@ -51,7 +51,7 @@ namespace PhysicsDefense.GameState
             }
             else if (typeof(HeroTower) == selectedTower.GetType())
             {
-                menuOption = new string[] { "sell","left" ,"right"};
+                menuOption = new string[] { "sell","range" ,"speed"};
 
                 talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
             }
