@@ -45,21 +45,30 @@ namespace PhysicsDefense.GameState
 
         bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
         {
-            Marble m = (Marble)fixtureB.Body.UserData;
-            m.takeDamage(damage);
-            for (int i = 0; i < Marble.marbles.Count; i++)
+            if (typeof(Marble) == fixtureB.Body.UserData.GetType())
             {
-                Marble tgt = Marble.marbles[i];
-                if (tgt == null)
-                    continue;
-                Vector2 distance = new Vector2((position.X - tgt.position.X), (position.Y - tgt.position.Y));
-                if (distance.Length() < range)
-                    tgt.takeDamage(damage);
+                Marble m = (Marble)fixtureB.Body.UserData;
+                m.takeDamage(damage);
+                for (int i = 0; i < Marble.marbles.Count; i++)
+                {
+                    Marble tgt = Marble.marbles[i];
+                    if (tgt == null)
+                        continue;
+                    Vector2 distance = new Vector2((position.X - tgt.position.X), (position.Y - tgt.position.Y));
+                    if (distance.Length() < range)
+                        tgt.takeDamage(damage);
+                }
+                Smoke smoke = new Smoke(world, position, "aoesmoke", range);
+                onCreateObject(smoke);
+                this.die();
+                return true;
             }
-            Smoke smoke = new Smoke(world, position, "aoesmoke", range);
-            onCreateObject(smoke);
-            this.die();
-            return true;
+            else
+            {
+                this.die();
+                return false;
+            }
+            
         }
 
         public override void die()
