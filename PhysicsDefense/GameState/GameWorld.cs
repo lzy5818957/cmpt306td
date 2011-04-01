@@ -136,7 +136,7 @@ namespace PhysicsDefense.GameState
 			if (previewTower != null)
 				return;
 
-            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleTower.isSelected(mouseState))
+            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) ||( sampleTower.isSelected(mouseState) && mouseState.LeftButton==ButtonState.Pressed))
             {
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }else if(keyboardState.IsKeyDown(KeyBindings.placeMissileTower))
