@@ -143,6 +143,10 @@ namespace PhysicsDefense.GameState
             {
                 previewTower = new MissileTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }
+            else if (keyboardState.IsKeyDown(KeyBindings.placeHeroTower))
+            {
+                previewTower = new HeroTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
+            }
 			if (previewTower != null)
 				addObject(previewTower);
 		}

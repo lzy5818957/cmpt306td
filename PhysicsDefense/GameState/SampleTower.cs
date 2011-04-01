@@ -12,8 +12,8 @@ namespace PhysicsDefense.GameState
     class SampleTower : GameObject
     {
 
-        public SampleTower(World world, Vector2 position) {
-
+        public SampleTower(World world, Vector2 position) 
+        {
             this.world = world;
             spriteName = "sampleTower";
             physicsProperties.body = BodyFactory.CreateRectangle(world, 0.5f, 0.5f, 1.0f, position);

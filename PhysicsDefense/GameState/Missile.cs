@@ -55,6 +55,7 @@ namespace PhysicsDefense.GameState
         {
             Explode explosion = new Explode(world, position, 0.36f);
             onCreateObject(explosion);
+            onPlaySound("missilehit");
             base.die();
         }
 
@@ -70,7 +71,7 @@ namespace PhysicsDefense.GameState
                 //speed.Normalize();
                 //physicsProperties.body.LinearVelocity = speed * strength;
                 rotation = (float)Math.Atan2(direction.Y,direction.X);
-                Vector2 smokePosition = new Vector2(position.X-direction.X*0.12f,position.Y-direction.Y*0.12f);
+                Vector2 smokePosition = new Vector2(position.X-direction.X*0.18f,position.Y-direction.Y*0.18f);
                 Smoke newSmoke =new Smoke(world,smokePosition);
                 onCreateObject(newSmoke);
             }

@@ -33,6 +33,12 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
         }
 
+        public override void initialize()
+        {
+            onPlaySound("cannonshot");
+            base.initialize();
+        }
+
 		bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
 		{
             if(typeof(Marble) == fixtureB.Body.UserData.GetType())

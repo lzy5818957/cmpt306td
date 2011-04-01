@@ -11,6 +11,7 @@ namespace PhysicsDefense
 		public static Keys cancelTower = Keys.Escape;
 		public static Keys placeBasicTower = Keys.T;
         public static Keys placeMissileTower = Keys.M;
+        public static Keys placeHeroTower = Keys.H;
 		public static Keys spin = Keys.S;
 	}
 }
