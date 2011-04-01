@@ -32,8 +32,8 @@ namespace PhysicsDefense.GameState
                 messageFont,
                 message,
                 new Vector2(
-                    (screenSize.X / 2) - 50,
-                    (screenSize.Y) - 100
+                    (screenSize.X) - 170,
+                    50
                     ),
                 Color.White);
         }

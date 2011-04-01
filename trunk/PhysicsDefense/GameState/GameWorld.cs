@@ -168,7 +168,7 @@ namespace PhysicsDefense.GameState
 			// Check if sufficient money is available
 			float cost = Tower.cost;
 			if (money < cost) {
-				MessageBoard.updateMessage("Insufficient funds to place tower");
+				MessageBoard.updateMessage("Insufficient funds\n to place tower");
 				return;
 			}
 
