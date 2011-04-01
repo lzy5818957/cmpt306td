@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\GameAudio.cs" />
+    <Compile Include="GameState\AoeMissile.cs" />
     <Compile Include="GameState\AoeSensor.cs" />
     <Compile Include="GameState\BasicTower.cs" />
     <Compile Include="GameState\Box.cs" />
