@@ -54,7 +54,9 @@ namespace PhysicsDefense.GameState
 
 		Tower previewTower;
         Tower currentTower;
-        SampleTower sampleTower;
+        SampleBTower sampleBTower;
+        SampleMTower sampleMTower;
+        SampleHTower sampleHTower;
 
 		public GameWorld(PhysicsDefense game)
 		{
@@ -91,8 +93,12 @@ namespace PhysicsDefense.GameState
         {
             Panel m = new Panel(physics.world, new Vector2(9, 3));
             addObject(m);
-            sampleTower = new SampleTower(physics.world, new Vector2(8.4f, 2));
-            addObject(sampleTower);
+            sampleBTower = new SampleBTower(physics.world, new Vector2(8.4f, 2));
+            addObject(sampleBTower);
+            sampleMTower = new SampleMTower(physics.world, new Vector2(9.0f, 2));
+            addObject(sampleMTower);
+            sampleHTower = new SampleHTower(physics.world, new Vector2(9.6f, 2));
+            addObject(sampleHTower);
         }
 
 		private void spawnEnemy(EnemyType enemy)
@@ -138,19 +144,24 @@ namespace PhysicsDefense.GameState
 			if (previewTower != null)
 				return;
 
-            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleTower.isSelected(mouseState))
+            if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleBTower.isSelected(mouseState))
             {
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-            }else if(keyboardState.IsKeyDown(KeyBindings.placeMissileTower))
+
+            }
+            else if (keyboardState.IsKeyDown(KeyBindings.placeMissileTower) || sampleMTower.isSelected(mouseState))
             {
                 previewTower = new MissileTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }
-            else if (keyboardState.IsKeyDown(KeyBindings.placeHeroTower))
+            else if (keyboardState.IsKeyDown(KeyBindings.placeHeroTower) || sampleHTower.isSelected(mouseState))
             {
                 previewTower = new HeroTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }
-			if (previewTower != null)
-				addObject(previewTower);
+            if (previewTower != null)
+            {
+                addObject(previewTower);
+
+            }
 		}
 
 		/// <summary>
