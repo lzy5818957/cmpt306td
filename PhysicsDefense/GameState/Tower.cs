@@ -160,5 +160,17 @@ namespace PhysicsDefense.GameState
 				shoot();
 			}
 		}
+
+        public float sell()
+        {
+            foreach (Connector con in Connector.connectors)
+            {
+                Vector2 distance = new Vector2(position.X - con.position.X, position.Y - con.position.Y);
+                if (distance.Length() <= GameWorld.connectDistance)
+                    con.die();
+            }
+            die();
+            return cost;
+        }
 	}
 }

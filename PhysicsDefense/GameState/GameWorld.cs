@@ -24,7 +24,7 @@ namespace PhysicsDefense.GameState
 
 		private String currentMap;
         private String currentMessage;
-		private float connectDistance = 1.0f;
+		public static float connectDistance = 1.0f;
 		private float clickSpinTorque = 200f;
 
 		private float money = 100;

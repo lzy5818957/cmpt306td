@@ -12,7 +12,7 @@ namespace PhysicsDefense.GameState
 	{
 		public float height;
 		public float width;
-
+        public static List<Connector> connectors=new List<Connector>();
 		public Connector(World world, float width, float height)
 		{
 			spriteName = "connector";
@@ -26,11 +26,18 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Friction = 0.8f;
 			physicsProperties.body.CollisionCategories = Category.Cat3;
 			physicsProperties.body.CollidesWith = Category.Cat1;
+            connectors.Add(this);
 		}
 
 		public override void update(GameTime gameTime)
 		{
 			base.update(gameTime);
 		}
+
+        public override void die()
+        {
+            connectors.Remove(this);
+            base.die();
+        }
 	}
 }
