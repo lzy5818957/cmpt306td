@@ -61,7 +61,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.IsSensor = true;
 			physicsProperties.body.IgnoreGravity = true;
-			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat3;
+			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat3 | Category.Cat6;
 			physicsProperties.body.CollisionCategories = Category.Cat2;
 
 			nativeColor = Color.White;
