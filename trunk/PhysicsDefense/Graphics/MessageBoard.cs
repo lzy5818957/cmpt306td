@@ -70,6 +70,7 @@ namespace PhysicsDefense.GameState
                     if(GameWorld.mouseState.X > 816 && GameWorld.mouseState.X < 860 && GameWorld.mouseState.Y >382 && GameWorld.mouseState.Y < 426)
                     {
                         currentTower.sell();
+                        currentTower = null;
                     }
                 }
             }
