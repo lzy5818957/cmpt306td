@@ -26,7 +26,7 @@ namespace PhysicsDefense.GameState
 		private String currentMap;
 		private float clickSpinTorque = 200f;
 
-		public static float money = 15000;
+		public static float money = 150;
 		private int lives = 20;
 
 		PhysicsDefense game;
