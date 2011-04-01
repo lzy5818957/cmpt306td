@@ -226,7 +226,7 @@ namespace PhysicsDefense.GameState
        
             foreach (Tower tower in towers)
             {
-                if (tower.isSelected)
+                if (tower.isSelected(mouseState))
                 {
                     currentTower = tower;
                     continue;
