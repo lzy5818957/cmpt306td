@@ -62,6 +62,8 @@ namespace PhysicsDefense.Graphics
             textures.Add("left", game.Content.Load<Texture2D>("pictures/towermenu/left"));
             textures.Add("right", game.Content.Load<Texture2D>("pictures/towermenu/right"));
             textures.Add("sell", game.Content.Load<Texture2D>("pictures/towermenu/sell"));
+            textures.Add("speed", game.Content.Load<Texture2D>("pictures/towermenu/speed"));
+            textures.Add("range", game.Content.Load<Texture2D>("pictures/towermenu/range"));
             for (int i = 1; i < 18; i++) {
                 textures.Add("explode" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode/explode" + i.ToString()));
             }
