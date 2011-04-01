@@ -35,7 +35,8 @@ namespace PhysicsDefense.GameState
             currentTower = selectedTower;
             if (currentTower == null)
             {
-                menuOption = new string[] {}; 
+                menuOption = new string[] {};
+                talent = "";
                 return;
             }
             if (typeof(BasicTower) == selectedTower.GetType())
