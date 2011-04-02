@@ -64,6 +64,7 @@ namespace PhysicsDefense.GameState
             }
             availablePoint--;
             range += 0.1f;
+            onPlaySound("upgrade");
         }
 
         public void upgradeSpeed()
@@ -72,6 +73,7 @@ namespace PhysicsDefense.GameState
                 return;
             availablePoint--;
             rechargeTime-= 10;
+            onPlaySound("upgrade");
         }
 
         public override void die()

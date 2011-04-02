@@ -12,6 +12,7 @@ namespace PhysicsDefense.GameState
 {
 	class Tower : GameObject
 	{
+        public static List<Tower> towers = new List<Tower>();
 		public float radius = 0.25f;
 		private static float density = 5.0f;
         private float _range;
@@ -66,6 +67,7 @@ namespace PhysicsDefense.GameState
 
 			nativeColor = Color.White;
 			color.A = 128;
+            
 		}
 
 		public void activate()
@@ -84,6 +86,7 @@ namespace PhysicsDefense.GameState
 			//spinSensor = new AoeSensor(world, position, radius * 1.2);
 			spinner = new Spinner(world, position, radius * 2f);
 			onCreateObject(spinner);
+            towers.Add(this);
 		}
 
 		public void applySpin(float torque)
@@ -115,6 +118,7 @@ namespace PhysicsDefense.GameState
                     && state.X/GameWorld.worldScale >= position.X-0.25f
                     && state.Y/GameWorld.worldScale <= position.Y+0.25f
                     && state.Y/GameWorld.worldScale >= position.Y-0.25f
+                    && isActivated
             ){
                 isSelected = true;
             }
@@ -127,6 +131,16 @@ namespace PhysicsDefense.GameState
 		public override void update(GameTime gameTime)
 		{
 			base.update(gameTime);
+            if (!isActivated)
+            {
+                foreach (Tower tower in towers)
+                {
+                    Vector2 distance = new Vector2(this.position.X - tower.position.X, this.position.Y - tower.position.Y);
+                    if (distance.Length() <= 0.5f)
+                        this.isColliding = true;
+                }
+                return;
+            }
             if (!isActivated || isDead)
                 return;
 
@@ -175,6 +189,12 @@ namespace PhysicsDefense.GameState
                 con.die();
             die();
             return cost;
+        }
+
+        public override void die()
+        {
+            towers.Remove(this);
+            base.die();
         }
 	}
 }
