@@ -59,7 +59,7 @@ namespace PhysicsDefense.GameState
             {
                 menuOption = new string[] { "sell", "range", "speed" };
 
-                talent = "Point(s):" + ((HeroTower)currentTower).getAvailablePoint() + "\nLevel(s):" + ((HeroTower)currentTower).getLevel();
+                talent = "Hero Tower\nPoint(s):   " + ((HeroTower)currentTower).getAvailablePoint() + "\nLevel(s):   " + ((HeroTower)currentTower).getLevel();
             }
         }
 

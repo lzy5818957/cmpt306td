@@ -26,6 +26,7 @@ namespace PhysicsDefense.Audio
             sounds.Add("missilelaunch", game.Content.Load<SoundEffect>("audio/missilelaunch"));
             sounds.Add("missilehit", game.Content.Load<SoundEffect>("audio/missilehit"));
             sounds.Add("cannonshot", game.Content.Load<SoundEffect>("audio/cannonshot"));
+            sounds.Add("upgrade", game.Content.Load<SoundEffect>("audio/upgrade"));
 		}
 
 		public void PlaySound(String soundName)
