@@ -74,7 +74,7 @@ namespace PhysicsDefense.Graphics
             textures.Add("sampleBTower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
             textures.Add("sampleMTower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));
             textures.Add("sampleHTower", game.Content.Load<Texture2D>("pictures/towers/herotower"));
-
+            textures.Add("bubble", game.Content.Load<Texture2D>("pictures/effect/bubble"));
 		}
 
 		public void Draw(GameTime gameTime)
@@ -103,6 +103,12 @@ namespace PhysicsDefense.Graphics
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
 
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, obj.color, obj.rotation, origin, SpriteEffects.None, 0);
+
+                //add light bubble on each marble
+                if (obj is Marble)
+                {
+                    spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin*2, SpriteEffects.None, 0);
+                }
 			}
 
             messageBoard.draw(spriteBatch);

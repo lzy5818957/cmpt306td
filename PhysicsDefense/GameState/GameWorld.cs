@@ -152,11 +152,12 @@ namespace PhysicsDefense.GameState
             if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleBTower.isSelected(mouseState))
             {
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-
+                deactivateMenu();
             }
             else if (keyboardState.IsKeyDown(KeyBindings.placeMissileTower) || sampleMTower.isSelected(mouseState))
             {
                 previewTower = new MissileTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
+                deactivateMenu();
             }
             else if (keyboardState.IsKeyDown(KeyBindings.placeHeroTower) || sampleHTower.isSelected(mouseState))
             {
@@ -165,9 +166,24 @@ namespace PhysicsDefense.GameState
             if (previewTower != null)
             {
                 addObject(previewTower);
+                deactivateMenu();
 
             }
 		}
+
+        private void deactivateMenu()
+        {
+            sampleBTower.color = Color.TransparentWhite;
+            sampleHTower.color = Color.TransparentWhite;
+            sampleMTower.color = Color.TransparentWhite;
+        }
+
+        private void activateMenu()
+        {
+            sampleBTower.color = sampleBTower.nativeColor; ;
+            sampleHTower.color = sampleHTower.nativeColor;
+            sampleMTower.color = sampleMTower.nativeColor;
+        }
 
 		/// <summary>
 		/// Place a tower by activating the preview tower.
@@ -209,6 +225,9 @@ namespace PhysicsDefense.GameState
 			previewTower.activate();
 			previewTower = null;
 			money -= cost;
+
+            //Rest Panel Tower
+            activateMenu();
 		}
 
 		/// <summary>
@@ -313,8 +332,10 @@ namespace PhysicsDefense.GameState
                 {
                     tower.color = tower.nativeColor;
                 }
+                activateMenu();
 				removeObject(previewTower);
 				previewTower = null;
+
 			}
 
 			// Check for spin clicks
