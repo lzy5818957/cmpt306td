@@ -174,8 +174,10 @@ namespace PhysicsDefense.GameState
 		/// </summary>
 		private void placeTower()
 		{
-			if (previewTower == null)
-				return;
+            if (previewTower == null)
+            {
+                return;
+            }
 
 			// Don't allow placement on top of other towers
 			//if (previewTower.collisionCount > 0)
@@ -307,6 +309,10 @@ namespace PhysicsDefense.GameState
 
 			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
 				// Cancel tower placement
+                foreach (Tower tower in towers)
+                {
+                    tower.color = tower.nativeColor;
+                }
 				removeObject(previewTower);
 				previewTower = null;
 			}
