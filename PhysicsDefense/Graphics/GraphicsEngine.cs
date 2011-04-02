@@ -44,7 +44,8 @@ namespace PhysicsDefense.Graphics
 		{
 			spriteBatch = new SpriteBatch(game.GraphicsDevice);
             SpriteFont msgFont = game.Content.Load<SpriteFont>("fonts/gameFont");
-            messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont, "Game Starting...");
+            SpriteFont infoFont=game.Content.Load<SpriteFont>("fonts/infoFont");
+            messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont,infoFont, "Game Starting...");
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
             textures.Add("basicbullet", game.Content.Load<Texture2D>("pictures/bullets/basicbullet"));
