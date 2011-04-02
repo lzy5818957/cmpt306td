@@ -14,16 +14,18 @@ namespace PhysicsDefense.GameState
     class MessageBoard
     {
         SpriteFont messageFont;
+        SpriteFont infoFont;
         static String message;
         Vector2 screenSize;
         static String[] menuOption;
         static String talent="";
         static Tower currentTower;
-        public MessageBoard(Vector2 sSize,SpriteFont msgFont,String msg)
+        public MessageBoard(Vector2 sSize,SpriteFont msgFont,SpriteFont iFont,String msg)
         {
             message = msg;
             screenSize=sSize;
             messageFont = msgFont;
+            infoFont=iFont;
         }
 
         public static void updateMessage(String msg)
@@ -33,31 +35,37 @@ namespace PhysicsDefense.GameState
         public static void updateMenu(Tower selectedTower)
         {
             currentTower = selectedTower;
+        }
+
+        private void update()
+        {
             if (currentTower == null)
             {
-                menuOption = new string[] {};
+                menuOption = new string[] { };
                 talent = "";
                 return;
             }
-            if (typeof(BasicTower) == selectedTower.GetType())
+            if (typeof(BasicTower) == currentTower.GetType())
             {
                 menuOption = new string[] { "sell" };
-                talent = "";
+                talent = "Basic Tower";
             }
-            else if (typeof(MissileTower) == selectedTower.GetType())
+            else if (typeof(MissileTower) == currentTower.GetType())
             {
                 menuOption = new string[] { "sell" };
-                talent = "";
+                talent = "AoE Missile Tower";
             }
-            else if (typeof(HeroTower) == selectedTower.GetType())
+            else if (typeof(HeroTower) == currentTower.GetType())
             {
-                menuOption = new string[] { "sell","range" ,"speed"};
+                menuOption = new string[] { "sell", "range", "speed" };
 
-                talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
+                talent = "Point(s):" + ((HeroTower)currentTower).getAvailablePoint() + "\nLevel(s):" + ((HeroTower)currentTower).getLevel();
             }
         }
+
         public void draw(SpriteBatch spriteBatch)
         {
+            update();
             spriteBatch.DrawString(
                 messageFont,
                 message,
@@ -66,7 +74,7 @@ namespace PhysicsDefense.GameState
 
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["gold"], new Vector2((screenSize.X) - 170, 35), null, Color.White);
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 85), null, Color.White);
-            spriteBatch.DrawString(messageFont, talent, new Vector2((screenSize.X - 190), 440), Color.Black);
+            spriteBatch.DrawString(infoFont, talent, new Vector2((screenSize.X - 190), 440), Color.Black);
 
             if (menuOption != null)
             {
@@ -127,10 +135,9 @@ namespace PhysicsDefense.GameState
                         && GameWorld.mouseState.Y > 382
                         && GameWorld.mouseState.Y < 426
                         && GameWorld.mouseLeftPress == true
-                        ){
+                        )
+                    {
                             ((HeroTower)currentTower).upgradeRange();
-                            talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
-
                     }
                     if (GameWorld.mouseState.X > 926
                         && GameWorld.mouseState.X < 970
@@ -140,8 +147,6 @@ namespace PhysicsDefense.GameState
                         )
                     {
                         ((HeroTower)currentTower).upgradeSpeed();
-                        talent = "Points\n" + "     " + ((HeroTower)currentTower).availablePoint;
-
                     }
                 }
             }

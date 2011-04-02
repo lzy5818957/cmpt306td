@@ -27,7 +27,7 @@ namespace PhysicsDefense.GameState
 		private float clickSpinTorque = 200f;
 
 
-		public static float money = 150;
+		public static float money = 15000;
 
 
 		private int lives = 20;
