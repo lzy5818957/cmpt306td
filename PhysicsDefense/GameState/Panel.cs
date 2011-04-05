@@ -27,6 +27,12 @@ namespace PhysicsDefense.GameState
             physicsProperties.body.UserData = this;
 
 		}
+
+        public void playSound(String soundname)
+        {
+            onPlaySound(soundname);
+        }
+
         public override void update(GameTime gameTime)
         {
             base.update(gameTime);

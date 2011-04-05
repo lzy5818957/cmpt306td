@@ -47,6 +47,7 @@ namespace PhysicsDefense.GameState
 
 		MapObstacles map;
 		EnemyEmitter spawner;
+        Panel panel;
 
 		List<GameObject> entities;
 		List<Tower> towers;
@@ -94,8 +95,8 @@ namespace PhysicsDefense.GameState
 
         private void initPanel()
         {
-            Panel m = new Panel(physics.world, new Vector2(9, 3));
-            addObject(m);
+            panel = new Panel(physics.world, new Vector2(9, 3));
+            addObject(panel);
             sampleBTower = new SampleBTower(physics.world, new Vector2(8.4f, 2.05f));
             addObject(sampleBTower);
             sampleMTower = new SampleMTower(physics.world, new Vector2(9.0f, 2.05f));
@@ -154,6 +155,7 @@ namespace PhysicsDefense.GameState
 
             if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleBTower.isSelected(mouseState))
             {
+
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
             }
             else if (keyboardState.IsKeyDown(KeyBindings.placeMissileTower) || sampleMTower.isSelected(mouseState))
@@ -167,8 +169,22 @@ namespace PhysicsDefense.GameState
             }
             if (previewTower != null)
             {
-                addObject(previewTower);
-                deactivateMenu();
+                // Check if sufficient money is available
+                float cost = Tower.cost;
+                if (money < cost)
+                {
+                    InfoBoard.updateInfo("Insufficient funds to place this tower", Color.Tomato, 200);
+                    panel.playSound("error");
+                    // Cancel tower placement
+                    foreach (Tower tower in towers)
+                    {
+                        tower.color = tower.nativeColor;
+                    }
+                    previewTower = null;
+                }else{
+                    addObject(previewTower);
+                    deactivateMenu();
+                }
             }
 		}
 
@@ -326,6 +342,8 @@ namespace PhysicsDefense.GameState
                     spawner.start();
                 started = true;
                 InfoBoard.updateInfo("Wave " + spawner.wave + " is Comming!", Color.Orange, 200);
+                panel.playSound("wavestart");
+                //onPlaySound("wavestart");
             }
 
 			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
