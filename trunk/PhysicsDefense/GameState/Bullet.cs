@@ -46,6 +46,7 @@ namespace PhysicsDefense.GameState
 			    Marble m = (Marble)fixtureB.Body.UserData;
 			    m.takeDamage(damage);
                 this.die();
+                onPlaySound("bullethit");
                 return true;
             }
             else

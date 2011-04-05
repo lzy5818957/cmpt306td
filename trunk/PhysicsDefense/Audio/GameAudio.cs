@@ -25,6 +25,7 @@ namespace PhysicsDefense.Audio
             sounds.Add("explode", game.Content.Load<SoundEffect>("audio/explode"));
             sounds.Add("missilelaunch", game.Content.Load<SoundEffect>("audio/missilelaunch"));
             sounds.Add("missilehit", game.Content.Load<SoundEffect>("audio/missilehit"));
+            sounds.Add("bullethit", game.Content.Load<SoundEffect>("audio/bullethit"));
             sounds.Add("cannonshot", game.Content.Load<SoundEffect>("audio/cannonshot"));
             sounds.Add("upgrade", game.Content.Load<SoundEffect>("audio/upgrade"));
             sounds.Add("wavestart", game.Content.Load<SoundEffect>("audio/wavestart"));
