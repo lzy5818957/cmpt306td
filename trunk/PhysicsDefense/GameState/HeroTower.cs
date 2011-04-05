@@ -43,6 +43,7 @@ namespace PhysicsDefense.GameState
                 Missile newMissile = new Missile(world, position, target);
                 onCreateObject(newMissile);
             }
+            onPlaySound("heromissile");
         }
 
         internal static void gainExperiences(float bounty)

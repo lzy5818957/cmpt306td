@@ -338,12 +338,14 @@ namespace PhysicsDefense.GameState
 
             if (keyboardState.IsKeyDown(KeyBindings.startGame))
             {
-                if(!started)
+                if (!started)
+                {
                     spawner.start();
-                started = true;
-                InfoBoard.updateInfo("Wave " + spawner.wave + " is Comming!", Color.Orange, 200);
-                panel.playSound("wavestart");
-                //onPlaySound("wavestart");
+                    started = true;
+                    InfoBoard.updateInfo("Wave " + spawner.wave + " is Comming!", Color.Orange, 200);
+                    panel.playSound("wavestart");
+                    //onPlaySound("wavestart");
+                }
             }
 
 			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {

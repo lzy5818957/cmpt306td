@@ -37,12 +37,6 @@ namespace PhysicsDefense.GameState
             
         }
 
-        public override void initialize()
-        {
-            onPlaySound("missilelaunch");
-            base.initialize();
-        }
-
         bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
         {
             Marble m = (Marble)fixtureB.Body.UserData;
