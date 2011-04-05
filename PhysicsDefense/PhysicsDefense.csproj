@@ -111,6 +111,7 @@
     <Compile Include="GameState\SampleTower.cs" />
     <Compile Include="GameState\Smoke.cs" />
     <Compile Include="GameState\Spinner.cs" />
+    <Compile Include="Graphics\InfoBoard.cs" />
     <Compile Include="Graphics\MessageBoard.cs" />
     <Compile Include="GameState\Missile.cs" />
     <Compile Include="GameState\Tower.cs" />

@@ -192,8 +192,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fonts\FirstFont.spritefont">
-      <Name>FirstFont</Name>
+    <Compile Include="fonts\infoFont.spritefont">
+      <Name>infoFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -377,8 +377,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fonts\infofont.spritefont">
-      <Name>infofont</Name>
+    <Compile Include="fonts\detailfont.spritefont">
+      <Name>detailfont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

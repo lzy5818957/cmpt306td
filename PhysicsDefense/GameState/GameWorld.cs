@@ -27,7 +27,7 @@ namespace PhysicsDefense.GameState
 		private float clickSpinTorque = 200f;
 
 
-		public static float money = 150;
+		public static float money = 1500;
 
 
 		private int lives = 20;
@@ -113,7 +113,7 @@ namespace PhysicsDefense.GameState
 
 		private void waveFinished()
 		{
-            Console.WriteLine("Wave " + spawner.wave + " finished\n" + "LIVE(S)=" + lives);
+            InfoBoard.updateInfo("Wave " + spawner.wave + " finished\n" + "Press Space for the next wave",Color.SkyBlue,500);
 
 			// Give wave money reward
 			money += 20*((int)(spawner.wave/10) +1);
@@ -126,7 +126,7 @@ namespace PhysicsDefense.GameState
 
 		public void lose()
 		{
-            Console.WriteLine("All lives lost!\nGame Over");
+            InfoBoard.updateInfo("All lives lost!\nGame Over",Color.Red,65535);
 			active = false;
 		}
 
@@ -146,18 +146,20 @@ namespace PhysicsDefense.GameState
 		/// </summary>
 		private void towerSelection()
 		{
-			if (previewTower != null)
-				return;
+            if (previewTower != null)
+            {
+                InfoBoard.updateInfo("Select Location \nPress Esc to cancel.", Color.PaleGreen, 1);
+                return;
+            }
 
             if (keyboardState.IsKeyDown(KeyBindings.placeBasicTower) || sampleBTower.isSelected(mouseState))
             {
                 previewTower = new BasicTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-                deactivateMenu();
             }
             else if (keyboardState.IsKeyDown(KeyBindings.placeMissileTower) || sampleMTower.isSelected(mouseState))
             {
                 previewTower = new MissileTower(physics.world, new Vector2(Mouse.GetState().X / worldScale, Mouse.GetState().Y / worldScale));
-                deactivateMenu();
+
             }
             else if (keyboardState.IsKeyDown(KeyBindings.placeHeroTower) || sampleHTower.isSelected(mouseState))
             {
@@ -167,7 +169,6 @@ namespace PhysicsDefense.GameState
             {
                 addObject(previewTower);
                 deactivateMenu();
-
             }
 		}
 
@@ -203,7 +204,7 @@ namespace PhysicsDefense.GameState
 			// Check if sufficient money is available
 			float cost = Tower.cost;
 			if (money < cost) {
-				Console.WriteLine("Insufficient funds\n to place tower");
+				InfoBoard.updateInfo("Insufficient funds to place this tower",Color.Tomato,300);
 				return;
 			}
 
@@ -324,6 +325,7 @@ namespace PhysicsDefense.GameState
                 if(!started)
                     spawner.start();
                 started = true;
+                InfoBoard.updateInfo("Wave " + spawner.wave + " is Comming!", Color.Orange, 200);
             }
 
 			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
