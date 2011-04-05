@@ -29,6 +29,7 @@ namespace PhysicsDefense.Audio
             sounds.Add("upgrade", game.Content.Load<SoundEffect>("audio/upgrade"));
             sounds.Add("wavestart", game.Content.Load<SoundEffect>("audio/wavestart"));
             sounds.Add("error", game.Content.Load<SoundEffect>("audio/error"));
+            sounds.Add("heromissile", game.Content.Load<SoundEffect>("audio/heromissile"));
 		}
 
 		public void PlaySound(String soundName)
