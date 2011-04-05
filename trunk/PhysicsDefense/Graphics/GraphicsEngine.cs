@@ -18,6 +18,7 @@ namespace PhysicsDefense.Graphics
 		SpriteBatch spriteBatch;
 		Game game;
         MessageBoard messageBoard;
+        InfoBoard infoBoard;
 		
 		List<GameObject> drawableObjects;
 		List<Texture2D> backgrounds;
@@ -44,8 +45,10 @@ namespace PhysicsDefense.Graphics
 		{
 			spriteBatch = new SpriteBatch(game.GraphicsDevice);
             SpriteFont msgFont = game.Content.Load<SpriteFont>("fonts/gameFont");
+            SpriteFont detailFont=game.Content.Load<SpriteFont>("fonts/detailFont");
             SpriteFont infoFont=game.Content.Load<SpriteFont>("fonts/infoFont");
-            messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont,infoFont, "Game Starting...");
+            messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont,detailFont, "Game Starting...");
+            infoBoard = new InfoBoard(infoFont, new Vector2(screenWidth / 4, 2 * screenHeight / 3), "Press \'Space\' for Enemy Wave 1", 1000);
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
             textures.Add("basicbullet", game.Content.Load<Texture2D>("pictures/bullets/basicbullet"));
@@ -112,6 +115,7 @@ namespace PhysicsDefense.Graphics
 			}
 
             messageBoard.draw(spriteBatch);
+            infoBoard.draw(spriteBatch);
 			spriteBatch.End();
 		}
 

@@ -14,18 +14,18 @@ namespace PhysicsDefense.GameState
     class MessageBoard
     {
         SpriteFont messageFont;
-        SpriteFont infoFont;
+        SpriteFont detailFont;
         static String message;
         Vector2 screenSize;
         static String[] menuOption;
         static String talent="";
         static Tower currentTower;
-        public MessageBoard(Vector2 sSize,SpriteFont msgFont,SpriteFont iFont,String msg)
+        public MessageBoard(Vector2 sSize,SpriteFont msgFont,SpriteFont dFont,String msg)
         {
             message = msg;
             screenSize=sSize;
             messageFont = msgFont;
-            infoFont=iFont;
+            detailFont=dFont;
         }
 
         public static void updateMessage(String msg)
@@ -74,7 +74,7 @@ namespace PhysicsDefense.GameState
 
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["gold"], new Vector2((screenSize.X) - 170, 35), null, Color.White);
             spriteBatch.Draw(ResourceManager.getGraphicsEngine().textures["life"], new Vector2((screenSize.X) - 170, 85), null, Color.White);
-            spriteBatch.DrawString(infoFont, talent, new Vector2((screenSize.X - 190), 440), Color.Black);
+            spriteBatch.DrawString(detailFont, talent, new Vector2((screenSize.X - 190), 440), Color.Black);
 
             if (menuOption != null)
             {
