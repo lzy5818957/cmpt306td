@@ -72,7 +72,11 @@ namespace PhysicsDefense.Graphics
             for (int i = 1; i < 18; i++) {
                 textures.Add("explode" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode/explode" + i.ToString()));
             }
-
+            for (int i = 1; i <=24; i++)
+            {
+                textures.Add("explodebystuck" + i.ToString(), game.Content.Load<Texture2D>("pictures/effect/explode2/exp" + i.ToString()));
+            }
+            
             textures.Add("panel", game.Content.Load<Texture2D>("pictures/panel/panel"));
             textures.Add("sampleBTower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
             textures.Add("sampleMTower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));

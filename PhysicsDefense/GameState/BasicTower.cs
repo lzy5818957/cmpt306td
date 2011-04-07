@@ -12,7 +12,7 @@ namespace PhysicsDefense.GameState
         public BasicTower(World world,Vector2 position):base(world, position)
         {
             // Game-related properties
-            rechargeTime = 500;
+            rechargeTime = 600;
             range = 2f;
             cost = 50f;
             spriteName = "basictower";
