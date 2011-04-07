@@ -47,7 +47,7 @@ namespace PhysicsDefense.GameState
 
         public override void die()
         {
-            Explode explosion = new Explode(world, position, 0.36f);
+            Explode explosion = new Explode(world, position, 0.36f,false);
             onCreateObject(explosion);
             onPlaySound("missilehit");
             base.die();

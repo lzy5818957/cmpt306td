@@ -90,7 +90,7 @@ namespace PhysicsDefense.GameState
 
 		public override void die()
 		{
-			Explode explosion = new Explode(world, position,1.44f);
+			Explode explosion = new Explode(world, position,1.44f,diedByStuck);
 			onCreateObject(explosion);
             marbles.Remove(this);
 			base.die();
