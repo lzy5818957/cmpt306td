@@ -18,6 +18,7 @@ namespace PhysicsDefense.GameState
             range = radius;
             spriteName = "rangeindicator";
             physicsProperties.body = BodyFactory.CreateCircle(world, range, 1f, position);
+            color.A = 0;
             isVisible = true;
             //No collision
             physicsProperties.body.CollidesWith = Category.None;

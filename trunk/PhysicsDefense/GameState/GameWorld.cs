@@ -61,7 +61,6 @@ namespace PhysicsDefense.GameState
         SampleBTower sampleBTower;
         SampleMTower sampleMTower;
         SampleHTower sampleHTower;
-        RangeIndicator rangeIndicator;
 
 		public GameWorld(PhysicsDefense game)
 		{
@@ -338,6 +337,16 @@ namespace PhysicsDefense.GameState
             // Get input state
             getInputState();
 
+            if (keyboardState.IsKeyDown(KeyBindings.showHelp))
+            {
+                InfoBoard.updateInfo("HOT KEYS\n"+
+                                     "T=Basic Tower\n"+
+                                     "M=Missile Tower\n"+
+                                     "H=Hero Tower\n"+
+                                     "S=Spin all towers\n"+
+                                     "R=Show range indicator",Color.Black,2000);
+            }
+
             if (keyboardState.IsKeyDown(KeyBindings.startGame))
             {
                 if (!started)
@@ -360,7 +369,6 @@ namespace PhysicsDefense.GameState
                 previewTower.die();
 				//removeObject(previewTower);
 				previewTower = null;
-
 			}
 
             //Check if there is a need to show all Range Indicators
