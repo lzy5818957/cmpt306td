@@ -22,6 +22,7 @@ namespace PhysicsDefense.GameState
 		public static float cost;
         public bool isSelected;
 		public AoeSensor rangeSensor;
+        public RangeIndicator rangeIndicator=null;
 		float spinTransferFactor = 0.001f;
 		public Spinner spinner;
         public bool isActivated = false;
@@ -64,14 +65,13 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.IgnoreGravity = true;
 			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat3 | Category.Cat6;
 			physicsProperties.body.CollisionCategories = Category.Cat2;
-
 			nativeColor = Color.White;
 			color.A = 128;
-            
 		}
 
 		public void activate()
 		{
+            rangeIndicator.isVisible = false;
 			color = nativeColor;
 			color.A = 255;
             isActivated = true;
@@ -121,16 +121,36 @@ namespace PhysicsDefense.GameState
                     && isActivated
             ){
                 isSelected = true;
+                if(rangeIndicator!=null)
+                    rangeIndicator.isVisible = true;
             }
 
             else{
                 isSelected = false;
+                if(rangeIndicator!=null)
+                    rangeIndicator.isVisible= false;
             }
         }
 
 		public override void update(GameTime gameTime)
 		{
 			base.update(gameTime);
+            if (rangeIndicator == null)
+            {
+                rangeIndicator = new RangeIndicator(world, position, range); 
+                onCreateObject(rangeIndicator);
+            }
+
+            if(rangeIndicator.range != range)
+            {
+                onDeath(rangeIndicator);
+                rangeIndicator = null;
+                rangeIndicator = new RangeIndicator(world, position, range);
+                if (!isSelected)
+                    rangeIndicator.isVisible = false;
+                onCreateObject(rangeIndicator);
+            }
+
             if (!isActivated)
             {
                 foreach (Tower tower in towers)
@@ -139,6 +159,7 @@ namespace PhysicsDefense.GameState
                     if (distance.Length() <= 0.5f)
                         this.isColliding = true;
                 }
+                rangeIndicator.position = position;
                 return;
             }
             if (!isActivated || isDead)
@@ -193,6 +214,7 @@ namespace PhysicsDefense.GameState
 
         public override void die()
         {
+            onDeath(rangeIndicator);
             towers.Remove(this);
             base.die();
         }

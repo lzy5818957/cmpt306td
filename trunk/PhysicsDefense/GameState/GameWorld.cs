@@ -61,6 +61,7 @@ namespace PhysicsDefense.GameState
         SampleBTower sampleBTower;
         SampleMTower sampleMTower;
         SampleHTower sampleHTower;
+        RangeIndicator rangeIndicator;
 
 		public GameWorld(PhysicsDefense game)
 		{
@@ -303,6 +304,7 @@ namespace PhysicsDefense.GameState
                     if (currentTower != null)
                     {
                         currentTower.color = tower.nativeColor;
+                        
                     }
                     currentTower = tower;
                     isAnyTowerSelectedAtAll = true;
@@ -355,10 +357,17 @@ namespace PhysicsDefense.GameState
                     tower.color = tower.nativeColor;
                 }
                 activateMenu();
-				removeObject(previewTower);
+                previewTower.die();
+				//removeObject(previewTower);
 				previewTower = null;
 
 			}
+
+            //Check if there is a need to show all Range Indicators
+            if (keyboardState.IsKeyDown(KeyBindings.showRangeIndicators))
+                RangeIndicator.isVisibleAll = true;
+            else
+                RangeIndicator.isVisibleAll = false;
 
 			// Check for spin clicks
 			spinClick();
