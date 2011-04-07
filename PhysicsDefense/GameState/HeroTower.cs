@@ -59,6 +59,7 @@ namespace PhysicsDefense.GameState
 
         public void upgradeRange()
         {
+            isSelected = true;
             if (availablePoint <= 0)
             {
                 return;
@@ -66,10 +67,12 @@ namespace PhysicsDefense.GameState
             availablePoint--;
             range += 0.1f;
             onPlaySound("upgrade");
+           
         }
 
         public void upgradeSpeed()
         {
+            isSelected = true;
             if (availablePoint <= 0)
                 return;
             availablePoint--;

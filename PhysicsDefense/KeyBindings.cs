@@ -17,5 +17,6 @@ namespace PhysicsDefense
 		public static Keys spinRight = Keys.X;
 		public static Keys spinMod = Keys.LeftShift;
         public static Keys startGame = Keys.Space;
+        public static Keys showRangeIndicators = Keys.R;
 	}
 }
