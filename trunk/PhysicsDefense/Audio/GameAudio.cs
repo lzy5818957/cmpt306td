@@ -34,6 +34,8 @@ namespace PhysicsDefense.Audio
             sounds.Add("error", game.Content.Load<SoundEffect>("audio/error"));
             sounds.Add("spin", game.Content.Load<SoundEffect>("audio/spin"));
             sounds.Add("heromissile", game.Content.Load<SoundEffect>("audio/heromissile"));
+            sounds.Add("lose", game.Content.Load<SoundEffect>("audio/lose"));
+            sounds.Add("win", game.Content.Load<SoundEffect>("audio/win"));
 		}
 
 		public void PlaySound(String soundName)
