@@ -187,16 +187,16 @@ namespace PhysicsDefense.GameState
 
         private void deactivateMenu()
         {
-            sampleBTower.color = Color.Transparent;
+            sampleBTower.color=Color.Transparent;
             sampleHTower.color = Color.Transparent;
             sampleMTower.color = Color.Transparent;
         }
 
         private void activateMenu()
         {
-            sampleBTower.color = sampleBTower.nativeColor;
-            sampleHTower.color = sampleHTower.nativeColor;
-            sampleMTower.color = sampleMTower.nativeColor;
+            sampleBTower.color=sampleBTower.nativeColor;
+            sampleHTower.color = sampleBTower.nativeColor;
+            sampleMTower.color = sampleBTower.nativeColor;
         }
 
 		/// <summary>

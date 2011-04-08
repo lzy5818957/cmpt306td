@@ -90,7 +90,7 @@ namespace PhysicsDefense.Graphics
 
 		public void Draw(GameTime gameTime)
 		{
-			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 			game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			// Draw background

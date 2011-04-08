@@ -30,6 +30,9 @@ namespace PhysicsDefense.GameState
             //color.A -= 1;
             frameCount++;
             color.A = (byte)(255 - 16*frameCount);
+            color.B = (byte)(255 - 16 * frameCount);
+            color.G = (byte)(255 - 16 * frameCount);
+            color.R = (byte)(255 - 16 * frameCount);
             if (frameCount>=16)
             {
                 die();

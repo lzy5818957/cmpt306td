@@ -18,7 +18,7 @@ namespace PhysicsDefense.GameState
             range = radius;
             spriteName = "rangeindicator";
             physicsProperties.body = BodyFactory.CreateCircle(world, range, 1f, position);
-            color.A = 0;
+            color=Color.Transparent;
             isVisible = true;
             //No collision
             physicsProperties.body.CollidesWith = Category.None;
@@ -31,16 +31,31 @@ namespace PhysicsDefense.GameState
             if (isVisibleAll)
             {
                 if (isVisible)
-                    color.A =127;
+                {
+                    color.A = 127;
+                    color.B = 127;
+                    color.G = 127;
+                    color.R = 127;
+                }
                 else
-                    color.A =63;
+                {
+                    color.A = 63;
+                    color.B = 63;
+                    color.G = 63;
+                    color.R = 63;
+                }
             }
             else
             {
                 if (isVisible)
+                {
                     color.A = 63;
+                    color.B = 63;
+                    color.G = 63;
+                    color.R = 63;
+                }
                 else
-                    color.A = 0;
+                    color = Color.Transparent;
             }
             base.update(gameTime);
         }
