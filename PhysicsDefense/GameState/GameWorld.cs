@@ -27,9 +27,7 @@ namespace PhysicsDefense.GameState
 		private String currentMap;
 		private float clickSpinTorque = 200f;
 
-
 		public static float money = 1500;
-
 
 		private int lives = 20;
 
@@ -191,14 +189,14 @@ namespace PhysicsDefense.GameState
 
         private void deactivateMenu()
         {
-            sampleBTower.color = Color.TransparentWhite;
-            sampleHTower.color = Color.TransparentWhite;
-            sampleMTower.color = Color.TransparentWhite;
+            sampleBTower.color = Color.Transparent;
+            sampleHTower.color = Color.Transparent;
+            sampleMTower.color = Color.Transparent;
         }
 
         private void activateMenu()
         {
-            sampleBTower.color = sampleBTower.nativeColor; ;
+            sampleBTower.color = sampleBTower.nativeColor;
             sampleHTower.color = sampleHTower.nativeColor;
             sampleMTower.color = sampleMTower.nativeColor;
         }
