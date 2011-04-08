@@ -40,7 +40,7 @@ namespace GameStateManagement
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
-            MenuEntry mapsMenuEntry = new MenuEntry(string.Empty);
+            mapsMenuEntry = new MenuEntry(string.Empty);
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             SetMenuEntryText();
