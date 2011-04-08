@@ -20,7 +20,7 @@ namespace GameStateManagement
     class MainMenuScreen : MenuScreen
     {
         #region Fields
-            static string[] maps = { "map1", "map2", "map3" };
+            static string[] maps = { "map1", "map2", "map3", "map4", "map5" };
             static int currentMap = 0;
             static bool frobnicate = true;
             static int elf = 23;
