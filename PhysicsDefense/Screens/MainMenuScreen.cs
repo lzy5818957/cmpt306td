@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using PhysicsDefense;
 #endregion
 
 namespace GameStateManagement
@@ -18,30 +19,48 @@ namespace GameStateManagement
     /// </summary>
     class MainMenuScreen : MenuScreen
     {
+        #region Fields
+            static string[] maps = { "map1", "map2", "map3" };
+            static int currentMap = 0;
+            static bool frobnicate = true;
+            static int elf = 23;
+
+            MenuEntry mapsMenuEntry;
+        #endregion
+
         #region Initialization
 
 
-        /// <summary>
+            /// <summary>
         /// Constructor fills in the menu contents.
         /// </summary>
+        /// 
         public MainMenuScreen()
             : base("Main Menu")
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
-            MenuEntry optionsMenuEntry = new MenuEntry("Options");
+            MenuEntry mapsMenuEntry = new MenuEntry(string.Empty);
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
+
+            SetMenuEntryText();
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
-            optionsMenuEntry.Selected += OptionsMenuEntrySelected;
+            mapsMenuEntry.Selected += MapsMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
-            MenuEntries.Add(optionsMenuEntry);
+            MenuEntries.Add(mapsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
+
+        void SetMenuEntryText()
+        {
+            mapsMenuEntry.Text = "Map: " + maps[currentMap];
+        }
+
 
 
         #endregion
@@ -62,9 +81,11 @@ namespace GameStateManagement
         /// <summary>
         /// Event handler for when the Options menu entry is selected.
         /// </summary>
-        void OptionsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void MapsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            ScreenManager.AddScreen(new OptionsMenuScreen(), e.PlayerIndex);
+            currentMap = (currentMap + 1) % maps.Length;
+            ResourceManager.initialMap = "pictures/maps/" + maps[currentMap];
+            SetMenuEntryText();
         }
 
 
@@ -91,8 +112,24 @@ namespace GameStateManagement
         {
             ScreenManager.Game.Exit();
         }
+        void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            frobnicate = !frobnicate;
+
+            SetMenuEntryText();
+        }
 
 
+        /// <summary>
+        /// Event handler for when the Elf menu entry is selected.
+        /// </summary>
+        void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            elf++;
+
+            SetMenuEntryText();
+        }
+        
         #endregion
     }
 }
