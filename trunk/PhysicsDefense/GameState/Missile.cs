@@ -15,7 +15,7 @@ namespace PhysicsDefense.GameState
         private double age = 0;
 
 		private int damage = 16;
-		private float strength = 5f;
+		private float strength = 6f;
         private GameObject target;
 
         public Missile(World world, Vector2 position, GameObject tgt)
