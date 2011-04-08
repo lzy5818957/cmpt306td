@@ -76,6 +76,7 @@ namespace PhysicsDefense.GameState
                 
                 isColliding = true;
 				return true;
+
 			};
 			physicsProperties.body.OnSeparation += (a, b) => {
 

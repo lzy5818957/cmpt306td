@@ -61,7 +61,9 @@ namespace PhysicsDefense
 
         public static void reset()
         {
+
             gameWorld = new GameWorld((PhysicsDefense)game);
+            Tower.towers.Clear();
             graphics.clearList();
             audio.clearList();
         }
