@@ -46,7 +46,8 @@ namespace PhysicsDefense.GameState
 
 		MapObstacles map;
 		EnemyEmitter spawner;
-        Panel panel;
+        Panel panelR;
+        Panel panelL;
 
 		List<GameObject> entities;
 		List<Tower> towers;
@@ -94,8 +95,12 @@ namespace PhysicsDefense.GameState
 
         private void initPanel()
         {
-            panel = new Panel(physics.world, new Vector2(9, 3));
-            addObject(panel);
+            panelR = new Panel(physics.world, new Vector2(9, 3));
+            addObject(panelR);
+
+            panelL = new Panel(physics.world, new Vector2(-1, 3));
+            addObject(panelL);
+
             sampleBTower = new SampleBTower(physics.world, new Vector2(8.4f, 2.05f));
             addObject(sampleBTower);
             sampleMTower = new SampleMTower(physics.world, new Vector2(9.0f, 2.05f));
@@ -171,7 +176,7 @@ namespace PhysicsDefense.GameState
                 if (money < cost)
                 {
                     InfoBoard.updateInfo("Insufficient funds to place this tower", Color.Tomato, 200);
-                    panel.playSound("error");
+                    panelR.playSound("error");
                     // Cancel tower placement
                     foreach (Tower tower in towers)
                     {
@@ -284,7 +289,7 @@ namespace PhysicsDefense.GameState
 				foreach (Tower tower in towers) {
 					if ((clickPos - tower.position).Length() < tower.radius) {
 						tower.applySpin(clickSpinTorque * spinDirection);
-                        panel.playSound("spin");
+                        panelR.playSound("spin");
                         break;
 					}
 				}
@@ -306,7 +311,7 @@ namespace PhysicsDefense.GameState
                     }
                     currentTower = tower;
                     isAnyTowerSelectedAtAll = true;
-                    panel.playSound("click");
+                    panelR.playSound("click");
                 }
             }
             if (!isAnyTowerSelectedAtAll && currentTower != null && mouseState.X < 800)
@@ -356,7 +361,7 @@ namespace PhysicsDefense.GameState
                     spawner.start();
                     started = true;
                     InfoBoard.updateInfo("Wave " + spawner.wave + " is coming!", Color.Orange, 200);
-                    panel.playSound("wavestart");
+                    panelR.playSound("wavestart");
                     //onPlaySound("wavestart");
                 }
             }
