@@ -178,8 +178,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< .mine
+      <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\pictures\maps\map1.xnb</Output>
+      <Time>2011-04-08T01:47:04.2767102-06:00</Time>
+=======
       <Output>H:\winhome\cmpt306\PhysicsDefense\PhysicsDefense\bin\x86\Release\Content\pictures\maps\map1.xnb</Output>
       <Time>2011-04-08T01:10:30.187285-06:00</Time>
+>>>>>>> .r203
     </Item>
     <Item>
       <Source>pictures\maps\map2.png</Source>
@@ -205,8 +210,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< .mine
+      <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\pictures\maps\map3.xnb</Output>
+      <Time>2011-04-08T01:47:04.2947112-06:00</Time>
+=======
       <Output>H:\winhome\cmpt306\PhysicsDefense\PhysicsDefense\bin\x86\Release\Content\pictures\maps\map3.xnb</Output>
       <Time>2011-04-07T23:54:36.617276-06:00</Time>
+>>>>>>> .r203
     </Item>
     <Item>
       <Source>pictures\backgrounds\menubackground.png</Source>
@@ -260,7 +270,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\pictures\towers\missiletower.xnb</Output>
-      <Time>2011-04-07T23:38:18.7528355-06:00</Time>
+      <Time>2011-04-08T01:50:09.6313118-06:00</Time>
     </Item>
     <Item>
       <Source>pictures\panel\panel.png</Source>
@@ -278,7 +288,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\pictures\towers\basictower.xnb</Output>
-      <Time>2011-04-07T20:56:09.8683751-06:00</Time>
+      <Time>2011-04-08T03:07:20.5911876-06:00</Time>
     </Item>
     <Item>
       <Source>pictures\effect\spinner.png</Source>
@@ -296,7 +306,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\pictures\towers\herotower.xnb</Output>
-      <Time>2011-04-07T20:56:09.8623748-06:00</Time>
+      <Time>2011-04-08T04:10:51.8081767-06:00</Time>
     </Item>
     <Item>
       <Source>pictures\panel\gold.png</Source>
@@ -702,7 +712,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\audio\upgrade.xnb</Output>
-      <Time>2011-04-07T20:56:05.3931191-06:00</Time>
+      <Time>2011-04-08T04:26:34.3570875-06:00</Time>
     </Item>
     <Item>
       <Source>audio\wavestart.wav</Source>
@@ -811,6 +821,33 @@
       <Options>None</Options>
       <Output>H:\winhome\cmpt306\PhysicsDefense\PhysicsDefense\bin\x86\Release\Content\pictures\maps\map5.xnb</Output>
       <Time>2011-04-07T22:50:14.971079-06:00</Time>
+    </Item>
+    <Item>
+      <Source>pictures\maps\map5.png</Source>
+      <Name>pictures\maps\map5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\pictures\maps\map5.xnb</Output>
+      <Time>2011-04-08T01:47:04.2997115-06:00</Time>
+    </Item>
+    <Item>
+      <Source>audio\lose.wav</Source>
+      <Name>audio\lose</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\audio\lose.xnb</Output>
+      <Time>2011-04-08T04:17:54.0373269-06:00</Time>
+    </Item>
+    <Item>
+      <Source>audio\win.wav</Source>
+      <Name>audio\win</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Executor\Desktop\PhysicDefense\PhysicsDefense\bin\x86\Release\Content\audio\win.xnb</Output>
+      <Time>2011-04-08T04:26:00.9661776-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

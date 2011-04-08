@@ -120,6 +120,7 @@ namespace PhysicsDefense.GameState
 
 		private void waveFinished()
 		{
+            panelR.playSound("win");
             InfoBoard.updateInfo("Wave " + spawner.wave + " finished\n" + "Press Space for the next wave",Color.SkyBlue,500);
 
 			// Give wave money reward
@@ -133,6 +134,7 @@ namespace PhysicsDefense.GameState
 
 		public void lose()
 		{
+            panelR.playSound("lose");
             InfoBoard.updateInfo("All lives lost!\nPress F10 to bring up the menu.",Color.Red,65535);
 			active = false;
 		}

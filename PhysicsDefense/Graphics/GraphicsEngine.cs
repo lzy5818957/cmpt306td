@@ -49,7 +49,7 @@ namespace PhysicsDefense.Graphics
             SpriteFont infoFont=game.Content.Load<SpriteFont>("fonts/infoFont");
 
             messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont,detailFont, "Game Starting...");
-            infoBoard = new InfoBoard(infoFont, new Vector2(screenWidth / 6f, screenHeight * 0.25f),
+            infoBoard = new InfoBoard(infoFont, new Vector2(0f , 0f),
                 "Place towers then press Space to start game.\nAccess other levels in the Options menu!\nFor help, press F1.\nF10 brings up the main menu.", 10000);
 
 			// Load textures
@@ -135,9 +135,17 @@ namespace PhysicsDefense.Graphics
                 {
                     spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin*2, SpriteEffects.None, 0);
                 }
+                if (obj is BasicTower)
+                {
+                    spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin*3, SpriteEffects.None, 0);
+                }
                 if (obj is MissileTower)
                 {
                     spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin / 3.5f, SpriteEffects.None, 0);
+                }
+                if (obj is HeroTower)
+                {
+                    spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin*2.3f, SpriteEffects.None, 0);
                 }
 			}
 

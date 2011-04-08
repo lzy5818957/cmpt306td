@@ -177,11 +177,10 @@ namespace PhysicsDefense.GameState
 			}
 
 			// Target enemy
-            if (enemiesInRange.Count != 0) {
+            if (enemiesInRange.Count != 0&&!(this is HeroTower)) {
                 Marble target = enemiesInRange[0];
                 rotation = (float)Math.Atan2(target.position.Y - position.Y, target.position.X - position.X);
             } else {
-                
                 rotation += 0.01f;
             }
 			enemiesInRange.RemoveAll(delegate(Marble obj) { return obj.isDead; });
