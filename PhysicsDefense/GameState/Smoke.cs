@@ -29,8 +29,8 @@ namespace PhysicsDefense.GameState
             //size.Y += 0.01f;
             //color.A -= 1;
             frameCount++;
-            color.A = (byte)(255 - 8*frameCount);
-            if (frameCount>=32)
+            color.A = (byte)(255 - 16*frameCount);
+            if (frameCount>=16)
             {
                 die();
             }
