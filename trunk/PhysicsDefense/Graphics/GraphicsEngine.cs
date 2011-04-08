@@ -59,6 +59,7 @@ namespace PhysicsDefense.Graphics
             textures.Add("missiletower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));
             textures.Add("herotower", game.Content.Load<Texture2D>("pictures/towers/herotower"));
             textures.Add("missile",game.Content.Load<Texture2D>("pictures/bullets/missile"));
+            textures.Add("missilepad", game.Content.Load<Texture2D>("pictures/towers/missilepad"));
             textures.Add("aoemissile", game.Content.Load<Texture2D>("pictures/bullets/aoemissile"));
             textures.Add("connector", game.Content.Load<Texture2D>("pictures/towers/connector"));
             textures.Add("rangeindicator", game.Content.Load<Texture2D>("pictures/towers/rangeindicator"));
@@ -112,6 +113,16 @@ namespace PhysicsDefense.Graphics
 					(int)(obj.size.Y * GameWorld.worldScale)
 				);
 				Vector2 origin = new Vector2(textures[obj.spriteName].Width / 2, textures[obj.spriteName].Height / 2);
+
+                //add light bubble on each marble
+                if (obj is MissileTower)
+                {
+                    spriteBatch.Draw(textures["missilepad"], dest, null, Color.White, 0f, origin/8f, SpriteEffects.None, 0);
+                }
+                if(obj is SampleMTower&&obj.color.A>0)
+                {
+                    spriteBatch.Draw(textures["missilepad"], dest, null, Color.White, 0f, origin / 8f, SpriteEffects.None, 0);
+                }
 
 				spriteBatch.Draw(textures[obj.spriteName], dest, null, obj.color, obj.rotation, origin, SpriteEffects.None, 0);
 

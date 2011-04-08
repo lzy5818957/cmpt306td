@@ -615,6 +615,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pictures\towers\missilepad.png">
+      <Name>missilepad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="pictures\maps\map0.png">
       <Name>map0</Name>
       <Importer>TextureImporter</Importer>
