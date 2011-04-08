@@ -10,7 +10,7 @@ namespace PhysicsDefense.Graphics
     class InfoBoard
     {
         public static String information;
-        public static Color infoColor=Color.Yellow;
+        public static Color infoColor=Color.White;
         private Vector2 position;
         private SpriteFont infoFont;
         //use frameCount to determine how long the message displayed
