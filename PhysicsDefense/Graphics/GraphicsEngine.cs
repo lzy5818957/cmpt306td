@@ -117,7 +117,8 @@ namespace PhysicsDefense.Graphics
                 //add light bubble on each marble
                 if (obj is MissileTower)
                 {
-                    spriteBatch.Draw(textures["missilepad"], dest, null, Color.White, 0f, origin/8f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(textures["missilepad"], dest, null, obj.color, 0f, origin/8f, SpriteEffects.None, 0);
+
                 }
                 if(obj is SampleMTower&&obj.color.A>0)
                 {
