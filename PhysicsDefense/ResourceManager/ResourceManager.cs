@@ -59,6 +59,13 @@ namespace PhysicsDefense
             return gameWorld;
         }
 
+        public static void reset()
+        {
+            gameWorld = new GameWorld((PhysicsDefense)game);
+            graphics.clearList();
+            audio.clearList();
+        }
+
     }
 
 

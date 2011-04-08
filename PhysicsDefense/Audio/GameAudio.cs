@@ -46,5 +46,10 @@ namespace PhysicsDefense.Audio
 			MediaPlayer.IsRepeating = true;
 			MediaPlayer.Play(music);
 		}
+
+        public void clearList()
+        {
+            sounds.Clear();
+        }
 	}
 }
