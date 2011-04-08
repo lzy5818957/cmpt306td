@@ -25,7 +25,6 @@ namespace PhysicsDefense.GameState
             physicsProperties.body.CollidesWith = Category.All;
             physicsProperties.body.CollisionCategories = Category.Cat6;
             physicsProperties.body.UserData = this;
-
 		}
 
         public void playSound(String soundname)

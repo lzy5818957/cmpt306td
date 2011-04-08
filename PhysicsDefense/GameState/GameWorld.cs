@@ -90,6 +90,7 @@ namespace PhysicsDefense.GameState
 			spawner.onWaveFinished = waveFinished;
 			
             started = false;
+
             initPanel();
             
 		}
