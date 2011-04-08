@@ -8,6 +8,7 @@ using PhysicsDefense.Physics;
 using PhysicsDefense.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
+using GameStateManagement;
 
 
 
@@ -289,6 +290,7 @@ namespace PhysicsDefense.GameState
 						tower.applySpin(clickSpinTorque * spinDirection);
 					}
 				}
+                panel.playSound("spin");
 			}
 		}
 
@@ -307,7 +309,7 @@ namespace PhysicsDefense.GameState
                     }
                     currentTower = tower;
                     isAnyTowerSelectedAtAll = true;
-                    
+                    panel.playSound("click");
                 }
             }
             if (!isAnyTowerSelectedAtAll && currentTower != null && mouseState.X < 800)
@@ -343,8 +345,8 @@ namespace PhysicsDefense.GameState
                                      "T=Basic Tower\n"+
                                      "M=Missile Tower\n"+
                                      "H=Hero Tower\n"+
-                                     "S=Spin all towers\n"+
-                                     "R=Show range indicator",Color.Black,2000);
+                                     "R=Show range indicator"+
+                                     "F10=Pause",Color.Black,2000);
             }
 
             if (keyboardState.IsKeyDown(KeyBindings.startGame))
@@ -359,16 +361,24 @@ namespace PhysicsDefense.GameState
                 }
             }
 
-			if (keyboardState.IsKeyDown(KeyBindings.cancelTower) && previewTower != null) {
-				// Cancel tower placement
-                foreach (Tower tower in towers)
+			if (keyboardState.IsKeyDown(KeyBindings.cancelTower)) {
+				
+                if (previewTower == null)
                 {
-                    tower.color = tower.nativeColor;
+ 
                 }
-                activateMenu();
-                previewTower.die();
-				//removeObject(previewTower);
-				previewTower = null;
+                else
+                {
+                    // Cancel tower placement
+                    foreach (Tower tower in towers)
+                    {
+                        tower.color = tower.nativeColor;
+                    }
+                    activateMenu();
+                    previewTower.die();
+                    //removeObject(previewTower);
+                    previewTower = null;
+                }
 			}
 
             //Check if there is a need to show all Range Indicators
@@ -450,7 +460,7 @@ namespace PhysicsDefense.GameState
 			prevKeyboardState = Keyboard.GetState();
 
             // Place tower if mouse clicked
-            if (mouseLeftPress)
+            if (mouseLeftPress && !Keyboard.GetState().IsKeyDown(KeyBindings.spinMod))
             {
                 towerOperation();
             }
