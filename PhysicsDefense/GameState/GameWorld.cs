@@ -355,7 +355,7 @@ namespace PhysicsDefense.GameState
                 {
                     spawner.start();
                     started = true;
-                    InfoBoard.updateInfo("Wave " + spawner.wave + " is Comming!", Color.Orange, 200);
+                    InfoBoard.updateInfo("Wave " + spawner.wave + " is coming!", Color.Orange, 200);
                     panel.playSound("wavestart");
                     //onPlaySound("wavestart");
                 }
@@ -464,7 +464,7 @@ namespace PhysicsDefense.GameState
             {
                 towerOperation();
             }
-            MessageBoard.updateMessage("=" + money + "\n=" + lives );
+            MessageBoard.updateMessage(money + "\n" + lives);
 		}
 
 		private void addObject(GameObject obj)

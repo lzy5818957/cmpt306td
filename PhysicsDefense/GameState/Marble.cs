@@ -25,7 +25,7 @@ namespace PhysicsDefense.GameState
         
 		private float stuckFactor;
 		private const float stuckLimit = 30f;
-		private const float stuckThreshholdSpeed = 0.5f;
+		private const float stuckThreshholdSpeed = 0.6f;
 		public bool diedByStuck = false;
 
 		// The amount of money awarded when the marble is killed
@@ -39,7 +39,7 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
 			physicsProperties.body.Friction = 0.8f;
-			physicsProperties.body.AngularDamping = 0f;
+			physicsProperties.body.AngularDamping = 0.2f;
 			physicsProperties.body.CollisionCategories = Category.Cat1;
             physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat2 | Category.Cat3 | Category.Cat5;
             physicsProperties.body.UserData = this;
