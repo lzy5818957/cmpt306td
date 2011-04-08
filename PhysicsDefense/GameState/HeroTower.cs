@@ -17,7 +17,7 @@ namespace PhysicsDefense.GameState
         {
             // Game-related properties
             rechargeTime = 1000;
-            range = 2.5f;
+            range = 1.6f;
             cost = 300f;
             spriteName = "herotower";
             experience = 0;
@@ -26,14 +26,6 @@ namespace PhysicsDefense.GameState
 
         public override void shoot()
         {
-            if (Math.Log(experience/WaveData.initialEnemyCount,2+WaveData.bountyMult)>level)
-            {
-                level++;
-                availablePoint++;
-                rechargeTime -= 10;
-                range +=0.01f;
-                Console.WriteLine("Tower upgraded to level "+level);
-            }
             base.shoot();
             if (enemiesInRange.Count <= 0)
                 return;
@@ -53,7 +45,7 @@ namespace PhysicsDefense.GameState
                 return;
             foreach (HeroTower heroTower in heroTowers)
             {
-                heroTower.experience += (bounty / i);
+                heroTower.experience += (float)(bounty / Math.Pow(i, 0.33));
             }
         }
 
@@ -65,7 +57,8 @@ namespace PhysicsDefense.GameState
                 return;
             }
             availablePoint--;
-            range += 0.1f;
+            //range += 0.15f;
+            range = (float)Math.Sqrt(Math.Pow(0.9, 2) + Math.Pow(range, 2));
             onPlaySound("upgrade");
            
         }
@@ -76,7 +69,7 @@ namespace PhysicsDefense.GameState
             if (availablePoint <= 0)
                 return;
             availablePoint--;
-            rechargeTime-= 10;
+            rechargeTime *= 0.92f;
             onPlaySound("upgrade");
         }
 
@@ -94,6 +87,21 @@ namespace PhysicsDefense.GameState
         public int getAvailablePoint()
         {
             return availablePoint;
+        }
+
+        public override void update(GameTime gameTime)
+        {
+            //if (Math.Log(experience/WaveData.initialEnemyCount,2+WaveData.bountyMult)>level)
+            //float expCheck = (float)(Math.Log(experience + 1) * Math.Log(experience + 1) * 0.05f);
+            float expCheck = (float)(Math.Pow(experience, 0.88) * 0.025f);
+            if (expCheck > level)
+            {
+                level++;
+                availablePoint++;
+                //rechargeTime *= 0.9f;
+                //range +=0.015f;
+            }
+            base.update(gameTime);
         }
     }
 }
