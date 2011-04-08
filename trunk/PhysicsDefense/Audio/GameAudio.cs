@@ -17,11 +17,12 @@ namespace PhysicsDefense.Audio
 		{
 			this.game = game;
 			sounds = new Dictionary<String, SoundEffect>();
+            music = game.Content.Load<Song>("audio/music");
 		}
 
 		public void LoadContent()
 		{
-			music = game.Content.Load<Song>("audio/music");
+			
             sounds.Add("explode", game.Content.Load<SoundEffect>("audio/explode"));
             sounds.Add("explodebystuck", game.Content.Load<SoundEffect>("audio/explodebystuck"));
             sounds.Add("missilelaunch", game.Content.Load<SoundEffect>("audio/missilelaunch"));
@@ -48,6 +49,8 @@ namespace PhysicsDefense.Audio
 			MediaPlayer.IsRepeating = true;
 			MediaPlayer.Play(music);
 		}
+
+
 
         public void clearList()
         {

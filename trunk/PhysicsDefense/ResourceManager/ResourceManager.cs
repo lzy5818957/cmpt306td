@@ -54,7 +54,7 @@ namespace PhysicsDefense
             if (gameWorld == null)
             {
                 gameWorld = new GameWorld((PhysicsDefense)game);
-
+                ((PhysicsDefense)game).audio.PlayMusic();
             }
             return gameWorld;
         }
