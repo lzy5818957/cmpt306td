@@ -58,7 +58,7 @@ namespace PhysicsDefense.GameState
                     if (distance.Length() < range)
                         tgt.takeDamage(damage);
                 }
-                Smoke smoke = new Smoke(world, position, "aoesmoke", range);
+                Smoke smoke = new Smoke(world, position, "aoesmoke", range*2);
                 onCreateObject(smoke);
                 this.die();
                 return true;

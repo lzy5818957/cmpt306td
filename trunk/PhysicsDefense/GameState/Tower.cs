@@ -66,14 +66,16 @@ namespace PhysicsDefense.GameState
 			physicsProperties.body.CollidesWith = Category.Cat1 | Category.Cat3 | Category.Cat6;
 			physicsProperties.body.CollisionCategories = Category.Cat2;
 			nativeColor = Color.White;
-			color.A = 128;
+			color.A = 127;
+            color.B = 127;
+            color.G = 127;
+            color.R = 127;
 		}
 
 		public void activate()
 		{
             rangeIndicator.isVisible = false;
 			color = nativeColor;
-			color.A = 255;
             isActivated = true;
 			physicsProperties.body.IsSensor = false;
 			physicsProperties.body.IgnoreGravity = true;

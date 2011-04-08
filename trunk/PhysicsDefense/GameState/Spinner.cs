@@ -35,6 +35,9 @@ namespace PhysicsDefense.GameState
 			if (physicsProperties.body.AngularVelocity < maxSpinVelocity * -1f)
 				physicsProperties.body.AngularVelocity = maxSpinVelocity * -1f;
 			color.A = (byte)(255f * Math.Abs(physicsProperties.body.AngularVelocity / maxSpinVelocity));
+            color.B = (byte)(255f * Math.Abs(physicsProperties.body.AngularVelocity / maxSpinVelocity));
+            color.G = (byte)(255f * Math.Abs(physicsProperties.body.AngularVelocity / maxSpinVelocity));
+            color.R = (byte)(255f * Math.Abs(physicsProperties.body.AngularVelocity / maxSpinVelocity));
 			base.update(gameTime);
 		}
 	}
