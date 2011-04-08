@@ -131,6 +131,10 @@ namespace PhysicsDefense.Graphics
                 {
                     spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin*2, SpriteEffects.None, 0);
                 }
+                if (obj is MissileTower)
+                {
+                    spriteBatch.Draw(textures["bubble"], dest, null, Color.White, 0f, origin / 3.5f, SpriteEffects.None, 0);
+                }
 			}
 
             messageBoard.draw(spriteBatch);
