@@ -622,15 +622,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pictures\maps\map0.png">
-      <Name>map0</Name>
+    <Compile Include="pictures\maps\map4.png">
+      <Name>map4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pictures\maps\map4.png">
-      <Name>map4</Name>
+    <Compile Include="pictures\maps\map5.png">
+      <Name>map5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
