@@ -126,11 +126,9 @@ namespace PhysicsDefense.GameState
 
 		public void lose()
 		{
-            InfoBoard.updateInfo("All lives lost!\nGame Over",Color.Red,65535);
+            InfoBoard.updateInfo("All lives lost!\nPress F10 to bring up the menu.",Color.Red,65535);
 			active = false;
 		}
-
- 
 
 		private void getInputState()
 		{
@@ -339,12 +337,15 @@ namespace PhysicsDefense.GameState
 
             if (keyboardState.IsKeyDown(KeyBindings.showHelp))
             {
-                InfoBoard.updateInfo("HOT KEYS\n"+
-                                     "T=Basic Tower\n"+
-                                     "M=Missile Tower\n"+
-                                     "H=Hero Tower\n"+
-                                     "R=Show range indicator"+
-                                     "F10=Pause",Color.Black,2000);
+                //InfoBoard.updateInfo("HOT KEYS\n"+
+                //                     "T=Basic Tower\n"+
+                //                     "M=Missile Tower\n"+
+                //                     "H=Hero Tower\n"+
+                //                     "R=Show range indicator"+
+                //                     "F10=Pause",Color.Black,2000);
+                InfoBoard.updateInfo("Enemies spawn at the top left of the screen.\nThey fall under gravity and roll across terrain/towers.\nHero towers level up and are upgradable.\nHold shift and left/right click towers to spin.\nTowers make 'bridges' if placed close to each other.\n\n" +
+                    "Hotkeys: T=Basic tower\nM=Missile tower\nH=Hero tower\nR=Range indicator\nEscape=Cancel tower placement\nF10=Menu", Color.Black, 10000);
+
             }
 
             if (keyboardState.IsKeyDown(KeyBindings.startGame))

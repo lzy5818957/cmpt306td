@@ -47,8 +47,11 @@ namespace PhysicsDefense.Graphics
             SpriteFont msgFont = game.Content.Load<SpriteFont>("fonts/gameFont");
             SpriteFont detailFont=game.Content.Load<SpriteFont>("fonts/detailFont");
             SpriteFont infoFont=game.Content.Load<SpriteFont>("fonts/infoFont");
+
             messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont,detailFont, "Game Starting...");
-            infoBoard = new InfoBoard(infoFont, new Vector2(screenWidth / 4, 2 * screenHeight / 3), "Place your towers using the right panel, \nThen press \'Space\' to start game\nFor more Help&hints, press F1", 1000);
+            infoBoard = new InfoBoard(infoFont, new Vector2(screenWidth / 6f, screenHeight * 0.25f),
+                "Place towers then press Space to start game.\nFor help, press F1.\nF10 brings up the main menu.", 10000);
+
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
             textures.Add("basicbullet", game.Content.Load<Texture2D>("pictures/bullets/basicbullet"));
