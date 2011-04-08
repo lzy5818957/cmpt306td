@@ -143,5 +143,12 @@ namespace PhysicsDefense.Graphics
         {
             backgrounds.Add(game.Content.Load<Texture2D>(file));
         }
+
+        public void clearList()
+        {
+            drawableObjects.Clear();
+            backgrounds.Clear();
+            textures.Clear();
+        }
 	}
 }

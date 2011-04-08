@@ -85,6 +85,7 @@ namespace GameStateManagement
         public override void UnloadContent()
         {
             content.Unload();
+            ResourceManager.reset();
         }
 
 

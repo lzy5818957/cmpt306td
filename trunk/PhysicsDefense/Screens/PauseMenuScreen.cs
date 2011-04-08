@@ -34,14 +34,17 @@ namespace GameStateManagement
 
             // Create our menu entries.
             MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
+            MenuEntry restartGameMenuEntry = new MenuEntry("Restart Game");
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
-            
+
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
+            restartGameMenuEntry.Selected += RestartGameMenuEntrySelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
             MenuEntries.Add(resumeGameMenuEntry);
+            MenuEntries.Add(restartGameMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
 
@@ -75,6 +78,24 @@ namespace GameStateManagement
         {
             LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
                                                            new MainMenuScreen());
+        }
+
+        void RestartGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            const string message = "Are you sure you want to restart this game?";
+
+            MessageBoxScreen confirmRestartMessageBox = new MessageBoxScreen(message);
+
+            confirmRestartMessageBox.Accepted += ConfirmRestartMessageBoxAccepted;
+
+            ScreenManager.AddScreen(confirmRestartMessageBox, ControllingPlayer);
+        }
+
+
+        void ConfirmRestartMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
+        {
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
+                               new GameplayScreen());
         }
 
 
