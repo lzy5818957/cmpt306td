@@ -197,8 +197,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pictures\enemies\basicEnemy.png">
-      <Name>basicEnemy</Name>
+    <Compile Include="pictures\enemies\Marble1.png">
+      <Name>Marble1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -631,6 +631,28 @@
   <ItemGroup>
     <Compile Include="pictures\maps\map5.png">
       <Name>map5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pictures\enemies\Marble2.png">
+      <Name>Marble2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="pictures\enemies\Marble3.png">
+      <Name>Marble3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="pictures\enemies\Marble4.png">
+      <Name>Marble4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="pictures\enemies\Marble5.png">
+      <Name>Marble5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

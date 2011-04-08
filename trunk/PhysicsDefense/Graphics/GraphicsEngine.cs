@@ -53,7 +53,10 @@ namespace PhysicsDefense.Graphics
                 "Place towers then press Space to start game.\nAccess other levels in the Options menu!\nFor help, press F1.\nF10 brings up the main menu.", 10000);
 
 			// Load textures
-            textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
+            for (int i = 1; i <= 5; i++)
+            {
+                textures.Add("marble" + i.ToString(), game.Content.Load<Texture2D>("pictures/enemies/Marble" + i.ToString()));
+            }
             textures.Add("basicbullet", game.Content.Load<Texture2D>("pictures/bullets/basicbullet"));
             textures.Add("basictower", game.Content.Load<Texture2D>("pictures/towers/basictower"));
             textures.Add("missiletower", game.Content.Load<Texture2D>("pictures/towers/missiletower"));
