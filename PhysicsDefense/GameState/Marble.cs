@@ -34,7 +34,8 @@ namespace PhysicsDefense.GameState
 		public Marble(World world, Vector2 position, float healthMult, float bountyMult)
 		{
 			this.world = world;
-			spriteName = "basicEnemy";
+            Random random=new Random();
+			spriteName = "marble"+random.Next(1,5);
 			physicsProperties.body = BodyFactory.CreateCircle(world, radius, 3.0f, position);
 			physicsProperties.body.Restitution = 0.2f;
 			physicsProperties.body.BodyType = BodyType.Dynamic;
