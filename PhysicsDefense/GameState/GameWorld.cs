@@ -284,9 +284,10 @@ namespace PhysicsDefense.GameState
 				foreach (Tower tower in towers) {
 					if ((clickPos - tower.position).Length() < tower.radius) {
 						tower.applySpin(clickSpinTorque * spinDirection);
+                        panel.playSound("spin");
+                        break;
 					}
 				}
-                panel.playSound("spin");
 			}
 		}
 
