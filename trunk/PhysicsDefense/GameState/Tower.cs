@@ -23,7 +23,7 @@ namespace PhysicsDefense.GameState
         public bool isSelected;
 		public AoeSensor rangeSensor;
         public RangeIndicator rangeIndicator=null;
-		float spinTransferFactor = 0.001f;
+		float spinTransferFactor = 0.0007f;
 		public Spinner spinner;
         public bool isActivated = false;
 
