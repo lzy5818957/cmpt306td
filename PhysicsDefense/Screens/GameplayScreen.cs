@@ -84,8 +84,10 @@ namespace GameStateManagement
         /// </summary>
         public override void UnloadContent()
         {
-            content.Unload();
+            ResourceManager.getGameWorld().clearObj();
             ResourceManager.reset();
+
+            content.Unload();
         }
 
 

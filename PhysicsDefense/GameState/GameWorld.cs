@@ -511,5 +511,35 @@ namespace PhysicsDefense.GameState
 			game.graphics.removeObject(obj);
 			physics.removePhysical(obj);
 		}
+
+        public void clearObj() {
+
+            foreach (GameObject obj in entities)
+            {
+                    obj.die();
+            }
+            foreach (Tower tower in towers)
+            {
+                tower.die();
+            }
+            foreach (Marble marble in enemies)
+            {
+                marble.die();
+            }
+            foreach (Bullet bullet in bullets)
+            {
+                bullet.die();
+            }
+            foreach (Missile missile in missiles)
+            {
+                missile.die();
+            }
+            foreach (GameObject newObj in newEntities)
+            {
+                newObj.die();
+            }
+            money = 1500;
+            lives = 20;
+        }
 	}
 }
