@@ -353,8 +353,8 @@ namespace PhysicsDefense.GameState
                 //                     "H=Hero Tower\n"+
                 //                     "R=Show range indicator"+
                 //                     "F10=Pause",Color.Black,2000);
-                InfoBoard.updateInfo("Enemies spawn at the top left of the screen.\nThey fall under gravity and roll across terrain/towers.\nHero towers level up and are upgradable.\nHold shift and left/right click towers to spin.\nTowers make 'bridges' if placed close to each other.\n\n" +
-                    "Hotkeys: T=Basic tower\nM=Missile tower\nH=Hero tower\nR=Range indicator\nEscape=Cancel tower placement\nF10=Menu", Color.Black, 10000);
+                InfoBoard.updateInfo("Enemies spawn at the top left of the screen and come in waves.\nThey fall under gravity and roll across terrain/towers.\nLose a life if they get stuck or fall to the bottom.\nHero towers level up and are upgradable.\nHold shift and left/right click towers to spin.\nTowers make 'bridges' if placed close to each other.\n\n" +
+                    "Hotkeys: T=Basic tower\nM=Missile tower\nH=Hero tower\nR=Range indicator\nEscape=Cancel tower placement\nF10=Menu", Color.White, 10000);
 
             }
 
