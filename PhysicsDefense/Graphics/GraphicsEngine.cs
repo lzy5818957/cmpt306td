@@ -50,7 +50,7 @@ namespace PhysicsDefense.Graphics
 
             messageBoard = new MessageBoard(new Vector2(screenWidth, screenHeight),msgFont,detailFont, "Game Starting...");
             infoBoard = new InfoBoard(infoFont, new Vector2(screenWidth / 6f, screenHeight * 0.25f),
-                "Place towers then press Space to start game.\nFor help, press F1.\nF10 brings up the main menu.", 10000);
+                "Place towers then press Space to start game.\nAccess other levels in the Options menu!\nFor help, press F1.\nF10 brings up the main menu.", 10000);
 
 			// Load textures
             textures.Add("basicEnemy", game.Content.Load<Texture2D>("pictures/enemies/basicEnemy"));
