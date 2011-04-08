@@ -86,7 +86,6 @@ namespace GameStateManagement
         {
             ResourceManager.getGameWorld().clearObj();
             ResourceManager.reset();
-
             content.Unload();
         }
 
