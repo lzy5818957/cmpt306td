@@ -91,6 +91,7 @@ namespace PhysicsDefense.GameState
 			
             started = false;
             initPanel();
+            
 		}
 
         private void initPanel()
@@ -107,6 +108,7 @@ namespace PhysicsDefense.GameState
             addObject(sampleMTower);
             sampleHTower = new SampleHTower(physics.world, new Vector2(9.6f, 2.05f));
             addObject(sampleHTower);
+            active = true;
         }
 
 		private void spawnEnemy(EnemyType enemy)
