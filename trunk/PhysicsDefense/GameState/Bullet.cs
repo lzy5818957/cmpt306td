@@ -11,11 +11,11 @@ namespace PhysicsDefense.GameState
     public class Bullet : GameObject
     {
         private static float density = 0.01f;
-        private static float radius = 0.05f;
+        private static float radius = 0.12f;
         private double age = 0;
 
 		private int damage = 15;
-		public static float speed = 6f;
+		public static float speed = 9f;
 
         public Bullet(World world, Vector2 position, Vector2 direction) {
 			this.world = world;
@@ -29,7 +29,7 @@ namespace PhysicsDefense.GameState
 
 			direction.Normalize();
 			physicsProperties.body.LinearVelocity = direction * speed;
-
+            rotation = (float)Math.Atan2(direction.Y,direction.X);
 			physicsProperties.body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
         }
 
